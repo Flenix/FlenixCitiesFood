@@ -59,25 +59,25 @@ public class VanillaFoods {
 		}
 		else
 		{
-            Item.appleRed = (new ItemFood(4, 1, 0.05F, false)).setUnlocalizedName("apple").func_111206_d("apple");
-            Item.bread = (new ItemFood(41, 1, 0.4F, false)).setUnlocalizedName("bread").func_111206_d("bread");
-            Item.porkRaw = (new ItemFood(63, 0, 0.05F, true)).setUnlocalizedName("porkchopRaw").func_111206_d("porkchop_raw");
-            Item.porkCooked = (new ItemFood(64, 3, 0.15F, true)).setUnlocalizedName("porkchopCooked").func_111206_d("porkchop_cooked");
-            Item.fishRaw = (new ItemFood(93, 1, 0.05F, false)).setUnlocalizedName("fishRaw").func_111206_d("fish_raw");
-            Item.fishCooked = (new ItemFood(94, 3, 0.1F, false)).setUnlocalizedName("fishCooked").func_111206_d("fish_cooked");
-            Item.cookie = (new ItemFood(101, 1, 0.05F, false)).setUnlocalizedName("cookie").func_111206_d("cookie");
-            Item.melon = (new ItemFood(104, 1, 0.05F, false)).setUnlocalizedName("melon").func_111206_d("melon");
-            Item.beefRaw = (new ItemFood(107, 0, 0.05F, true)).setUnlocalizedName("beefRaw").func_111206_d("beef_raw");
-            Item.beefCooked = (new ItemFood(108, 3, 0.15F, true)).setUnlocalizedName("beefCooked").func_111206_d("beef_cooked");
-            Item.chickenRaw = (new ItemFood(109, 0, 0.05F, true)).setPotionEffect(Potion.poison.id, 30, 0, 0.15F).setUnlocalizedName("chickenRaw").func_111206_d("chicken_raw");
-            Item.chickenCooked = (new ItemFood(110, 3, 0.15F, true)).setUnlocalizedName("chickenCooked").func_111206_d("chicken_cooked");
-            Item.rottenFlesh = (new ItemFood(111, 1, 0.05F, true)).setPotionEffect(Potion.poison.id, 30, 0, 0.4F).setUnlocalizedName("rottenFlesh").func_111206_d("rotten_flesh");
-            Item.bakedPotato = (new ItemFood(137, 2, 0.15F, false)).setUnlocalizedName("potatoBaked").func_111206_d("potato_baked");
-            Item.poisonousPotato = (new ItemFood(138, 1, 0.05F, false)).setPotionEffect(Potion.poison.id, 5, 0, 0.3F).setUnlocalizedName("potatoPoisonous").func_111206_d("potato_poisonous");
-            Item.pumpkinPie = (new ItemFood(144, 3, 0.15F, false)).setUnlocalizedName("pumpkinPie").func_111206_d("pumpkin_pie").setCreativeTab(CreativeTabs.tabFood);
-            Item.bowlSoup = (new ItemFood(26, 3, 0.1F, false)).setUnlocalizedName("mushroomStew").func_111206_d("mushroom_stew");
-            Item.carrot = (new ItemSeedFood(135, 1, 0.05F, Block.carrot.blockID, Block.tilledField.blockID)).setUnlocalizedName("carrots").func_111206_d("carrot");
-            Item.potato = (new ItemSeedFood(136, 1, 0.05F, Block.potato.blockID, Block.tilledField.blockID)).setUnlocalizedName("potato").func_111206_d("potato");
+            Item.appleRed = (new ItemFood(4, 1, 0.05F, false)).setUnlocalizedName("apple").setTextureName("apple");
+            Item.bread = (new ItemFood(41, 1, 0.4F, false)).setUnlocalizedName("bread").setTextureName("bread");
+            Item.porkRaw = (new ItemFood(63, 0, 0.05F, true)).setUnlocalizedName("porkchopRaw").setTextureName("porkchop_raw");
+            Item.porkCooked = (new ItemFood(64, 3, 0.15F, true)).setUnlocalizedName("porkchopCooked").setTextureName("porkchop_cooked");
+            Item.fishRaw = (new ItemFood(93, 1, 0.05F, false)).setUnlocalizedName("fishRaw").setTextureName("fish_raw");
+            Item.fishCooked = (new ItemFood(94, 3, 0.1F, false)).setUnlocalizedName("fishCooked").setTextureName("fish_cooked");
+            Item.cookie = (new ItemFood(101, 1, 0.05F, false)).setUnlocalizedName("cookie").setTextureName("cookie");
+            Item.melon = (new ItemFood(104, 1, 0.05F, false)).setUnlocalizedName("melon").setTextureName("melon");
+            Item.beefRaw = (new ItemFood(107, 0, 0.05F, true)).setUnlocalizedName("beefRaw").setTextureName("beef_raw");
+            Item.beefCooked = (new ItemFood(108, 3, 0.15F, true)).setUnlocalizedName("beefCooked").setTextureName("beef_cooked");
+            Item.chickenRaw = (new ItemFood(109, 0, 0.05F, true)).setPotionEffect(Potion.poison.id, 30, 0, 0.15F).setUnlocalizedName("chickenRaw").setTextureName("chicken_raw");
+            Item.chickenCooked = (new ItemFood(110, 3, 0.15F, true)).setUnlocalizedName("chickenCooked").setTextureName("chicken_cooked");
+            Item.rottenFlesh = (new ItemFood(111, 1, 0.05F, true)).setPotionEffect(Potion.poison.id, 30, 0, 0.4F).setUnlocalizedName("rottenFlesh").setTextureName("rotten_flesh");
+            Item.bakedPotato = (new ItemFood(137, 2, 0.15F, false)).setUnlocalizedName("potatoBaked").setTextureName("potato_baked");
+            Item.poisonousPotato = (new ItemFood(138, 1, 0.05F, false)).setPotionEffect(Potion.poison.id, 5, 0, 0.3F).setUnlocalizedName("potatoPoisonous").setTextureName("potato_poisonous");
+            Item.pumpkinPie = (new ItemFood(144, 3, 0.15F, false)).setUnlocalizedName("pumpkinPie").setTextureName("pumpkin_pie").setCreativeTab(CreativeTabs.tabFood);
+            Item.bowlSoup = (new ItemFood(26, 3, 0.1F, false)).setUnlocalizedName("mushroomStew").setTextureName("mushroom_stew");
+            Item.carrot = (new ItemSeedFood(135, 1, 0.05F, Block.carrot.blockID, Block.tilledField.blockID)).setUnlocalizedName("carrots").setTextureName("carrot");
+            Item.potato = (new ItemSeedFood(136, 1, 0.05F, Block.potato.blockID, Block.tilledField.blockID)).setUnlocalizedName("potato").setTextureName("potato");
 		}
 	}
 

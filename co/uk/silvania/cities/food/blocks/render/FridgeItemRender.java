@@ -61,7 +61,7 @@ public class FridgeItemRender implements IItemRenderer {
             GL11.glScalef(scale, scale, scale);
 
             float factor = (float) (1.0 / 16.0);
-            Minecraft.getMinecraft().renderEngine.func_110577_a(new ResourceLocation("fc_food", "textures/entities/glassfridge.png"));
+            Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("fc_food", "textures/entities/glassfridge.png"));
 
             GL11.glPopAttrib();
             GL11.glPopMatrix();

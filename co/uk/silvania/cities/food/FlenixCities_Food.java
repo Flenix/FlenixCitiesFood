@@ -31,7 +31,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-@Mod(modid=FlenixCities_Food.modid, name="FlenixCities Food", version="0.2")
+@Mod(modid=FlenixCities_Food.modid, name="FlenixCities Food", version="0.3.0")
 @NetworkMod(clientSideRequired=true, serverSideRequired=false)
 public class FlenixCities_Food { 
 	
