@@ -28,10 +28,11 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import cpw.mods.fml.common.registry.VillagerRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-@Mod(modid=FlenixCities_Food.modid, name="FlenixCities Food", version="0.3.0")
+@Mod(modid=FlenixCities_Food.modid, name="FlenixCities Food", version="0.4.0")
 @NetworkMod(clientSideRequired=true, serverSideRequired=false)
 public class FlenixCities_Food { 
 	
@@ -75,6 +76,7 @@ public class FlenixCities_Food {
     public void Init(FMLInitializationEvent event) {        
         proxy.registerBlocks();
         proxy.addNames();
+        //VillagerRegistry.instance().registerVillagerType(villagerID), modid + "gh");
         
         GameRegistry.registerTileEntity(TileEntityFridge.class, "tileEntityFridge");
         GameRegistry.registerTileEntity(TileEntityFridgeLarge.class, "tileEntityFridgeLarge");
