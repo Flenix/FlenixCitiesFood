@@ -11,26 +11,8 @@ import co.uk.silvania.cities.food.items.SeedItems;
 public class FCF_Items {
 	private static FoodConfig config;
 	
-	public static Item foodCheeseBurger;
-	public static Item foodBurger;
-	public static Item foodHotDog;
-	public static Item foodPizza;
-	public static Item foodNoodles;
-	public static Item foodChocolateBar;
-	public static Item foodCrisps;
-	public static Item foodEnergyBar;
-	public static Item foodCheese;
+	//Raw Ingredients
 	public static Item foodTomato;
-	public static Item foodDonut;
-	public static Item foodSweets;
-	public static Item foodFries;
-	public static Item foodPopcorn;
-	public static Item foodIceCream;
-	public static Item foodChickenWings;
-	public static Item foodChickenNuggets;
-	public static Item foodSausage;
-	public static Item foodSausageRoll;
-	
 	public static Item lettuceItem;
 	public static Item garlicItem;
 	public static Item broccoliItem;
@@ -54,10 +36,37 @@ public class FCF_Items {
 	public static Item raspberryItem;
 	public static Item riceItem;
 	
+	//Prepared Ingredients
+	public static Item foodChocolateBar;
+	public static Item foodCrisps;
+	public static Item foodEnergyBar;
+	public static Item foodCheese;
+	public static Item foodSausage;
+	
+	//Snacks etc
+	public static Item foodDonut;
+	public static Item foodSweets;
+	public static Item foodFries;
+	public static Item foodPopcorn;
+	public static Item foodIceCream;
+	
+	//Meal Parts
+	public static Item foodChickenWings;
+	public static Item foodChickenNuggets;
+	public static Item foodSausageRoll;
+	public static Item foodCheeseBurger;
+	public static Item foodBurger;
+	public static Item foodHotDog;
+	public static Item foodNoodles;
+	
+	//Meals
+	public static Item foodPizza;
+
+	
 	//public static Item pastryItem;
 	//public static Item pieTin;
-	//CheeseBlock
-	
+
+	//Seeds
 	public static Item broccoliSeed;
 	public static Item tomatoSeed;
 	public static Item lettuceSeed;

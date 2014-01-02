@@ -19,4 +19,122 @@ public class CityFoods extends ItemFood {
 	public void registerIcons(IconRegister iconRegister) {
 		itemIcon = iconRegister.registerIcon(FlenixCities_Food.modid + ":" + (this.getUnlocalizedName().substring(5)));
 	}
+	
+	public void plannedFoods() {
+		//TODO the following
+		
+		//TODO Set up NBT
+		//NBT values are for all foods, and consist of the following:
+		//Feed (read by minecraft and applied to hunger bar. Int)
+		//Saturation (read by MC and applied as normal. Float)
+		//Spoil Date (Time in ticks until it's considered off. When off, the texture changes and the name turns red. Shown in item tooltip. Int)
+		//Packaged (Whether the item has been packaged. If so, it applies two texture layers to add "packaging". String for different types.)
+		//Storage type is set by which type of food it extends (FoodChillable or FoodFreezable)
+		
+		//BB = Best Before (Fresh/Packed) (in in-game days or 24000 ticks)
+		//Cooking increases values, but effectively kills the spoil time. 0 means it can't be cooked.
+		//Packaging it will simply take the current age off the pack time. Eg if the pack life is 5, and it was made 2 days ago, it's pack life will be 3.
+		//Best Before will be displayed on the item tooltip as a countdown.
+		
+		//ST = Storage. Fridge, Freezer or none. Storage prevents food from ever spoiling and freezes it's best before value.
+		//Putting it anywhere except the correct one will do nothing. If the value is "none", storage is irrelevant and can't preserve the food.
+		//Other blocks may extend fridge and freezer. For example a vending machine is a fridge, a fish sale panel is a freezer.
+		
+		//TODO Raw ingredients
+		//Raw Lamb - BB / - ST Freezer
+		//Raw Squid - BB / - ST Freezer
+		//Raw Duck - BB / - ST Freezer
+		//Raw Cod - BB / - ST Freezer
+		//Raw Salmon - BB / - ST Freezer
+		//Strawberry - BB /
+		//Raspberry - BB /
+		//Blueberry - BB /
+		//Cucumber - BB /
+		//Avocado - BB /
+		//Brocolli - BB /
+		//Onion & Seed DONE - BB 12/15
+		//Pear - BB /
+		//Banana & seed - BB /
+		//Seaweed - BB 80/120 - ST Fridge
+		//Rice (Self-seeding) DONE
+		//Tomato - BB /
+		//Lettuce - BB /
+		//Garlic - BB /
+		//Cabbage - BB /
+		//Celery - BB /
+		//Corn - BB /
+		//Red Pepper - BB /
+		//Yellow Pepper - BB /
+		//Green Pepper - BB /
+		//Leek - BB /
+		//Blackberry - BB /
+		//Blackcurrent - BB /
+		//Red Grapes - BB /
+		//Green Grapes - BB /
+		//Rhubarb - BB /
+		//Lemon - BB /
+		//Lime - BB /
+		//Orange - BB /
+		//
+		
+		//TODO Prepared ingredients
+		//Dough (3 wheat + water. Disable vanilla bread, bake dough to get bread)
+		//Chocolate (cocoa beans + milk to make cacao, furnace/oven to chocolate
+		//Chocolate chips
+		//Slice of bread
+		//Minced Beef
+		//Cheese
+		
+		//TODO Mechanics
+		//Thirst - Adds a new thing to worry about
+		//Max saturation (getting "full") - Makes you choose food wisely. Just bread will fill sat before it fills hunger for example.
+		//Spoiling - Food can go off when not stored in a fridge or freezer. Which depends on the type of food.
+		//Burning - Food cooking changes entirely. It will keep cooking until you turn off the oven, and if it goes over the timer, it burns and becomes useless.
+		//Undercooked - certain meats will poison you if undercooked.
+		//Hot/Cold food - If a meal is cooked, it gives higher food values while it's hot.
+		
+		//TODO Tools & Blocks
+		//Stove
+		//Hob
+		//Oven (Stove/Hob together)
+		//Timer Oven (Can auto-disable itself to prevent food burning. Expensive)
+		//Microwave
+		//Frying Pan
+		//Small Saucepan
+		//Large Saucepan
+		//Wok
+		//Large knife
+		//Small knife
+		//Bread knife
+		//Cheese knife
+		//Spatula
+		//Mincer
+		//Egg Timer
+		//Electric Timer (beeps)
+		//Fridge
+		//Freezer
+		//Glass Fridge (DONE)
+		//Glass Freezer (DONE)
+		//Microwave (Gives lower fill but higher sat for things which can be cooked in here.)
+		//
+		
+		//TODO Cakes & Sweets
+		//Muffin
+		//Chocolate muffin
+		//Blueberry muffin
+		//Chocolate cake
+		//Cake (slice)
+		//Chocolate cake (slice)
+		//strawberry cheesecake
+		//chocolate cheesecake
+		//vanilla ice cream
+		//chocolate ice cream
+		//vanilla cone
+		//chocolate cone
+		//strawberry ice lolly
+		//chocolate ice lolly
+		//milk ice lolly
+		//sweets
+		
+	}
 }
