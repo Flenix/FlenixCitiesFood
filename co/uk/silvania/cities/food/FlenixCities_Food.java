@@ -32,7 +32,7 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-@Mod(modid=FlenixCities_Food.modid, name="FlenixCities Food", version="0.4.0")
+@Mod(modid=FlenixCities_Food.modid, dependencies="required-after:flenixcities", name="FlenixCities Food", version="0.4.0")
 @NetworkMod(clientSideRequired=true, serverSideRequired=false)
 public class FlenixCities_Food { 
 	
@@ -86,7 +86,10 @@ public class FlenixCities_Food {
         ItemStack porkStack = new ItemStack(Item.porkCooked);
         ItemStack chickenStack = new ItemStack(Item.chickenCooked);
         ItemStack breadStack = new ItemStack(Item.bread);
-        ItemStack cheeseStack = new ItemStack(FCF_Items.foodCheese);
+        ItemStack cheeseStack = new ItemStack(FCF_Items.foodCheeseMolten.setContainerItem(Item.bucketEmpty));
+        ItemStack miCheeseStack = new ItemStack(FCF_Items.foodCheeseMild);
+        ItemStack meCheeseStack = new ItemStack(FCF_Items.foodCheeseMedium);
+        ItemStack maCheeseStack = new ItemStack(FCF_Items.foodCheeseMature);
         ItemStack burgerStack = new ItemStack(FCF_Items.foodBurger);
         ItemStack bakedPotato = new ItemStack(Item.bakedPotato);
         ItemStack plainPizza = new ItemStack(FCF_Items.foodPizza, 1, 0);
@@ -95,11 +98,13 @@ public class FlenixCities_Food {
         ItemStack mushroomStack = new ItemStack(Block.mushroomCapBrown);
         ItemStack plainCrisps = new ItemStack(FCF_Items.foodCrisps, 1, 0);
         
+        
         GameRegistry.addRecipe(burgerStack, "b", "m", "b", 'b', breadStack, 'm', beefStack);
-        GameRegistry.addRecipe(new ItemStack(FCF_Items.foodPizza, 1, 0), "ccc", "bbb", 'c', cheeseStack, 'b', breadStack);
-        GameRegistry.addRecipe(new ItemStack(FCF_Items.foodPizza, 1, 1), "mmm", "ccc", "bbb", 'c', cheeseStack, 'b', breadStack, 'm', mushroomStack);
-        GameRegistry.addRecipe(new ItemStack(FCF_Items.foodPizza, 1, 2), "ppp", "ccc", "bbb", 'c', cheeseStack, 'b', breadStack, 'p', porkStack);
+        GameRegistry.addRecipe(new ItemStack(FCF_Items.foodPizza, 1, 0), "ccc", "bbb", 'c', miCheeseStack, 'b', breadStack);
+        GameRegistry.addRecipe(new ItemStack(FCF_Items.foodPizza, 1, 1), "mmm", "ccc", "bbb", 'c', miCheeseStack, 'b', breadStack, 'm', mushroomStack);
+        GameRegistry.addRecipe(new ItemStack(FCF_Items.foodPizza, 1, 2), "ppp", "ccc", "bbb", 'c', miCheeseStack, 'b', breadStack, 'p', porkStack);
 
+        GameRegistry.addShapelessRecipe(miCheeseStack, cheeseStack);
         GameRegistry.addShapelessRecipe(new ItemStack(FCF_Items.foodPizza, 1, 3), mushroomStack, mushroomStack, mushroomStack, pepperoniPizza);
         GameRegistry.addShapelessRecipe(new ItemStack(FCF_Items.foodPizza, 1, 3), porkStack, porkStack, porkStack, mushroomPizza);
         GameRegistry.addShapelessRecipe(new ItemStack(FCF_Items.foodPizza, 1, 3), mushroomStack, mushroomStack, mushroomStack, porkStack, porkStack, porkStack, plainPizza);

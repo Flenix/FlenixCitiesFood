@@ -3,7 +3,7 @@
 
 package co.uk.silvania.cities.food;
 
-import co.uk.silvania.cities.food.items.CityFoods;
+import co.uk.silvania.cities.food.items.foods.CityFoods;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;

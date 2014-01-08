@@ -24,7 +24,7 @@ public class SeedItems extends ItemSeeds implements IPlantable {
 	
 	@Override
 	public void registerIcons(IconRegister icon) {
-		itemIcon = icon.registerIcon(FlenixCities_Food.modid + ":" + (this.getUnlocalizedName().substring(5)));
+		itemIcon = icon.registerIcon(FlenixCities_Food.modid + ":" + (this.getUnlocalizedName().toLowerCase().substring(5)));
 	}
 	
     public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3world, int par4, int par5, int par6, int par7, float par8, float par9, float par10) {
