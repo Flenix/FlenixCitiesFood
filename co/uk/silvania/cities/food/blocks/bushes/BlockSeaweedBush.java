@@ -29,15 +29,26 @@ public class BlockSeaweedBush extends Block {
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int i, float j, float k, float l) {
 		if (!world.isRemote) {
+			setRenderType(world, x, y, z);
 			int meta = world.getBlockMetadata(x, y, z);
 			System.out.println("Looks like the meta of this seaweed is " + meta);
 		}
 		return true;
 	}
 	
+    private int renderType = 6;
+    public void setRenderType(World world, int x, int y, int z) {
+    	int meta = world.getBlockMetadata(x, y, z);
+    	if (meta < 7) {
+    		renderType = 6;
+    	} else {
+    		renderType = 6;
+    	}
+    }	
+	
 	@Override
     public int getRenderType() {
-        return 6;
+        return renderType;
     }
 	
 	@Override
@@ -57,7 +68,9 @@ public class BlockSeaweedBush extends Block {
 	
 	@Override
     public void updateTick(World world, int x, int y, int z, Random random) {
+		setRenderType(world, x, y, z);
         if (!world.isRemote && world.rand.nextInt(4) == 0) {
+        	System.out.println("Ticking seaweed");
         	int meta = world.getBlockMetadata(x, y, z);
         	if ((world.getBlockId(x + 1, y, z) == Block.waterMoving.blockID) || (world.getBlockId(x + 1, y, z) == Block.waterStill.blockID)) {
             	if (meta < 7) {
@@ -70,22 +83,22 @@ public class BlockSeaweedBush extends Block {
     				if (side == 1) {
     					if ((world.getBlockId(x + 1, y, z) == Block.waterMoving.blockID) || (world.getBlockId(x + 1, y, z) == Block.waterStill.blockID)) {
     						world.setBlock(x + 1, y, z, FCF_Blocks.seaweedBush.blockID);
-    						world.setBlockMetadataWithNotify(x, y, z, 0, 3);
+    						world.setBlockMetadataWithNotify(x, y, z, 3, 3);
     					}
     				} else if (side == 2) {
     					if ((world.getBlockId(x - 1, y, z) == Block.waterMoving.blockID) || (world.getBlockId(x + 1, y, z) == Block.waterStill.blockID)) {
     						world.setBlock(x -1 , y, z, FCF_Blocks.seaweedBush.blockID);
-    						world.setBlockMetadataWithNotify(x, y, z, 0, 3);
+    						world.setBlockMetadataWithNotify(x, y, z, 3, 3);
     					}
     				} else if (side == 3) {
     					if ((world.getBlockId(x, y, z + 1) == Block.waterMoving.blockID) || (world.getBlockId(x + 1, y, z) == Block.waterStill.blockID)) {
     						world.setBlock(x, y, z + 1, FCF_Blocks.seaweedBush.blockID);
-    						world.setBlockMetadataWithNotify(x, y, z, 0, 3);
+    						world.setBlockMetadataWithNotify(x, y, z, 3, 3);
     					}
     				} else if (side == 4) {
     					if ((world.getBlockId(x, y, z - 1) == Block.waterMoving.blockID) || (world.getBlockId(x + 1, y, z) == Block.waterStill.blockID)) {
     						world.setBlock(x, y, z - 1, FCF_Blocks.seaweedBush.blockID);
-    						world.setBlockMetadataWithNotify(x, y, z, 0, 3);
+    						world.setBlockMetadataWithNotify(x, y, z, 3, 3);
     					}
     				} else
     					System.out.println("[FlenixCities][ERROR] Something with the seaweed growth went horribly wrong...");

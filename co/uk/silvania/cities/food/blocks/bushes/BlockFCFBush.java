@@ -10,9 +10,13 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.Icon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockFCFBush extends Block {
+	
+	public Icon[] icons;
 
 	public BlockFCFBush(int id) {
 		super(id, Material.leaves);
@@ -22,7 +26,21 @@ public class BlockFCFBush extends Block {
 	
 	@Override
 	public void registerIcons(IconRegister icon) {
-		this.blockIcon = icon.registerIcon(FlenixCities_Food.modid + ":" + (this.getUnlocalizedName().toLowerCase().substring(5)));
+		this.icons = new Icon[9];
+		
+		for (int i = 0; i < this.icons.length; ++i) {
+			this.icons[i] = icon.registerIcon(FlenixCities_Food.modid + ":" + (this.getUnlocalizedName().toLowerCase().substring(5)) + "_stage_" + (i + 1));
+		}
+	}
+	
+	@Override
+	public Icon getIcon(int side, int meta) {
+		if (meta < 7) {
+			return this.icons[meta];
+		} else if (meta >= 7 && meta < 15) {
+			return this.icons[8];
+		} else
+		return this.icons[9];
 	}
 	
 	@Override
@@ -38,6 +56,20 @@ public class BlockFCFBush extends Block {
 		}
 		return true;
 	}
+	
+    public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
+    	int meta = world.getBlockMetadata(x, y, z);
+    	if (meta == 0 || meta == 1) {
+    		setBlockBounds(0.4375F, 0.0F, 0.4375F, 0.5625F, 0.0625F, 0.5625F);
+    	} else if (meta == 2 || meta == 3) {
+    		setBlockBounds(0.375F, 0.0F, 0.375F, 0.625F, 0.125F, 0.625F);
+    	} else if (meta == 4 || meta == 5) {
+    		setBlockBounds(0.25F, 0.0F, 0.25F, 0.75F, 0.25F, 0.75F);
+    	} else if (meta == 6 || meta == 7) {
+    		setBlockBounds(0.125F, 0.0F, 0.125F, 0.875F, 0.375F, 0.875F);
+    	} else
+    		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
+    }
 	
 	public ItemStack fruitItem() {
 		return null;
@@ -69,7 +101,7 @@ public class BlockFCFBush extends Block {
         	int meta = world.getBlockMetadata(x, y, z);
         	if (meta < 7) {
         		world.setBlockMetadataWithNotify(x, y, z, meta + 1, 3);
-        	} else if (meta > 7) {
+        	} else if (meta >= 7) {
         		world.setBlockMetadataWithNotify(x, y, z, meta + 1, 3);
         		
 				Random rand = new Random();

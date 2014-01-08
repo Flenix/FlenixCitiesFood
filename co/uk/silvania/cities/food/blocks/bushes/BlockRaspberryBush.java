@@ -11,6 +11,7 @@ public class BlockRaspberryBush extends BlockFCFBush {
 		super(id);
 	}
 	
+	@Override
 	public ItemStack fruitItem() {
 		Random rand = new Random();
 		int amount = rand.nextInt(3) + 1;
