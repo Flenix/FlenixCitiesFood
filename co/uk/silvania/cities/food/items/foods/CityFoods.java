@@ -71,7 +71,5 @@ public class CityFoods extends ItemFood {
 		//Glass Fridge (DONE)
 		//Glass Freezer (DONE)
 		//Microwave (Gives lower fill but higher sat for things which can be cooked in here.)
-		//
-
 	}
 }

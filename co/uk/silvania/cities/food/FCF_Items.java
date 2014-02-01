@@ -3,6 +3,8 @@ package co.uk.silvania.cities.food;
 import net.minecraft.item.Item;
 import co.uk.silvania.cities.core.items.CraftingIngredientItems;
 import co.uk.silvania.cities.food.items.CraftingItems;
+import co.uk.silvania.cities.food.items.ItemFoodMeat;
+import co.uk.silvania.cities.food.items.ItemNBTSystem;
 import co.uk.silvania.cities.food.items.ItemUtensil;
 import co.uk.silvania.cities.food.items.SeedItems;
 import co.uk.silvania.cities.food.items.foods.CityDrinks;
@@ -13,7 +15,7 @@ public class FCF_Items {
 	private static FoodConfig config;
 	
 	//Raw Ingredients
-	public static Item rawLamb;
+	public static Item lambMeat;
 	public static Item rawDuck;
 	public static Item rawMutton;
 	public static Item rawTurkey;
@@ -240,7 +242,9 @@ public class FCF_Items {
 	}
 	
 	public static void initRawIngredients() {
-		rawLamb = new CityFoods(config.rawLambID, 1, 0.05F, true).setUnlocalizedName("rawLamb");
+		//Arguments for meat are as follows:
+		//ID, Feed amount, Saturation amount, Wolf feeding, Time (ticks), Name, undercooked value, cooked value, burned value
+		lambMeat = new ItemFoodMeat(config.rawLambID, 1, 0.05F, true, 48000, "Lamb Meat", 2, 6, 10).setUnlocalizedName("lambMeat");
 		rawDuck = new CityFoods(config.rawDuckID, 1, 0.05F, true).setUnlocalizedName("rawDuck");
 		rawMutton = new CityFoods(config.rawMuttonID, 1, 0.05F, true).setUnlocalizedName("rawMutton");
 		rawTurkey = new CityFoods(config.rawTurkeyID, 1, 0.05F, true).setUnlocalizedName("rawTurkey");

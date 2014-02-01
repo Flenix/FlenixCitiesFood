@@ -29,7 +29,7 @@ public class CityMetaFoods extends ItemFood {
 	public void registerIcons(IconRegister icon) {
 		icons = new Icon[4];
 		for(int i = 0; i < icons.length; i++) {
-			icons[i] = icon.registerIcon(FlenixCities_Food.modid + ":" + (this.getUnlocalizedName().substring(5)) + i);
+			icons[i] = icon.registerIcon(FlenixCities_Food.modid + ":" + (this.getUnlocalizedName().toLowerCase().substring(5)) + i);
 		}
 	}
 	

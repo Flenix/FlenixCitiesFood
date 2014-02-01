@@ -1,6 +1,7 @@
 package co.uk.silvania.cities.food;
 
 import co.uk.silvania.cities.food.blocks.FridgeItemBlock;
+import co.uk.silvania.cities.food.items.ItemFoodMeat;
 import co.uk.silvania.cities.food.items.ItemVendingMachineBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -58,7 +59,7 @@ public class CommonProxy {
     	
     	
         //Raw Ingredients
-    	GameRegistry.registerItem(FCF_Items.rawLamb, "rawLamb");
+    	GameRegistry.registerItem(FCF_Items.lambMeat, "lambMeat");
     	GameRegistry.registerItem(FCF_Items.rawDuck, "rawDuck");
     	GameRegistry.registerItem(FCF_Items.rawMutton, "rawMutton");
     	GameRegistry.registerItem(FCF_Items.rawTurkey, "rawTurkey");
@@ -282,7 +283,6 @@ public class CommonProxy {
     	LanguageRegistry.addName(FCF_Blocks.limeSapling, "Lime Sapling");
         
         //Raw Ingredients
-    	LanguageRegistry.addName(FCF_Items.rawLamb, "Raw Lamb");
     	LanguageRegistry.addName(FCF_Items.rawDuck, "Raw Duck");
     	LanguageRegistry.addName(FCF_Items.rawMutton, "Raw Mutton");
     	LanguageRegistry.addName(FCF_Items.rawTurkey, "Raw Turkey");

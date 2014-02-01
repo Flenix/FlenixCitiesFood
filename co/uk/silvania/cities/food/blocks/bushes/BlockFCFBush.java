@@ -26,10 +26,10 @@ public class BlockFCFBush extends Block {
 	
 	@Override
 	public void registerIcons(IconRegister icon) {
-		this.icons = new Icon[9];
+		this.icons = new Icon[16];
 		
 		for (int i = 0; i < this.icons.length; ++i) {
-			this.icons[i] = icon.registerIcon(FlenixCities_Food.modid + ":" + (this.getUnlocalizedName().toLowerCase().substring(5)) + "_stage_" + (i + 1));
+			this.icons[i] = icon.registerIcon(FlenixCities_Food.modid + ":" + (this.getUnlocalizedName().toLowerCase().substring(5)) + "_stage_" + (i));
 		}
 	}
 	
