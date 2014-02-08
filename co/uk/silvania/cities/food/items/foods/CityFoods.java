@@ -23,22 +23,8 @@ public class CityFoods extends ItemFood {
 	public void plannedFoods() {
 		//TODO the following
 		
-		//TODO Set up NBT
-		//NBT values are for all foods, and consist of the following:
-		//Feed (read by minecraft and applied to hunger bar. Int)
-		//Saturation (read by MC and applied as normal. Float)
-		//Spoil Date (Time in ticks until it's considered off. When off, the texture changes and the name turns red. Shown in item tooltip. Int)
-		//Packaged (Whether the item has been packaged. If so, it applies two texture layers to add "packaging". String for different types.)
-		//Storage type is set by which type of food it extends (FoodChillable or FoodFreezable)
 		
-		//BB = Best Before (Fresh/Packed) (in in-game days or 24000 ticks)
-		//Cooking increases values, but effectively kills the spoil time. 0 means it can't be cooked.
-		//Packaging it will simply take the current age off the pack time. Eg if the pack life is 5, and it was made 2 days ago, it's pack life will be 3.
-		//Best Before will be displayed on the item tooltip as a countdown.
-		
-		//ST = Storage. Fridge, Freezer or none. Storage prevents food from ever spoiling and freezes it's best before value.
-		//Putting it anywhere except the correct one will do nothing. If the value is "none", storage is irrelevant and can't preserve the food.
-		//Other blocks may extend fridge and freezer. For example a vending machine is a fridge, a fish sale panel is a freezer.
+
 		
 		//TODO Mechanics
 		//Thirst - Adds a new thing to worry about

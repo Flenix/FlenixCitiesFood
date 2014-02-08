@@ -25,20 +25,98 @@ public class FoodConfig {
 	public static int largeFridgeID;
 	public static int vendingMachineID;
 	
-	public static int rawLambID;
-	public static int rawDuckID;
-	public static int rawMuttonID;
-	public static int rawTurkeyID;
-	public static int rawPheasantID;
-	public static int rawHorseID;
-	public static int rawRabbitID;
-	public static int rawVenisonID;
-	public static int rawGoatID;
-	public static int rawPigeonID;
-	public static int rawOxID;
-	public static int rawBuffaloID;
-	public static int rawBoarID;
-	public static int rawSnailID;
+	public static int lambShoulderID;
+	public static int lambBreastID;
+	public static int lambFlankID;
+	public static int lambLoinID;
+	public static int lambLegID;
+	public static int lambRackID;
+	public static int lambShankID;
+	public static int lambChopID;
+	
+	public static int muttonShoulderID;
+	public static int muttonBreastID;
+	public static int muttonFlankID;
+	public static int muttonLoinID;
+	public static int muttonLegID;
+	public static int muttonRackID;
+	
+	public static int duckBreastID;
+	public static int duckLegID;
+	public static int duckWholeID;
+	public static int duckWingID;
+	
+	public static int turkeyWholeID;
+	public static int turkeyBreastID;
+	public static int turkeyLegID;
+	public static int turkeyWingID;
+	
+	public static int pheasantWholeID;
+	public static int pheasantBreastID;
+	public static int pheasantLegID;
+	public static int pheasantWingID;
+	
+	public static int horseShoulderID;
+	public static int horseRibID;
+	public static int horseShankID;
+	public static int horseSirloinID;
+	public static int horseRumpID;
+	
+	public static int rabbitMeatID;
+	
+	public static int venisonShoulderID;
+	public static int venisonLoinID;
+	public static int venisonRibsID;
+	public static int venisonShankID;
+	
+	public static int goatRackID;
+	public static int goatLoinID;
+	public static int goatLegID;
+	
+	public static int pigeonWholeID;
+	public static int pigeonBreastID;
+	public static int pigeonLegID;
+	public static int pigeonWingID;
+	
+	public static int oxTongueID;
+	public static int oxRibID;
+	public static int oxBladeID;
+	public static int oxBrisketID;
+	public static int oxFlankID;
+	public static int oxSirloinID;
+	public static int oxTBoneID;
+	public static int oxFilletID;
+	public static int oxRumpID;
+	public static int oxLegID;
+	public static int oxTailID;
+	
+	public static int buffaloBreastID;
+	public static int buffaloRibID;
+	public static int buffaloSirloinID;
+	public static int buffaloFlankID;
+	
+	public static int boarShoulderID;
+	public static int boarLoinID;
+	public static int boarBellyID;
+	public static int boarLegID;
+	
+	public static int beefRibID;
+	public static int beefBrisketID;
+	public static int beefSirloinID;
+	public static int beefLegID;
+	public static int beefFlankID;
+	
+	public static int porkShoulderID;
+	public static int porkRibID;
+	public static int porkBellyID;
+	public static int porkLegID;
+	public static int porkLoinID;
+	
+	public static int chickenWingID;
+	public static int chickenBreastID;
+	public static int chickenLegID;
+	
+	public static int snailMeatID;
 	
 	public static int rawSquidID;
 	public static int rawCodID;
@@ -86,21 +164,6 @@ public class FoodConfig {
 	public static int breadCrumbsID;
 	public static int mincedBeefID;
 	public static int coneItemID;
-	
-	public static int cookedLambID;
-	public static int cookedDuckID;
-	public static int cookedMuttonID;
-	public static int cookedTurkeyID;
-	public static int cookedPheasantID;
-	public static int cookedHorseID;
-	public static int cookedRabbitID;
-	public static int cookedVenisonID;
-	public static int cookedGoatID;
-	public static int cookedPigeonID;
-	public static int cookedOxID;
-	public static int cookedBuffaloID;
-	public static int cookedBoarID;
-	public static int cookedSnailID;
 	
 	public static int cookedSquidID;
 	public static int cookedCodID;
@@ -302,159 +365,222 @@ public class FoodConfig {
 			limeSaplingID = config.getBlock("Lime Sapling", 1585).getInt();
 			
 			//Raw Ingredients
-			rawLambID = config.getItem("Raw Lamb", 16744).getInt();
-			rawDuckID = config.getItem("Raw Duck", 16745).getInt();
-			rawMuttonID = config.getItem("Raw Mutton", 16746).getInt();
-			rawTurkeyID = config.getItem("Raw Turkey", 16747).getInt();
-			rawPheasantID = config.getItem("Raw Pheasant", 16748).getInt();
-			rawHorseID = config.getItem("Raw Horse", 16749).getInt();
-			rawRabbitID = config.getItem("Raw Rabbit", 16750).getInt();
-			rawVenisonID = config.getItem("Raw Venison", 16751).getInt();
-			rawGoatID = config.getItem("Raw Goat", 16752).getInt();
-			rawPigeonID = config.getItem("Raw Pigeon", 16753).getInt();
-			rawOxID = config.getItem("Raw Ox", 16754).getInt();
-			rawBuffaloID = config.getItem("Raw Buffalo", 16755).getInt();
-			rawBoarID = config.getItem("Raw Boar", 16756).getInt();
-			rawSnailID = config.getItem("Raw Snail", 16757).getInt();
+			lambShoulderID = config.getItem("Lamb Shoulder", 16744).getInt();
+			lambBreastID = config.getItem("Lamb Breast", 16745).getInt();
+			lambFlankID = config.getItem("Lamb Flank", 16746).getInt();
+			lambLoinID = config.getItem("Lamb Loin", 16747).getInt();
+			lambLegID = config.getItem("Lamb Leg", 16748).getInt();
+			lambRackID = config.getItem("Lamb Rack", 16749).getInt();
+			lambShankID = config.getItem("Lamb Shank", 16750).getInt();
+			lambChopID = config.getItem("Lamb Chop", 16751).getInt();
 			
-			rawSquidID = config.getItem("Raw Squid", 16770).getInt();
-			rawCodID = config.getItem("Raw Cod", 16771).getInt();
-			rawLobsterID = config.getItem("Raw Lobster", 16772).getInt();
-			rawCrabID = config.getItem("Raw Crab", 16773).getInt();
-			rawPrawnID = config.getItem("Raw Prawn", 16774).getInt();
-			rawShrimpID = config.getItem("Raw Shrimp", 16775).getInt();
-			rawAnchovyID = config.getItem("Raw Anchovy", 16776).getInt();
-			rawTunaID = config.getItem("Raw Tuna", 16777).getInt();
-			rawSardineID = config.getItem("Raw Sardine", 16778).getInt();
-			rawCarpID = config.getItem("Raw Carp", 16779).getInt();
-			rawOysterID = config.getItem("Raw Oyster", 16780).getInt();
-			rawMusselID = config.getItem("Raw Mussel", 16781).getInt();
-			rawSharkID = config.getItem("Raw Shark", 16782).getInt();
-			rawTroutID = config.getItem("Raw Trout", 16783).getInt();
-			rawBassID = config.getItem("Raw Bass", 16784).getInt();
-			rawHaddockID = config.getItem("Raw Haddock", 16785).getInt();
-			rawSwordfishID = config.getItem("Raw Swordfish", 16786).getInt();
-			rawMackeralID = config.getItem("Raw Mackeral", 16787).getInt();
+			muttonShoulderID = config.getItem("Mutton Shoulder", 16752).getInt();
+			muttonBreastID = config.getItem("Mutton Breast", 16753).getInt();
+			muttonFlankID = config.getItem("Mutton Flank", 16754).getInt();
+			muttonLoinID = config.getItem("Mutton Loin", 16755).getInt();
+			muttonLegID = config.getItem("Mutton Leg", 16756).getInt();
+			muttonRackID = config.getItem("Mutton Rack", 16757).getInt();
+			
+			duckBreastID = config.getItem("Duck Breast", 16758).getInt();
+			duckLegID = config.getItem("Duck Leg", 16759).getInt();
+			duckWholeID = config.getItem("Duck Whole", 16760).getInt();
+			duckWingID = config.getItem("Duck Wing", 16761).getInt();
+			
+			turkeyWholeID = config.getItem("Turkey Whole", 16762).getInt();
+			turkeyBreastID = config.getItem("Turkey Breast", 16763).getInt();
+			turkeyLegID = config.getItem("Turkey Leg", 16764).getInt();
+			turkeyWingID = config.getItem("Turkey Wing", 16765).getInt();
+			
+			pheasantWholeID = config.getItem("Pheasant Whole", 16766).getInt();
+			pheasantBreastID = config.getItem("Pheasant Breast", 16767).getInt();
+			pheasantLegID = config.getItem("Pheasant Leg", 16768).getInt();
+			pheasantWingID = config.getItem("Pheasant Wing", 16769).getInt();
+			
+			horseShoulderID = config.getItem("Horse Shoulder", 16770).getInt();
+			horseRibID = config.getItem("Horse Rib", 16771).getInt();
+			horseShankID = config.getItem("Horse Shank", 16772).getInt();
+			horseSirloinID = config.getItem("Horse Sirloin", 16773).getInt();
+			horseRumpID = config.getItem("Horse Rump", 16774).getInt();
+			
+			rabbitMeatID = config.getItem("Rabbit Meat", 16775).getInt();
+			
+			venisonShoulderID = config.getItem("Venison Shoulder", 16776).getInt();
+			venisonLoinID = config.getItem("Venison Loin", 16777).getInt();
+			venisonRibsID = config.getItem("Venison Ribs", 16778).getInt();
+			venisonShankID = config.getItem("Venison Shank", 16779).getInt();
+			
+			goatRackID = config.getItem("Goat Rack", 16780).getInt();
+			goatLoinID = config.getItem("Goat Loin", 16781).getInt();
+			goatLegID = config.getItem("Goat Leg", 16782).getInt();
+			
+			pigeonWholeID = config.getItem("Pigeon Whole", 16783).getInt();
+			pigeonBreastID = config.getItem("Pigeon Breast", 16784).getInt();
+			pigeonLegID = config.getItem("Pigeon Leg", 16785).getInt();
+			pigeonWingID = config.getItem("Pigeon Wing", 16786).getInt();
+			
+			oxTongueID = config.getItem("Ox Tongue", 16787).getInt();
+			oxRibID = config.getItem("Ox Rib", 16788).getInt();
+			oxBladeID = config.getItem("Ox Blade", 16789).getInt();
+			oxBrisketID = config.getItem("Ox Brisket", 16790).getInt();
+			oxFlankID = config.getItem("Ox Flank", 16791).getInt();
+			oxSirloinID = config.getItem("Ox Sirloin", 16792).getInt();
+			oxTBoneID = config.getItem("Ox T-Bone", 16793).getInt();
+			oxFilletID = config.getItem("Ox Fillet", 16794).getInt();
+			oxRumpID = config.getItem("Ox Rump", 16795).getInt();
+			oxLegID = config.getItem("Ox Leg", 16796).getInt();
+			oxTailID = config.getItem("Ox Tail", 16797).getInt();
+			
+			buffaloBreastID = config.getItem("Buffalo Breast", 16798).getInt();
+			buffaloRibID = config.getItem("Buffalo Rib", 16799).getInt();
+			buffaloSirloinID = config.getItem("Buffalo Sirloin", 16800).getInt();
+			buffaloFlankID = config.getItem("Buffalo Flank", 16801).getInt();
+			
+			boarShoulderID = config.getItem("Boar Shoulder", 16802).getInt();
+			boarLoinID = config.getItem("Boar Loin", 16803).getInt();
+			boarBellyID = config.getItem("Boar Belly", 16804).getInt();
+			boarLegID = config.getItem("Boar Leg", 16805).getInt();
+			
+			beefRibID = config.getItem("Beef Rib", 16806).getInt();
+			beefBrisketID = config.getItem("Beef Brisket", 16807).getInt();
+			beefSirloinID = config.getItem("Beef Sirloin", 16808).getInt();
+			beefLegID = config.getItem("Beef Leg", 16809).getInt();
+			beefFlankID = config.getItem("Beef Flank", 16810).getInt();
+			
+			porkShoulderID = config.getItem("Pork Shoulder", 16811).getInt();
+			porkRibID = config.getItem("Pork Rib", 16812).getInt();
+			porkBellyID = config.getItem("Pork Belly", 16813).getInt();
+			porkLegID = config.getItem("Pork Leg", 16814).getInt();
+			porkLoinID = config.getItem("Pork Loin", 16815).getInt();
+			
+			chickenWingID = config.getItem("Chicken Wing", 16816).getInt();
+			chickenBreastID = config.getItem("Chicken Breast", 16817).getInt();
+			chickenLegID = config.getItem("Chicken Leg", 16818).getInt();
+			
+			snailMeatID = config.getItem("Chicken Leg", 16819).getInt();
+			
+			rawSquidID = config.getItem("Raw Squid", 16900).getInt();
+			rawCodID = config.getItem("Raw Cod", 16901).getInt();
+			rawLobsterID = config.getItem("Raw Lobster", 16902).getInt();
+			rawCrabID = config.getItem("Raw Crab", 16903).getInt();
+			rawPrawnID = config.getItem("Raw Prawn", 16904).getInt();
+			rawShrimpID = config.getItem("Raw Shrimp", 16905).getInt();
+			rawAnchovyID = config.getItem("Raw Anchovy", 16906).getInt();
+			rawTunaID = config.getItem("Raw Tuna", 16907).getInt();
+			rawSardineID = config.getItem("Raw Sardine", 16908).getInt();
+			rawCarpID = config.getItem("Raw Carp", 16909).getInt();
+			rawOysterID = config.getItem("Raw Oyster", 16910).getInt();
+			rawMusselID = config.getItem("Raw Mussel", 16911).getInt();
+			rawSharkID = config.getItem("Raw Shark", 16912).getInt();
+			rawTroutID = config.getItem("Raw Trout", 16913).getInt();
+			rawBassID = config.getItem("Raw Bass", 16914).getInt();
+			rawHaddockID = config.getItem("Raw Haddock", 16915).getInt();
+			rawSwordfishID = config.getItem("Raw Swordfish", 16916).getInt();
+			rawMackeralID = config.getItem("Raw Mackeral", 16917).getInt();
 			
 			//Fruit n Veg
-			lettuceItemID = config.getItem("Lettuce", 16800).getInt();
-			garlicItemID = config.getItem("Garlic", 16801).getInt();
-			broccoliItemID = config.getItem("Broccoli", 16802).getInt();
-			cabbageItemID = config.getItem("Cabbage", 16803).getInt();
-			celeryItemID = config.getItem("Celery", 16804).getInt();
-			cucumberItemID = config.getItem("Cucumber", 16805).getInt();
-			redPepperItemID = config.getItem("Red Pepper", 16806).getInt();
-			yellowPepperItemID = config.getItem("Yellow Pepper", 16807).getInt();
-			greenPepperItemID = config.getItem("Green Pepper", 16808).getInt();
-			leekItemID = config.getItem("Leek", 16809).getInt();
-			onionItemID = config.getItem("Onion", 16810).getInt();
-			blackberryItemID = config.getItem("Blackberry", 16811).getInt();
-			blueberryItemID = config.getItem("Blueberry", 16812).getInt();
-			blackcurrentItemID = config.getItem("Blackcurrant", 16813).getInt();
-			grapesItemID = config.getItem("Grape", 16814).getInt();
-			redGrapesItemID = config.getItem("Red Grape", 16815).getInt();
-			lemonItemID = config.getItem("Lemon", 16816).getInt();
-			limeItemID = config.getItem("Lime", 16817).getInt();
-			orangeItemID = config.getItem("Orange", 16818).getInt();
-			strawberryItemID = config.getItem("Strawberry", 16819).getInt();
-			raspberryItemID = config.getItem("Raspberry", 16820).getInt();
-			riceItemID = config.getItem("Rice", 16821).getInt();
-			avocadoItemID = config.getItem("Avocado", 16822).getInt();
-			pearItemID = config.getItem("Pear", 16823).getInt();
-			bananaItemID = config.getItem("Banana", 16824).getInt();
-			seaweedItemID = config.getItem("Seaweed", 16825).getInt();
-			rhubarbItemID = config.getItem("Rhubarb", 16826).getInt();
-			cornItemID = config.getItem("Corn", 16827).getInt();
+			lettuceItemID = config.getItem("Lettuce", 17000).getInt();
+			garlicItemID = config.getItem("Garlic", 17001).getInt();
+			broccoliItemID = config.getItem("Broccoli", 17002).getInt();
+			cabbageItemID = config.getItem("Cabbage", 17003).getInt();
+			celeryItemID = config.getItem("Celery", 17004).getInt();
+			cucumberItemID = config.getItem("Cucumber", 17005).getInt();
+			redPepperItemID = config.getItem("Red Pepper", 17006).getInt();
+			yellowPepperItemID = config.getItem("Yellow Pepper", 17007).getInt();
+			greenPepperItemID = config.getItem("Green Pepper", 17008).getInt();
+			leekItemID = config.getItem("Leek", 17009).getInt();
+			onionItemID = config.getItem("Onion", 17010).getInt();
+			blackberryItemID = config.getItem("Blackberry", 17011).getInt();
+			blueberryItemID = config.getItem("Blueberry", 17012).getInt();
+			blackcurrentItemID = config.getItem("Blackcurrant", 17013).getInt();
+			grapesItemID = config.getItem("Grape", 17014).getInt();
+			redGrapesItemID = config.getItem("Red Grape", 17015).getInt();
+			lemonItemID = config.getItem("Lemon", 17016).getInt();
+			limeItemID = config.getItem("Lime", 17017).getInt();
+			orangeItemID = config.getItem("Orange", 17018).getInt();
+			strawberryItemID = config.getItem("Strawberry", 17019).getInt();
+			raspberryItemID = config.getItem("Raspberry", 17020).getInt();
+			riceItemID = config.getItem("Rice", 17021).getInt();
+			avocadoItemID = config.getItem("Avocado", 17022).getInt();
+			pearItemID = config.getItem("Pear", 17023).getInt();
+			bananaItemID = config.getItem("Banana", 17024).getInt();
+			seaweedItemID = config.getItem("Seaweed", 17025).getInt();
+			rhubarbItemID = config.getItem("Rhubarb", 17026).getInt();
+			cornItemID = config.getItem("Corn", 17027).getInt();
 			
 			//Meal Parts
-			foodCheeseBurgerID = config.getItem("Cheeseburger", 16850).getInt();
-			foodBurgerID = config.getItem("Burger", 16851).getInt();
-			foodHotDogID = config.getItem("Hot Dog", 16852).getInt();
-			foodPizzaID = config.getItem("Pizza", 16853).getInt();
-			foodNoodlesID = config.getItem("Noodles", 16854).getInt();
-			foodChocolateBarID = config.getItem("Chocolate Bar", 16855).getInt();
-			foodCrispsID = config.getItem("Crisps", 16856).getInt();
-			foodEnergyBarID = config.getItem("Energy Bar", 16857).getInt();
-			foodCheeseMoltenID = config.getItem("Cheese", 16858).getInt();
-			foodCheeseMildID = config.getItem("Mild Cheese", 16859).getInt();
-			foodCheeseMediumID = config.getItem("Medium Cheese", 16860).getInt();
-			foodCheeseMatureID = config.getItem("Mature Cheese", 16861).getInt();
-			foodCheeseBlueID = config.getItem("Blue Cheese", 16862).getInt();
-			foodCheeseMouldyID = config.getItem("Mouldy Cheese", 16863).getInt();
-			foodTomatoID = config.getItem("Tomato", 16864).getInt();
-			//ID = config.getItem("", 16865).getInt();
-			//ID = config.getItem("", 16866).getInt();
-			//ID = config.getItem("", 16867).getInt();
-			//ID = config.getItem("", 16868).getInt();
-			//ID = config.getItem("", 16869).getInt();
-			foodChickenWingsID = config.getItem("Chicken Wings", 16870).getInt();
-			foodChickenNuggetsID = config.getItem("Chicken Nuggets", 16871).getInt();
-			foodSausageID = config.getItem("Sausage", 16872).getInt();
-			foodSausageRollID = config.getItem("Sausage Roll", 16873).getInt();
-			doughItemID = config.getItem("Dough", 16874).getInt();
-			pastryItemID = config.getItem("Pastry", 16875).getInt();
-			chocolateItemID = config.getItem("Chocolate", 16876).getInt();
-			chocolateChipsID = config.getItem("Chocolate Chips", 16877).getInt();
-			breadSliceID = config.getItem("Bread Slice", 16878).getInt();
-			breadCrumbsID = config.getItem("Bread Crumbs", 16879).getInt();
-			mincedBeefID = config.getItem("Minced Beef", 16880).getInt();
-			coneItemID = config.getItem("Ice Cream Cone", 16881).getInt();
+			foodCheeseBurgerID = config.getItem("Cheeseburger", 17050).getInt();
+			foodBurgerID = config.getItem("Burger", 17051).getInt();
+			foodHotDogID = config.getItem("Hot Dog", 17052).getInt();
+			foodPizzaID = config.getItem("Pizza", 17053).getInt();
+			foodNoodlesID = config.getItem("Noodles", 17054).getInt();
+			foodChocolateBarID = config.getItem("Chocolate Bar", 17055).getInt();
+			foodCrispsID = config.getItem("Crisps", 17056).getInt();
+			foodEnergyBarID = config.getItem("Energy Bar", 17057).getInt();
+			foodCheeseMoltenID = config.getItem("Cheese", 17058).getInt();
+			foodCheeseMildID = config.getItem("Mild Cheese", 17059).getInt();
+			foodCheeseMediumID = config.getItem("Medium Cheese", 17060).getInt();
+			foodCheeseMatureID = config.getItem("Mature Cheese", 17061).getInt();
+			foodCheeseBlueID = config.getItem("Blue Cheese", 17062).getInt();
+			foodCheeseMouldyID = config.getItem("Mouldy Cheese", 17063).getInt();
+			foodTomatoID = config.getItem("Tomato", 17064).getInt();
+			//ID = config.getItem("", 17065).getInt();
+			//ID = config.getItem("", 17066).getInt();
+			//ID = config.getItem("", 17067).getInt();
+			//ID = config.getItem("", 17068).getInt();
+			//ID = config.getItem("", 17069).getInt();
+			foodChickenWingsID = config.getItem("Chicken Wings", 17070).getInt();
+			foodChickenNuggetsID = config.getItem("Chicken Nuggets", 17071).getInt();
+			foodSausageID = config.getItem("Sausage", 17072).getInt();
+			foodSausageRollID = config.getItem("Sausage Roll", 17073).getInt();
+			doughItemID = config.getItem("Dough", 17074).getInt();
+			pastryItemID = config.getItem("Pastry", 17075).getInt();
+			chocolateItemID = config.getItem("Chocolate", 17076).getInt();
+			chocolateChipsID = config.getItem("Chocolate Chips", 17077).getInt();
+			breadSliceID = config.getItem("Bread Slice", 17078).getInt();
+			breadCrumbsID = config.getItem("Bread Crumbs", 17079).getInt();
+			mincedBeefID = config.getItem("Minced Beef", 17080).getInt();
+			coneItemID = config.getItem("Ice Cream Cone", 17081).getInt();
 			
-			cookedLambID = config.getItem("Cooked Lamb", 16882).getInt();
-			cookedDuckID = config.getItem("Cooked Duck", 16883).getInt();
-			cookedMuttonID = config.getItem("Cooked Mutton", 16884).getInt();
-			cookedTurkeyID = config.getItem("Cooked Turkey", 16885).getInt();
-			cookedPheasantID = config.getItem("Cooked Pheasant", 16886).getInt();
-			cookedHorseID = config.getItem("Cooked Horse", 16887).getInt();
-			cookedRabbitID = config.getItem("Cooked Rabbit", 16888).getInt();
-			cookedVenisonID = config.getItem("Cooked Venison", 16889).getInt();
-			cookedGoatID = config.getItem("Cooked Goat", 16890).getInt();
-			cookedPigeonID = config.getItem("Cooked Pigeon", 16891).getInt();
-			cookedOxID = config.getItem("Cooked Ox", 16892).getInt();
-			cookedBuffaloID = config.getItem("Cooked Buffalo", 16893).getInt();
-			cookedBoarID = config.getItem("Cooked Boar", 16894).getInt();
-			cookedSnailID = config.getItem("Cooked Snail", 16895).getInt();
-			
-			cookedSquidID = config.getItem("Cooked Squid", 16908).getInt();
-			cookedCodID = config.getItem("Cooked Cod", 16909).getInt();
-			cookedLobsterID = config.getItem("Cooked Lobster", 16910).getInt();
-			cookedCrabID = config.getItem("Cooked Crab", 16911).getInt();
-			cookedPcookednID = config.getItem("Cooked Pcookedn", 16912).getInt();
-			cookedShrimpID = config.getItem("Cooked Shrimp", 16913).getInt();
-			cookedAnchovyID = config.getItem("Cooked Anchovy", 16914).getInt();
-			cookedTunaID = config.getItem("Cooked Tuna", 16915).getInt();
-			cookedSardineID = config.getItem("Cooked Sardine", 16916).getInt();
-			cookedCarpID = config.getItem("Cooked Carp", 16917).getInt();
-			cookedOysterID = config.getItem("Cooked Oyster", 16918).getInt();
-			cookedMusselID = config.getItem("Cooked Mussel", 16919).getInt();
-			cookedSharkID = config.getItem("Cooked Shark", 16920).getInt();
-			cookedTroutID = config.getItem("Cooked Trout", 16921).getInt();
-			cookedBassID = config.getItem("Cooked Bass", 16922).getInt();
-			cookedHaddockID = config.getItem("Cooked Haddock", 16923).getInt();
-			cookedSwordfishID = config.getItem("Cooked Swordfish", 16924).getInt();
-			cookedMackeralID = config.getItem("Cooked Mackeral", 16925).getInt();
+			cookedSquidID = config.getItem("Cooked Squid", 17108).getInt();
+			cookedCodID = config.getItem("Cooked Cod", 17109).getInt();
+			cookedLobsterID = config.getItem("Cooked Lobster", 17110).getInt();
+			cookedCrabID = config.getItem("Cooked Crab", 17111).getInt();
+			cookedPcookednID = config.getItem("Cooked Pcookedn", 17112).getInt();
+			cookedShrimpID = config.getItem("Cooked Shrimp", 17113).getInt();
+			cookedAnchovyID = config.getItem("Cooked Anchovy", 17114).getInt();
+			cookedTunaID = config.getItem("Cooked Tuna", 17115).getInt();
+			cookedSardineID = config.getItem("Cooked Sardine", 17116).getInt();
+			cookedCarpID = config.getItem("Cooked Carp", 17117).getInt();
+			cookedOysterID = config.getItem("Cooked Oyster", 17118).getInt();
+			cookedMusselID = config.getItem("Cooked Mussel", 17119).getInt();
+			cookedSharkID = config.getItem("Cooked Shark", 17120).getInt();
+			cookedTroutID = config.getItem("Cooked Trout", 17121).getInt();
+			cookedBassID = config.getItem("Cooked Bass", 17122).getInt();
+			cookedHaddockID = config.getItem("Cooked Haddock", 17123).getInt();
+			cookedSwordfishID = config.getItem("Cooked Swordfish", 17124).getInt();
+			cookedMackeralID = config.getItem("Cooked Mackeral", 17125).getInt();
 			
 			
 			//Snacks
-			foodDonutID = config.getItem("Donut", 17000).getInt();
-			foodSweetsID = config.getItem("Sweets", 17001).getInt();
-			foodFriesID = config.getItem("Fries", 17002).getInt();
-			foodPopcornID = config.getItem("Popcorn", 17003).getInt();
-			foodIceCreamID = config.getItem("Ice Cream", 17004).getInt();
-			foodChocolateIceCreamID = config.getItem("Chocolate Ice Cream", 17005).getInt();
-			foodMuffinID = config.getItem("Muffin", 17006).getInt();
-			foodChocolateMuffinID = config.getItem("Chocolate Muffin", 17007).getInt();
-			foodBlueberryMuffinID = config.getItem("Blueberry Muffin", 17008).getInt();
-			chocolateCakeID = config.getItem("Chocolate Cake", 17009).getInt();
-			chocolateCakeSliceID = config.getItem("Chocolate Cake Slice", 17010).getInt();
-			cakeSliceID = config.getItem("Cake Slice", 17011).getInt();
-			strawberryCheesecakeID = config.getItem("Strawberry Cheesecake", 17012).getInt();
-			chocolateCheesecakeID = config.getItem("Chocolate Cheesecake", 17013).getInt();
-			foodVanillaConeID = config.getItem("Vanilla Cone", 17014).getInt();
-			foodChocolateConeID = config.getItem("Chocolate Cone", 17015).getInt();
-			strawberryIceLollyID = config.getItem("Strawberry Ice Lolly", 17016).getInt();
-			chocolateIceLollyID = config.getItem("Chocolate Ice Lolly", 17017).getInt();
-			milkIceLollyID = config.getItem("Milk Ice Lolly", 17018).getInt();
+			foodDonutID = config.getItem("Donut", 17200).getInt();
+			foodSweetsID = config.getItem("Sweets", 17201).getInt();
+			foodFriesID = config.getItem("Fries", 17202).getInt();
+			foodPopcornID = config.getItem("Popcorn", 17203).getInt();
+			foodIceCreamID = config.getItem("Ice Cream", 17204).getInt();
+			foodChocolateIceCreamID = config.getItem("Chocolate Ice Cream", 17205).getInt();
+			foodMuffinID = config.getItem("Muffin", 17206).getInt();
+			foodChocolateMuffinID = config.getItem("Chocolate Muffin", 17207).getInt();
+			foodBlueberryMuffinID = config.getItem("Blueberry Muffin", 17208).getInt();
+			chocolateCakeID = config.getItem("Chocolate Cake", 17209).getInt();
+			chocolateCakeSliceID = config.getItem("Chocolate Cake Slice", 17210).getInt();
+			cakeSliceID = config.getItem("Cake Slice", 17211).getInt();
+			strawberryCheesecakeID = config.getItem("Strawberry Cheesecake", 17212).getInt();
+			chocolateCheesecakeID = config.getItem("Chocolate Cheesecake", 17213).getInt();
+			foodVanillaConeID = config.getItem("Vanilla Cone", 17214).getInt();
+			foodChocolateConeID = config.getItem("Chocolate Cone", 17215).getInt();
+			strawberryIceLollyID = config.getItem("Strawberry Ice Lolly", 17216).getInt();
+			chocolateIceLollyID = config.getItem("Chocolate Ice Lolly", 17217).getInt();
+			milkIceLollyID = config.getItem("Milk Ice Lolly", 17218).getInt();
 			
 			
 			broccoliSeedID = config.getItem("Broccoli Seed", 17969).getInt();

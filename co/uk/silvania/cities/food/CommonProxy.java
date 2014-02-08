@@ -1,8 +1,8 @@
 package co.uk.silvania.cities.food;
 
 import co.uk.silvania.cities.food.blocks.FridgeItemBlock;
-import co.uk.silvania.cities.food.items.ItemFoodMeat;
 import co.uk.silvania.cities.food.items.ItemVendingMachineBlock;
+import co.uk.silvania.cities.food.items.foods.ItemFoodMeat;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -59,7 +59,15 @@ public class CommonProxy {
     	
     	
         //Raw Ingredients
-    	GameRegistry.registerItem(FCF_Items.lambMeat, "lambMeat");
+    	GameRegistry.registerItem(FCF_Items.lambShoulder, "lambShoulder");
+    	GameRegistry.registerItem(FCF_Items.lambBreast, "lambBreast");
+    	GameRegistry.registerItem(FCF_Items.lambFlank, "lambFlank");
+    	GameRegistry.registerItem(FCF_Items.lambLoin, "lambLoin");
+    	GameRegistry.registerItem(FCF_Items.lambLeg, "lambLeg");
+    	GameRegistry.registerItem(FCF_Items.lambRack, "lambRack");
+    	GameRegistry.registerItem(FCF_Items.lambShank, "lambShank");
+    	GameRegistry.registerItem(FCF_Items.lambChop, "lambChop");
+    	/*
     	GameRegistry.registerItem(FCF_Items.rawDuck, "rawDuck");
     	GameRegistry.registerItem(FCF_Items.rawMutton, "rawMutton");
     	GameRegistry.registerItem(FCF_Items.rawTurkey, "rawTurkey");
@@ -71,7 +79,7 @@ public class CommonProxy {
     	GameRegistry.registerItem(FCF_Items.rawPigeon, "rawPigeon");
     	GameRegistry.registerItem(FCF_Items.rawOx, "rawOx");
     	GameRegistry.registerItem(FCF_Items.rawBuffalo, "rawBuffalo");
-    	GameRegistry.registerItem(FCF_Items.rawBoar, "rawBoar");
+    	GameRegistry.registerItem(FCF_Items.rawBoar, "rawBoar");*/
     	
     	GameRegistry.registerItem(FCF_Items.rawSquid, "rawSquid");
     	GameRegistry.registerItem(FCF_Items.rawCod, "rawCod");
@@ -85,7 +93,7 @@ public class CommonProxy {
     	GameRegistry.registerItem(FCF_Items.rawCarp, "rawCarp");
     	GameRegistry.registerItem(FCF_Items.rawOyster, "rawOyster");
     	GameRegistry.registerItem(FCF_Items.rawMussel, "rawMussel");
-    	GameRegistry.registerItem(FCF_Items.rawSnail, "rawSnail");
+    	//GameRegistry.registerItem(FCF_Items.rawSnail, "rawSnail");
     	GameRegistry.registerItem(FCF_Items.rawShark, "rawShark");
     	GameRegistry.registerItem(FCF_Items.rawTrout, "rawTrout");
     	GameRegistry.registerItem(FCF_Items.rawBass, "rawBass");
@@ -173,20 +181,6 @@ public class CommonProxy {
         GameRegistry.registerItem(FCF_Items.foodHotDog, "foodHotDog");
         GameRegistry.registerItem(FCF_Items.foodNoodles, "foodNoodles");
         GameRegistry.registerItem(FCF_Items.foodPizza, "foodPizza");
-        
-    	GameRegistry.registerItem(FCF_Items.cookedLamb, "cookedLamb");
-    	GameRegistry.registerItem(FCF_Items.cookedDuck, "cookedDuck");
-    	GameRegistry.registerItem(FCF_Items.cookedMutton, "cookedMutton");
-    	GameRegistry.registerItem(FCF_Items.cookedTurkey, "cookedTurkey");
-    	GameRegistry.registerItem(FCF_Items.cookedPheasant, "cookedPheasant");
-    	GameRegistry.registerItem(FCF_Items.cookedHorse, "cookedHorse");
-    	GameRegistry.registerItem(FCF_Items.cookedRabbit, "cookedRabbit");
-    	GameRegistry.registerItem(FCF_Items.cookedVenison, "cookedVenison");
-    	GameRegistry.registerItem(FCF_Items.cookedGoat, "cookedGoat");
-    	GameRegistry.registerItem(FCF_Items.cookedPigeon, "cookedPigeon");
-    	GameRegistry.registerItem(FCF_Items.cookedOx, "cookedOx");
-    	GameRegistry.registerItem(FCF_Items.cookedBuffalo, "cookedBuffalo");
-    	GameRegistry.registerItem(FCF_Items.cookedBoar, "cookedBoar");
     	
     	GameRegistry.registerItem(FCF_Items.cookedSquid, "cookedSquid");
     	GameRegistry.registerItem(FCF_Items.cookedCod, "cookedCod");
@@ -200,7 +194,6 @@ public class CommonProxy {
     	GameRegistry.registerItem(FCF_Items.cookedCarp, "cookedCarp");
     	GameRegistry.registerItem(FCF_Items.cookedOyster, "cookedOyster");
     	GameRegistry.registerItem(FCF_Items.cookedMussel, "cookedMussel");
-    	GameRegistry.registerItem(FCF_Items.cookedSnail, "cookedSnail");
     	GameRegistry.registerItem(FCF_Items.cookedShark, "cookedShark");
     	GameRegistry.registerItem(FCF_Items.cookedTrout, "cookedTrout");
     	GameRegistry.registerItem(FCF_Items.cookedBass, "cookedBass");
@@ -283,7 +276,7 @@ public class CommonProxy {
     	LanguageRegistry.addName(FCF_Blocks.limeSapling, "Lime Sapling");
         
         //Raw Ingredients
-    	LanguageRegistry.addName(FCF_Items.rawDuck, "Raw Duck");
+    	/*LanguageRegistry.addName(FCF_Items.rawDuck, "Raw Duck");
     	LanguageRegistry.addName(FCF_Items.rawMutton, "Raw Mutton");
     	LanguageRegistry.addName(FCF_Items.rawTurkey, "Raw Turkey");
     	LanguageRegistry.addName(FCF_Items.rawPheasant, "Raw Pheasant");
@@ -294,7 +287,7 @@ public class CommonProxy {
     	LanguageRegistry.addName(FCF_Items.rawPigeon, "Raw Pigeon");
     	LanguageRegistry.addName(FCF_Items.rawOx, "Raw Ox");
     	LanguageRegistry.addName(FCF_Items.rawBuffalo, "Raw Buffalo");
-    	LanguageRegistry.addName(FCF_Items.rawBoar, "Raw Boar");
+    	LanguageRegistry.addName(FCF_Items.rawBoar, "Raw Boar");*/
     	
     	LanguageRegistry.addName(FCF_Items.rawSquid, "Raw Squid");
     	LanguageRegistry.addName(FCF_Items.rawCod, "Raw Cod");
@@ -308,7 +301,7 @@ public class CommonProxy {
     	LanguageRegistry.addName(FCF_Items.rawCarp, "Raw Carp");
     	LanguageRegistry.addName(FCF_Items.rawOyster, "Raw Oyster");
     	LanguageRegistry.addName(FCF_Items.rawMussel, "Raw Mussel");
-    	LanguageRegistry.addName(FCF_Items.rawSnail, "Raw Snail");
+    	//LanguageRegistry.addName(FCF_Items.rawSnail, "Raw Snail");
     	LanguageRegistry.addName(FCF_Items.rawShark, "Raw Shark");
     	LanguageRegistry.addName(FCF_Items.rawTrout, "Raw Trout");
     	LanguageRegistry.addName(FCF_Items.rawBass, "Raw Bass");
@@ -405,20 +398,6 @@ public class CommonProxy {
         LanguageRegistry.addName(new ItemStack(FCF_Items.foodPizza, 1, 1), "Mushroom Pizza");
         LanguageRegistry.addName(new ItemStack(FCF_Items.foodPizza, 1, 2), "Pepperoni Pizza");
         LanguageRegistry.addName(new ItemStack(FCF_Items.foodPizza, 1, 3), "Mushroom & Pepperoni Pizza");
-        
-    	LanguageRegistry.addName(FCF_Items.cookedLamb, "Cooked Lamb");
-    	LanguageRegistry.addName(FCF_Items.cookedDuck, "Cooked Duck");
-    	LanguageRegistry.addName(FCF_Items.cookedMutton, "Cooked Mutton");
-    	LanguageRegistry.addName(FCF_Items.cookedTurkey, "Cooked Turkey");
-    	LanguageRegistry.addName(FCF_Items.cookedPheasant, "Cooked Pheasant");
-    	LanguageRegistry.addName(FCF_Items.cookedHorse, "Cooked Horse");
-    	LanguageRegistry.addName(FCF_Items.cookedRabbit, "Cooked Rabbit");
-    	LanguageRegistry.addName(FCF_Items.cookedVenison, "Cooked Venison");
-    	LanguageRegistry.addName(FCF_Items.cookedGoat, "Cooked Goat");
-    	LanguageRegistry.addName(FCF_Items.cookedPigeon, "Cooked Pigeon");
-    	LanguageRegistry.addName(FCF_Items.cookedOx, "Cooked Ox");
-    	LanguageRegistry.addName(FCF_Items.cookedBuffalo, "Cooked Buffalo");
-    	LanguageRegistry.addName(FCF_Items.cookedBoar, "Cooked Boar");
     	
     	LanguageRegistry.addName(FCF_Items.cookedSquid, "Cooked Squid");
     	LanguageRegistry.addName(FCF_Items.cookedCod, "Cooked Cod");
@@ -432,7 +411,6 @@ public class CommonProxy {
     	LanguageRegistry.addName(FCF_Items.cookedCarp, "Cooked Carp");
     	LanguageRegistry.addName(FCF_Items.cookedOyster, "Cooked Oyster");
     	LanguageRegistry.addName(FCF_Items.cookedMussel, "Cooked Mussel");
-    	LanguageRegistry.addName(FCF_Items.cookedSnail, "Cooked Snail");
     	LanguageRegistry.addName(FCF_Items.cookedShark, "Cooked Shark");
     	LanguageRegistry.addName(FCF_Items.cookedTrout, "Cooked Trout");
     	LanguageRegistry.addName(FCF_Items.cookedBass, "Cooked Bass");

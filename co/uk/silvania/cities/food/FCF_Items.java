@@ -3,32 +3,110 @@ package co.uk.silvania.cities.food;
 import net.minecraft.item.Item;
 import co.uk.silvania.cities.core.items.CraftingIngredientItems;
 import co.uk.silvania.cities.food.items.CraftingItems;
-import co.uk.silvania.cities.food.items.ItemFoodMeat;
 import co.uk.silvania.cities.food.items.ItemNBTSystem;
 import co.uk.silvania.cities.food.items.ItemUtensil;
 import co.uk.silvania.cities.food.items.SeedItems;
 import co.uk.silvania.cities.food.items.foods.CityDrinks;
 import co.uk.silvania.cities.food.items.foods.CityFoods;
 import co.uk.silvania.cities.food.items.foods.CityMetaFoods;
+import co.uk.silvania.cities.food.items.foods.ItemFoodMeat;
 
 public class FCF_Items {
 	private static FoodConfig config;
 	
 	//Raw Ingredients
-	public static Item lambMeat;
-	public static Item rawDuck;
-	public static Item rawMutton;
-	public static Item rawTurkey;
-	public static Item rawPheasant;
-	public static Item rawHorse;
-	public static Item rawRabbit;
-	public static Item rawVenison;
-	public static Item rawGoat;
-	public static Item rawPigeon;
-	public static Item rawOx;
-	public static Item rawBuffalo;
-	public static Item rawBoar;
-	public static Item rawSnail;
+	public static Item lambShoulder;
+	public static Item lambBreast;
+	public static Item lambFlank;
+	public static Item lambLoin;
+	public static Item lambLeg;
+	public static Item lambRack;
+	public static Item lambShank;
+	public static Item lambChop;
+	
+	public static Item muttonShoulder;
+	public static Item muttonBreast;
+	public static Item muttonFlank;
+	public static Item muttonLoin;
+	public static Item muttonLeg;
+	public static Item muttonRack;
+	
+	public static Item duckBreast;
+	public static Item duckLeg;
+	public static Item duckWing;
+	public static Item duckWhole;
+	
+	public static Item turkeyWhole;
+	public static Item turkeyBreast;
+	public static Item turkeyWing;
+	public static Item turkeyLeg;
+	
+	public static Item pheasantWhole;
+	public static Item pheasantBreast;
+	public static Item pheasantLeg;
+	public static Item pheasantWing;
+	
+	public static Item horseShoulder;
+	public static Item horseRib;
+	public static Item horseShank;
+	public static Item horseSirloin;
+	public static Item horseRump;
+
+	public static Item rabbitMeat;
+	
+	public static Item venisonShoulder;
+	public static Item venisonLoin;
+	public static Item venisonRibs;
+	public static Item venisonShank;
+
+	public static Item goatRack;
+	public static Item goatLoin;
+	public static Item goatLeg;
+	
+	public static Item pigeonWhole;
+	public static Item pigeonBreast;
+	public static Item pigeonWing;
+	public static Item pigeonLeg;
+	
+	public static Item oxTongue;
+	public static Item oxRib;
+	public static Item oxBlade;
+	public static Item oxBrisket;
+	public static Item oxFlank;
+	public static Item oxSirloin;
+	public static Item oxTBone;
+	public static Item oxFillet;
+	public static Item oxRump;
+	public static Item oxLeg;
+	public static Item oxTail;
+	
+	public static Item buffaloBreast;
+	public static Item buffaloRib;
+	public static Item buffaloSirloin;
+	public static Item buffaloFlank;
+	
+	public static Item boarShoulder;
+	public static Item boarLoin;
+	public static Item boarBelly;
+	public static Item boarLeg;
+	
+	public static Item snailMeat;
+	
+	public static Item beefRib;
+	public static Item beefBrisket;
+	public static Item beefSirloin;
+	public static Item beefLeg;
+	public static Item beefFlank;
+	
+	public static Item porkShoulder;
+	public static Item porkRib;
+	public static Item porkBelly;
+	public static Item porkLeg;
+	public static Item porkLoin;
+	
+	public static Item chickenWing;
+	public static Item chickenBreast;
+	public static Item chickenLeg;
 	
 	public static Item rawSquid;
 	public static Item rawCod;
@@ -131,21 +209,6 @@ public class FCF_Items {
 	public static Item foodNoodles;
 	public static Item foodPizza;
 	
-	public static Item cookedLamb;
-	public static Item cookedDuck;
-	public static Item cookedMutton;
-	public static Item cookedTurkey;
-	public static Item cookedPheasant;
-	public static Item cookedHorse;
-	public static Item cookedRabbit;
-	public static Item cookedVenison;
-	public static Item cookedGoat;
-	public static Item cookedPigeon;
-	public static Item cookedOx;
-	public static Item cookedBuffalo;
-	public static Item cookedBoar;
-	public static Item cookedSnail;
-	
 	public static Item cookedSquid;
 	public static Item cookedCod;
 	public static Item cookedLobster;
@@ -243,21 +306,99 @@ public class FCF_Items {
 	
 	public static void initRawIngredients() {
 		//Arguments for meat are as follows:
-		//ID, Feed amount, Saturation amount, Wolf feeding, Time (ticks), Name, undercooked value, cooked value, burned value
-		lambMeat = new ItemFoodMeat(config.rawLambID, 1, 0.05F, true, 48000, "Lamb Meat", 2, 6, 10).setUnlocalizedName("lambMeat");
-		rawDuck = new CityFoods(config.rawDuckID, 1, 0.05F, true).setUnlocalizedName("rawDuck");
-		rawMutton = new CityFoods(config.rawMuttonID, 1, 0.05F, true).setUnlocalizedName("rawMutton");
-		rawTurkey = new CityFoods(config.rawTurkeyID, 1, 0.05F, true).setUnlocalizedName("rawTurkey");
-		rawPheasant = new CityFoods(config.rawPheasantID, 1, 0.05F, true).setUnlocalizedName("rawPheasant");
-		rawHorse = new CityFoods(config.rawHorseID, 1, 0.05F, true).setUnlocalizedName("rawHorse");
-		rawRabbit = new CityFoods(config.rawRabbitID, 1, 0.05F, true).setUnlocalizedName("rawRabbit");
-		rawVenison = new CityFoods(config.rawVenisonID, 1, 0.05F, true).setUnlocalizedName("rawVenison");
-		rawGoat = new CityFoods(config.rawGoatID, 1, 0.05F, true).setUnlocalizedName("rawGoat");
-		rawPigeon = new CityFoods(config.rawPigeonID, 1, 0.05F, true).setUnlocalizedName("rawPigeon");
-		rawOx = new CityFoods(config.rawOxID, 1, 0.05F, true).setUnlocalizedName("rawOx");
-		rawBuffalo = new CityFoods(config.rawBuffaloID, 1, 0.05F, true).setUnlocalizedName("rawBuffalo");
-		rawBoar = new CityFoods(config.rawBoarID, 1, 0.05F, true).setUnlocalizedName("rawBoar");
-		rawSnail = new CityFoods(config.rawSnailID, 1, 0.05F, true).setUnlocalizedName("rawSnail");
+		//ID, Feed amount, Saturation amount, Wolf feeding, Time (ticks), Name, undercooked value, cooked value, burned value, Raw poison, Bone Size, Bone Qty
+		lambShoulder = new ItemFoodMeat(config.lambShoulderID, 1, 0.05F, true, 48000, "LambShoulder", 2, 6, 10, false, 3, 1).setUnlocalizedName("lambShoulder");
+		lambBreast = new ItemFoodMeat(config.lambBreastID, 1, 0.05F, true, 48000, "LambBreast", 2, 6, 10, false, 0, 0).setUnlocalizedName("lambBreast");
+		lambFlank = new ItemFoodMeat(config.lambFlankID, 1, 0.05F, true, 48000, "LambFlank", 2, 6, 10, false, 0, 0).setUnlocalizedName("lambFlank");
+		lambLoin = new ItemFoodMeat(config.lambLoinID, 1, 0.05F, true, 48000, "LambLoin", 2, 6, 10, false, 3, 1).setUnlocalizedName("lambLoin");
+		lambLeg = new ItemFoodMeat(config.lambLegID, 1, 0.05F, true, 72000, "LambLeg", 2, 6, 10, false, 3, 1).setUnlocalizedName("lambLeg");//Textured
+		lambRack = new ItemFoodMeat(config.lambRackID, 1, 0.05F, true, 72000, "LambRack", 2, 6, 10, false, 1, 6).setUnlocalizedName("lambRack");
+		lambShank = new ItemFoodMeat(config.lambShankID, 1, 0.05F, true, 48000, "LambShank", 2, 6, 10, false, 2, 1).setUnlocalizedName("lambShank");
+		lambChop = new ItemFoodMeat(config.lambChopID, 1, 0.05F, true, 96000, "LambChop", 2, 6, 10, false, 3, 1).setUnlocalizedName("lambChop");
+		
+		muttonShoulder = new ItemFoodMeat(config.muttonShoulderID, 1, 0.05F, true, 48000, "MuttonShoulder", 2, 6, 10, false, 3, 1).setUnlocalizedName("muttonShoulder");
+		muttonBreast = new ItemFoodMeat(config.muttonBreastID, 1, 0.05F, true, 48000, "MuttonBreast", 2, 6, 10, false, 0, 0).setUnlocalizedName("muttonBreast"); //Textured
+		muttonFlank = new ItemFoodMeat(config.muttonFlankID, 1, 0.05F, true, 48000, "MuttonFlank", 2, 6, 10, false, 0, 0).setUnlocalizedName("muttonFlank");
+		muttonLoin = new ItemFoodMeat(config.muttonLoinID, 1, 0.05F, true, 48000, "MuttonLoin", 2, 6, 10, false, 0, 0).setUnlocalizedName("muttonLoin");
+		muttonLeg = new ItemFoodMeat(config.muttonLegID, 1, 0.05F, true, 48000, "MuttonLeg", 2, 6, 10, false, 3, 1).setUnlocalizedName("muttonLeg");
+		muttonRack = new ItemFoodMeat(config.muttonRackID, 1, 0.05F, true, 48000, "MuttonRack", 2, 6, 10, false, 2, 6).setUnlocalizedName("muttonRack");
+		
+		duckBreast = new ItemFoodMeat(config.duckBreastID, 1, 0.05F, true, 36000, "DuckBreast", 2, 6, 10, false, 0, 0).setUnlocalizedName("duckBreast");
+		duckLeg = new ItemFoodMeat(config.duckLegID, 1, 0.05F, true, 36000, "DuckLeg", 2, 6, 10, false, 2, 1).setUnlocalizedName("duckLeg");
+		duckWhole = new ItemFoodMeat(config.duckWholeID, 1, 0.05F, true, 36000, "DuckWhole", 2, 6, 10, false, 5, 2).setUnlocalizedName("duckWhole");
+		duckWing = new ItemFoodMeat(config.duckWingID, 1, 0.05F, true, 36000, "DuckWing", 2, 6, 10, false, 1, 1).setUnlocalizedName("duckWing");
+		
+		turkeyWhole = new ItemFoodMeat(config.turkeyWholeID, 1, 0.05F, true, 39000, "TurkeyWhole", 2, 6, 10, true, 5, 3).setUnlocalizedName("turkeyWhole");
+		turkeyBreast = new ItemFoodMeat(config.turkeyBreastID, 1, 0.05F, true, 39000, "TurkeyBreast", 2, 6, 10, true, 0, 0).setUnlocalizedName("turkeyBreast");
+		turkeyLeg = new ItemFoodMeat(config.turkeyLegID, 1, 0.05F, true, 39000, "TurkeyLeg", 2, 6, 10, true, 2, 1).setUnlocalizedName("turkeyLeg");
+		turkeyWing = new ItemFoodMeat(config.turkeyWingID, 1, 0.05F, true, 39000, "TurkeyWing", 2, 6, 10, true, 2, 1).setUnlocalizedName("turkeyWing");
+		
+		pheasantWhole = new ItemFoodMeat(config.pheasantWholeID, 1, 0.05F, true, 36000, "PheasantWhole", 2, 6, 10, true, 5, 2).setUnlocalizedName("pheasantWhole");
+		pheasantBreast = new ItemFoodMeat(config.pheasantBreastID, 1, 0.05F, true, 36000, "PheasantBreast", 2, 6, 10, true, 0, 0).setUnlocalizedName("pheasantBreast");
+		pheasantLeg = new ItemFoodMeat(config.pheasantLegID, 1, 0.05F, true, 36000, "PheasantLeg", 2, 6, 10, true, 2, 1).setUnlocalizedName("pheasantLeg");
+		pheasantWing = new ItemFoodMeat(config.pheasantWingID, 1, 0.05F, true, 36000, "PheasantWing", 2, 6, 10, true, 2, 1).setUnlocalizedName("pheasantWing");
+		
+		horseShoulder = new ItemFoodMeat(config.horseShoulderID, 1, 0.05F, true, 48000, "HorseShoulder", 2, 6, 10, false, 4, 1).setUnlocalizedName("horseShoulder");
+		horseRib = new ItemFoodMeat(config.horseRibID, 1, 0.05F, true, 48000, "HorseRib", 2, 6, 10, false, 2, 6).setUnlocalizedName("horseRib");
+		horseShank = new ItemFoodMeat(config.horseShankID, 1, 0.05F, true, 48000, "HorseShank", 2, 6, 10, false, 3, 1).setUnlocalizedName("horseShank");
+		horseSirloin = new ItemFoodMeat(config.horseSirloinID, 1, 0.05F, true, 48000, "HorseSirloin", 2, 6, 10, false, 0, 0).setUnlocalizedName("horseSirloin");
+		horseRump = new ItemFoodMeat(config.horseRumpID, 1, 0.05F, true, 48000, "HorseRump", 2, 6, 10, false, 0, 0).setUnlocalizedName("horseRump");
+		
+		rabbitMeat = new ItemFoodMeat(config.rabbitMeatID, 1, 0.05F, true, 34000, "RabbitMeat", 2, 6, 10, true, 3, 2).setUnlocalizedName("rabbitMeat");
+		
+		venisonShoulder = new ItemFoodMeat(config.venisonShoulderID, 1, 0.05F, true, 48000, "VenisonShoulder", 2, 6, 10, false, 3, 1).setUnlocalizedName("venisonShoulder");
+		venisonLoin = new ItemFoodMeat(config.venisonLoinID, 1, 0.05F, true, 48000, "VenisonLoin", 2, 6, 10, false, 0, 0).setUnlocalizedName("venisonLoin");
+		venisonRibs = new ItemFoodMeat(config.venisonRibsID, 1, 0.05F, true, 48000, "VenisonRibs", 2, 6, 10, false, 2, 6).setUnlocalizedName("venisonRibs");
+		venisonShank = new ItemFoodMeat(config.venisonShankID, 1, 0.05F, true, 48000, "VenisonShank", 2, 6, 10, false, 3, 1).setUnlocalizedName("venisonShank");
+		
+		goatRack = new ItemFoodMeat(config.goatRackID, 1, 0.05F, true, 48000, "GoatRack", 2, 6, 10, false, 2, 4).setUnlocalizedName("goatRack");
+		goatLoin = new ItemFoodMeat(config.goatLoinID, 1, 0.05F, true, 48000, "GoatLoin", 2, 6, 10, false, 0, 0).setUnlocalizedName("goatLoin");
+		goatLeg = new ItemFoodMeat(config.goatLegID, 1, 0.05F, true, 48000, "GoatLeg", 2, 6, 10, false, 3, 1).setUnlocalizedName("goatLeg");
+		
+		pigeonWhole = new ItemFoodMeat(config.pigeonWholeID, 1, 0.05F, true, 32000, "PigeonWhole", 2, 6, 10, true, 5, 2).setUnlocalizedName("pigeonWhole");
+		pigeonBreast = new ItemFoodMeat(config.pigeonBreastID, 1, 0.05F, true, 32000, "PigeonBreast", 2, 6, 10, true, 0, 0).setUnlocalizedName("pigeonBreast");
+		pigeonLeg = new ItemFoodMeat(config.pigeonLegID, 1, 0.05F, true, 32000, "PigeonLeg", 2, 6, 10, true, 2, 1).setUnlocalizedName("pigeonLeg");
+		pigeonWing = new ItemFoodMeat(config.pigeonWingID, 1, 0.05F, true, 32000, "PigeonWing", 2, 6, 10, true, 2, 1).setUnlocalizedName("pigeonWing");
+		
+		oxTongue = new ItemFoodMeat(config.oxTongueID, 1, 0.05F, true, 24000, "OxTongue", 2, 6, 10, false, 0, 0).setUnlocalizedName("oxTongue");
+		oxRib = new ItemFoodMeat(config.oxRibID, 1, 0.05F, true, 72000, "OxRib", 2, 6, 10, false, 2, 6).setUnlocalizedName("oxRib");
+		oxBlade = new ItemFoodMeat(config.oxBladeID, 1, 0.05F, true, 72000, "OxBlade", 2, 6, 10, false, 0, 0).setUnlocalizedName("oxBlade");
+		oxBrisket = new ItemFoodMeat(config.oxBrisketID, 1, 0.05F, true, 72000, "OxBrisket", 2, 6, 10, false, 0, 0).setUnlocalizedName("oxBrisket");
+		oxFlank = new ItemFoodMeat(config.oxFlankID, 1, 0.05F, true, 72000, "OxFlank", 2, 6, 10, false, 0, 0).setUnlocalizedName("oxFlank");
+		oxSirloin = new ItemFoodMeat(config.oxSirloinID, 1, 0.05F, true, 72000, "OxSirloin", 2, 6, 10, false, 0, 0).setUnlocalizedName("oxSirloin");
+		oxTBone = new ItemFoodMeat(config.oxTBoneID, 1, 0.05F, true, 72000, "OxTBone", 2, 6, 10, false, 4, 1).setUnlocalizedName("oxTBone");
+		oxFillet = new ItemFoodMeat(config.oxFilletID, 1, 0.05F, true, 72000, "OxFillet", 2, 6, 10, false, 0, 0).setUnlocalizedName("oxFillet");
+		oxRump = new ItemFoodMeat(config.oxRumpID, 1, 0.05F, true, 72000, "OxRump", 2, 6, 10, false, 0, 0).setUnlocalizedName("oxRump");
+		oxLeg = new ItemFoodMeat(config.oxLegID, 1, 0.05F, true, 72000, "OxLeg", 2, 6, 10, false, 4, 1).setUnlocalizedName("oxLeg");
+		oxTail = new ItemFoodMeat(config.oxTailID, 1, 0.05F, true, 80000, "OxTail", 2, 6, 10, false, 0, 0).setUnlocalizedName("oxTail");
+		
+		buffaloBreast = new ItemFoodMeat(config.buffaloBreastID, 1, 0.05F, true, 56000, "BuffaloBreast", 2, 6, 10, false, 0, 0).setUnlocalizedName("buffaloBreast");
+		buffaloRib = new ItemFoodMeat(config.buffaloRibID, 1, 0.05F, true, 56000, "BuffaloRib", 2, 6, 10, false, 2, 6).setUnlocalizedName("buffaloRib");
+		buffaloSirloin = new ItemFoodMeat(config.buffaloSirloinID, 1, 0.05F, true, 56000, "BuffaloSirloin", 2, 6, 10, false, 0, 0).setUnlocalizedName("buffaloSirloin");
+		buffaloFlank = new ItemFoodMeat(config.buffaloFlankID, 1, 0.05F, true, 56000, "BuffaloFlank", 2, 6, 10, false, 0, 0).setUnlocalizedName("buffaloFlank");
+		
+		boarShoulder = new ItemFoodMeat(config.boarShoulderID, 1, 0.05F, true, 60000, "BoarShoulder", 2, 6, 10, true, 2, 1).setUnlocalizedName("boarShoulder");
+		boarLoin = new ItemFoodMeat(config.boarLoinID, 1, 0.05F, true, 60000, "BoarLoin", 2, 6, 10, true, 0, 0).setUnlocalizedName("boarLoin");
+		boarBelly = new ItemFoodMeat(config.boarBellyID, 1, 0.05F, true, 60000, "BoarBelly", 2, 6, 10, true, 0, 0).setUnlocalizedName("boarBelly");
+		boarLeg = new ItemFoodMeat(config.boarLegID, 1, 0.05F, true, 60000, "BoarLeg", 2, 6, 10, true, 3, 1).setUnlocalizedName("boarLeg");
+		
+		snailMeat = new ItemFoodMeat(config.snailMeatID, 1, 0.05F, false, 192000, "Snail", 2, 6, 10, false, 0, 0).setUnlocalizedName("snailMeat");
+		
+		beefRib = new ItemFoodMeat(config.beefRibID, 1, 0.05F, true, 52000, "BeefRib", 2, 6, 10, false, 2, 6).setUnlocalizedName("beefRib");
+		beefBrisket = new ItemFoodMeat(config.beefBrisketID, 1, 0.05F, true, 52000, "BeefBrisket", 2, 6, 10, false, 0, 0).setUnlocalizedName("beefBrisket");
+		beefSirloin = new ItemFoodMeat(config.beefSirloinID, 1, 0.05F, true, 52000, "BeefSirloin", 2, 6, 10, false, 0, 0).setUnlocalizedName("beefSirloin");
+		beefLeg = new ItemFoodMeat(config.beefLegID, 1, 0.05F, true, 52000, "BeefLeg", 2, 6, 10, false, 4, 1).setUnlocalizedName("beefLeg");
+		beefFlank = new ItemFoodMeat(config.beefFlankID, 1, 0.05F, true, 52000, "BeefFlank", 2, 6, 10, false, 0, 0).setUnlocalizedName("beefFlank");
+		
+		porkShoulder = new ItemFoodMeat(config.porkShoulderID, 1, 0.05F, true, 60000, "PorkShoulder", 2, 6, 10, true, 2, 1).setUnlocalizedName("porkShoulder");
+		porkRib = new ItemFoodMeat(config.porkRibID, 1, 0.05F, true, 60000, "PorkRib", 2, 6, 10, true, 1, 6).setUnlocalizedName("porkRib");
+		porkBelly = new ItemFoodMeat(config.porkBellyID, 1, 0.05F, true, 60000, "PorkBelly", 2, 6, 10, true, 0, 0).setUnlocalizedName("porkBelly");
+		porkLeg = new ItemFoodMeat(config.porkLegID, 1, 0.05F, true, 60000, "PorkLeg", 2, 6, 10, true, 3, 1).setUnlocalizedName("porkLeg");
+		porkLoin = new ItemFoodMeat(config.porkLoinID, 1, 0.05F, true, 60000, "PorkLoin", 2, 6, 10, true, 0, 0).setUnlocalizedName("porkLoin");
+		
+		chickenWing = new ItemFoodMeat(config.chickenWingID, 1, 0.05F, true, 36000, "ChickenWing", 2, 6, 10, true, 1, 1).setUnlocalizedName("chickenWing");
+		chickenBreast = new ItemFoodMeat(config.chickenBreastID, 1, 0.05F, true, 36000, "ChickenBreast", 2, 6, 10, true, 0, 0).setUnlocalizedName("chickenBreast");
+		chickenLeg = new ItemFoodMeat(config.chickenLegID, 1, 0.05F, true, 36000, "ChickenLeg", 2, 6, 10, true, 2, 1).setUnlocalizedName("chickenLeg");
 		
 		rawSquid = new CityFoods(config.rawSquidID, 1, 0.05F, true).setUnlocalizedName("rawSquid");
 		rawCod = new CityFoods(config.rawCodID, 1, 0.05F, true).setUnlocalizedName("rawCod");
@@ -363,21 +504,6 @@ public class FCF_Items {
     	foodHotDog = new CityFoods(config.foodHotDogID, 5, 0.3F, true).setUnlocalizedName("foodHotDog");
     	foodPizza = new CityMetaFoods(config.foodPizzaID, 12, 0.4F, true).setUnlocalizedName("foodPizza");
     	foodNoodles = new CityFoods(config.foodNoodlesID, 4, 0.15F, true).setUnlocalizedName("foodNoodles"); //Check
-    	
-		cookedLamb = new CityFoods(config.cookedLambID, 1, 0.05F, true).setUnlocalizedName("cookedLamb");
-		cookedDuck = new CityFoods(config.cookedDuckID, 1, 0.05F, true).setUnlocalizedName("cookedDuck");
-		cookedMutton = new CityFoods(config.cookedMuttonID, 1, 0.05F, true).setUnlocalizedName("cookedMutton");
-		cookedTurkey = new CityFoods(config.cookedTurkeyID, 1, 0.05F, true).setUnlocalizedName("cookedTurkey");
-		cookedPheasant = new CityFoods(config.cookedPheasantID, 1, 0.05F, true).setUnlocalizedName("cookedPheasant");
-		cookedHorse = new CityFoods(config.cookedHorseID, 1, 0.05F, true).setUnlocalizedName("cookedHorse");
-		cookedRabbit = new CityFoods(config.cookedRabbitID, 1, 0.05F, true).setUnlocalizedName("cookedRabbit");
-		cookedVenison = new CityFoods(config.cookedVenisonID, 1, 0.05F, true).setUnlocalizedName("cookedVenison");
-		cookedGoat = new CityFoods(config.cookedGoatID, 1, 0.05F, true).setUnlocalizedName("cookedGoat");
-		cookedPigeon = new CityFoods(config.cookedPigeonID, 1, 0.05F, true).setUnlocalizedName("cookedPigeon");
-		cookedOx = new CityFoods(config.cookedOxID, 1, 0.05F, true).setUnlocalizedName("cookedOx");
-		cookedBuffalo = new CityFoods(config.cookedBuffaloID, 1, 0.05F, true).setUnlocalizedName("cookedBuffalo");
-		cookedBoar = new CityFoods(config.cookedBoarID, 1, 0.05F, true).setUnlocalizedName("cookedBoar");
-		cookedSnail = new CityFoods(config.cookedSnailID, 1, 0.05F, true).setUnlocalizedName("cookedSnail");
 		
 		cookedSquid = new CityFoods(config.cookedSquidID, 1, 0.05F, true).setUnlocalizedName("cookedSquid");
 		cookedCod = new CityFoods(config.cookedCodID, 1, 0.05F, true).setUnlocalizedName("cookedCod");
