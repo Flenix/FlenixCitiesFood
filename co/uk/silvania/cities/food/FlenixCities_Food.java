@@ -32,7 +32,7 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-@Mod(modid=FlenixCities_Food.modid, dependencies="required-after:flenixcities", name="FlenixCities Food", version="0.4.0")
+@Mod(modid=FlenixCities_Food.modid, dependencies="required-after:flenixcities;required-after:FlenixTweaks", name="FlenixCities Food", version="0.4.1")
 @NetworkMod(clientSideRequired=true, serverSideRequired=false)
 public class FlenixCities_Food { 
 	

@@ -307,14 +307,14 @@ public class FCF_Items {
 	public static void initRawIngredients() {
 		//Arguments for meat are as follows:
 		//ID, Feed amount, Saturation amount, Wolf feeding, Time (ticks), Name, undercooked value, cooked value, burned value, Raw poison, Bone Size, Bone Qty
-		lambShoulder = new ItemFoodMeat(config.lambShoulderID, 1, 0.05F, true, 48000, "LambShoulder", 2, 6, 10, false, 3, 1).setUnlocalizedName("lambShoulder");
-		lambBreast = new ItemFoodMeat(config.lambBreastID, 1, 0.05F, true, 48000, "LambBreast", 2, 6, 10, false, 0, 0).setUnlocalizedName("lambBreast");
-		lambFlank = new ItemFoodMeat(config.lambFlankID, 1, 0.05F, true, 48000, "LambFlank", 2, 6, 10, false, 0, 0).setUnlocalizedName("lambFlank");
-		lambLoin = new ItemFoodMeat(config.lambLoinID, 1, 0.05F, true, 48000, "LambLoin", 2, 6, 10, false, 3, 1).setUnlocalizedName("lambLoin");
-		lambLeg = new ItemFoodMeat(config.lambLegID, 1, 0.05F, true, 72000, "LambLeg", 2, 6, 10, false, 3, 1).setUnlocalizedName("lambLeg");//Textured
+		lambShoulder = new ItemFoodMeat(config.lambShoulderID, 1.1, 0.05F, true, 48000, "LambShoulder", 2, 6, 10, false, 3, 1).setUnlocalizedName("lambShoulder");
+		lambBreast = new ItemFoodMeat(config.lambBreastID, 0.8, 0.05F, true, 48000, "LambBreast", 2, 6, 10, false, 0, 0).setUnlocalizedName("lambBreast");
+		lambFlank = new ItemFoodMeat(config.lambFlankID, 0.9, 0.05F, true, 48000, "LambFlank", 2, 6, 10, false, 0, 0).setUnlocalizedName("lambFlank");
+		lambLoin = new ItemFoodMeat(config.lambLoinID, 1.1, 0.05F, true, 48000, "LambLoin", 2, 6, 10, false, 3, 1).setUnlocalizedName("lambLoin");
+		lambLeg = new ItemFoodMeat(config.lambLegID, 1.3, 0.05F, true, 72000, "LambLeg", 2, 6, 10, false, 3, 1).setUnlocalizedName("lambLeg");//Textured
 		lambRack = new ItemFoodMeat(config.lambRackID, 1, 0.05F, true, 72000, "LambRack", 2, 6, 10, false, 1, 6).setUnlocalizedName("lambRack");
 		lambShank = new ItemFoodMeat(config.lambShankID, 1, 0.05F, true, 48000, "LambShank", 2, 6, 10, false, 2, 1).setUnlocalizedName("lambShank");
-		lambChop = new ItemFoodMeat(config.lambChopID, 1, 0.05F, true, 96000, "LambChop", 2, 6, 10, false, 3, 1).setUnlocalizedName("lambChop");
+		lambChop = new ItemFoodMeat(config.lambChopID, 0.7, 0.05F, true, 96000, "LambChop", 2, 6, 10, false, 3, 1).setUnlocalizedName("lambChop");
 		
 		muttonShoulder = new ItemFoodMeat(config.muttonShoulderID, 1, 0.05F, true, 48000, "MuttonShoulder", 2, 6, 10, false, 3, 1).setUnlocalizedName("muttonShoulder");
 		muttonBreast = new ItemFoodMeat(config.muttonBreastID, 1, 0.05F, true, 48000, "MuttonBreast", 2, 6, 10, false, 0, 0).setUnlocalizedName("muttonBreast"); //Textured

@@ -14,6 +14,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Icon;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import co.uk.silvania.cities.api.GeneralUtils;
 import co.uk.silvania.cities.core.CityConfig;
@@ -25,7 +26,28 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
 	
-	public int feedValue;
+	/*
+	 * For reference, here is a list of all the "Cooked Types" and "Cut Types" available.
+	 * 
+	 * Cooked Type: 
+	 * Frozen
+	 * Raw
+	 * Undercooked
+	 * Cooked:
+	 * 1 Roasted
+	 * 2 Fried
+	 * 3 Grilled
+	 * 4 Steamed
+	 * Burned
+	 * 
+	 * Cut Type:
+	 * Thick Sliced
+	 * Thin Sliced
+	 * Diced
+	 * Minced
+	 */
+	
+	public double feedValue;
 	public float satValue;
 	private int expiryTime;
 	private String meatName;
@@ -37,8 +59,8 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
 	private int boneQty;
 	
 
-	public ItemFoodMeat(int id, int feed, float sat, boolean wolf, int time, String name, float uc, float c, float b, boolean poison, int bone, int boneq) {
-		super(id, feed, sat, wolf);
+	public ItemFoodMeat(int id, double feed, float sat, boolean wolf, int time, String name, float uc, float c, float b, boolean poison, int bone, int boneq) {
+		super(id, (int) feed, sat, wolf);
 		this.feedValue = feed;
 		this.satValue = sat;
 		this.expiryTime = time;
@@ -60,7 +82,7 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
 				item.stackTagCompound = new NBTTagCompound();
 				item.stackTagCompound.setInteger("expiryTime", expiryTime);
 				item.stackTagCompound.setInteger("livingTime", 0);
-				item.stackTagCompound.setInteger("feedValue", feedValue);
+				item.stackTagCompound.setDouble("feedValue", feedValue);
 				item.stackTagCompound.setInteger("temperature", 21000);
 				item.stackTagCompound.setFloat("satValue", satValue);
 				item.stackTagCompound.setFloat("cookedValue", 0);
@@ -69,8 +91,8 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
 				item.stackTagCompound.setFloat("underCookedLevel", underCookedLevel);
 				item.stackTagCompound.setFloat("cookedLevel", cookedLevel);
 				item.stackTagCompound.setFloat("burnedLevel", burnedLevel);
+				item.stackTagCompound.setInteger("cookedType", 0);
 			}
-			System.out.println("Sat: " + item.stackTagCompound.getFloat("satValue"));
 			boolean mouldy = item.stackTagCompound.getBoolean("mouldy");
 			boolean burned = item.stackTagCompound.getBoolean("burned");
 			int expTime = item.stackTagCompound.getInteger("expiryTime");
@@ -83,7 +105,7 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
 			}
 			if (lvTime >= expTime && !burned) {
 				item.stackTagCompound.setBoolean("mouldy", true);
-				item.stackTagCompound.setInteger("feedValue", 0);
+				item.stackTagCompound.setDouble("feedValue", 0);
 				item.stackTagCompound.setFloat("satValue", 0);
 			}
 			
@@ -97,7 +119,7 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
 			if ((item.stackTagCompound.getFloat("cookedValue")) >= (item.stackTagCompound.getFloat("burnedLevel"))) {
 				if (!world.isRemote) {
 					item.stackTagCompound.setBoolean("burned", true);
-					item.stackTagCompound.setInteger("feedValue", 0);
+					item.stackTagCompound.setDouble("feedValue", 0);
 					item.stackTagCompound.setFloat("satValue", 0);
 					item.stackTagCompound.setInteger("livingTime", item.stackTagCompound.getInteger("expiryTime"));
 				}
@@ -111,19 +133,19 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
 				float fBurned = item.stackTagCompound.getFloat("burnedLevel");
 				
 				if (c < ucooked) { //raw
-					item.stackTagCompound.setInteger("feedValue", feedValue);
+					item.stackTagCompound.setDouble("feedValue", feedValue);
 					item.stackTagCompound.setFloat("satValue", satValue);
 				} else if (c < cooked) { //undercooked
-					item.stackTagCompound.setInteger("feedValue", feedValue + 1);
+					item.stackTagCompound.setDouble("feedValue", feedValue + 1);
 					item.stackTagCompound.setFloat("satValue", satValue);
 				} else if (c < fBurned) { //cooked
 					float fdFloat = (float) feedValue;
-					int finalFeed = (int) Math.round((fdFloat + 1) * 2.5);
+					double finalFeed = (int) Math.round((fdFloat + 1) * 2.5);
 					float finalSat = satValue * 15;
-					item.stackTagCompound.setInteger("feedValue", finalFeed);
+					item.stackTagCompound.setDouble("feedValue", finalFeed);
 					item.stackTagCompound.setFloat("satValue", finalSat);
 				} else { //burned
-					item.stackTagCompound.setInteger("feedValue", 0);
+					item.stackTagCompound.setDouble("feedValue", 0);
 					item.stackTagCompound.setFloat("satValue", 0);
 				}
 			}
@@ -133,7 +155,6 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
 	@Override //If the food is considered unsafe to eat raw, add a poison effect.
 	//Also give any bones back that were inside the food.
     public ItemStack onEaten(ItemStack item, World world, EntityPlayer player) {
-		System.out.println("Eating!");
     	if (item.stackTagCompound.getFloat("cookedValue") > item.stackTagCompound.getFloat("underCookedLevel")) {
     		player.addPotionEffect((new PotionEffect(Potion.poison.getId(), 10, 1)));
     		player.addPotionEffect((new PotionEffect(Potion.confusion.getId(), 10, 1)));
@@ -147,7 +168,7 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
     		player.addPotionEffect((new PotionEffect(Potion.confusion.getId(), 10, 3)));
     	}
         --item.stackSize;
-        player.getFoodStats().addStats(item.stackTagCompound.getInteger("feedValue"), item.stackTagCompound.getFloat("satValue"));
+        player.getFoodStats().addStats((int) Math.round(item.stackTagCompound.getDouble("feedValue")), item.stackTagCompound.getFloat("satValue"));
         world.playSoundAtEntity(player, "random.burp", 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
         this.onFoodEaten(item, world, player);
         if (boneSize < 0) {
@@ -208,10 +229,13 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
 			float cooked = item.stackTagCompound.getFloat("cookedLevel");
 			float burned = item.stackTagCompound.getFloat("burnedLevel");
 			int cookedType = item.stackTagCompound.getInteger("cookedType");
+			int slicedType = item.stackTagCompound.getInteger("slicedType");
+			String raw = StatCollector.translateToLocal("item.raw.desc");
+			String meat = StatCollector.translateToLocal("item." + meatName + ".name");
 			if (c < 0) {
 				return "item.frozen" + meatName;
 			} else if (c < ucooked) {
-				return "item.raw" + meatName;
+				return raw + meat;//This is the part I'm testing with.
 			} else if (c < cooked) {
 				return "item.underCooked" + meatName;
 			} else if (c < burned) {
@@ -237,9 +261,10 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
 	//Add nutritional info, best before date, and mouldy/burned stats if applicable
     public void addInformation(ItemStack item, EntityPlayer player, List list, boolean bool) {
     	if (item.stackTagCompound != null) {
+	    	list.add("item.burnedLambShoulder");
     		int expTime = item.stackTagCompound.getInteger("expiryTime");
     		int livingTime = item.stackTagCompound.getInteger("livingTime");
-    		int feed = item.stackTagCompound.getInteger("feedValue");
+    		double feed = item.stackTagCompound.getDouble("feedValue");
     		float sat = item.stackTagCompound.getFloat("satValue");
     		boolean burn = item.stackTagCompound.getBoolean("burned");
     		boolean mouldy = item.stackTagCompound.getBoolean("mouldy");

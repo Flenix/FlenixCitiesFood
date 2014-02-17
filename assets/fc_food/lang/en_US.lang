@@ -1,5 +1,13 @@
+item.raw.desc=Raw
+item.LambLeg.name=Lamb Leg
+
+#Below here was the old method. When I decided to add slicing it just became too much, I was already really unhappy with it.
 item.frozenLambShoulder.name=Frozen Lamb Shoulder
-item.rawLambShoulder.name=Raw Lamb Shoulder
+item.rawLambShoulder.name=Raw Whole Lamb Shoulder
+item.rawThickSlicedLambShoulder.name=Raw Thick-Sliced Lamb Shoulder
+item.rawThinSlicedLambShoulder.name=Raw Thin-Sliced Lamb Shoulder
+item.rawDicedLambShoulder.name=Raw Diced Lamb Shoulder
+item.rawMincedLambShoulder.name=Raw Minced Lamb Shoulder
 item.underCookedLambShoulder.name=Undercooked Lamb Shoulder
 item.cookedLambShoulder.name=Cooked Lamb Shoulder
 item.roastedLambShoulder.name=Roast Lamb Shoulder
