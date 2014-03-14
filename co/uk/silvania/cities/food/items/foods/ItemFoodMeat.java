@@ -20,6 +20,7 @@ import co.uk.silvania.cities.api.GeneralUtils;
 import co.uk.silvania.cities.core.CityConfig;
 import co.uk.silvania.cities.food.FCF_Items;
 import co.uk.silvania.cities.food.FlenixCities_Food;
+import co.uk.silvania.cities.food.util.IFlenixFoods;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -55,11 +56,12 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
 	private float cookedLevel;
 	private float burnedLevel;
 	private boolean poisonous;
-	private int boneSize;
-	private int boneQty;
+	private boolean steak;
+	private int boneConts;
+	private int prefCookType;
 	
 
-	public ItemFoodMeat(int id, double feed, float sat, boolean wolf, int time, String name, float uc, float c, float b, boolean poison, int bone, int boneq) {
+	public ItemFoodMeat(int id, double feed, float sat, boolean wolf, int time, String name, float uc, float c, float b, boolean poison, int bone, boolean steak, int prefCookType) {
 		super(id, (int) feed, sat, wolf);
 		this.feedValue = feed;
 		this.satValue = sat;
@@ -69,87 +71,160 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
 		this.cookedLevel = c;
 		this.burnedLevel = b;
 		this.poisonous = poison;
-		this.boneSize = bone;
-		this.boneQty = boneq;
+		this.boneConts = bone;
+		this.steak = steak;
+		this.prefCookType = prefCookType;
+		this.setMaxStackSize(1);
 	}
 	
 	@Override
 	//Control the food; do things like tick it to slowly rot.
     public void onUpdate(ItemStack item, World world, Entity entity, int par4, boolean par5) {
 		EntityPlayer player = (EntityPlayer) entity;
-		if (!world.isRemote) {
-			if (item.stackTagCompound == null) {
-				item.stackTagCompound = new NBTTagCompound();
-				item.stackTagCompound.setInteger("expiryTime", expiryTime);
-				item.stackTagCompound.setInteger("livingTime", 0);
-				item.stackTagCompound.setDouble("feedValue", feedValue);
-				item.stackTagCompound.setInteger("temperature", 21000);
-				item.stackTagCompound.setFloat("satValue", satValue);
-				item.stackTagCompound.setFloat("cookedValue", 0);
-				item.stackTagCompound.setBoolean("burned", false);
-				item.stackTagCompound.setBoolean("mouldy", false);
-				item.stackTagCompound.setFloat("underCookedLevel", underCookedLevel);
-				item.stackTagCompound.setFloat("cookedLevel", cookedLevel);
-				item.stackTagCompound.setFloat("burnedLevel", burnedLevel);
-				item.stackTagCompound.setInteger("cookedType", 0);
+		if (player.isEating()) {
+			if (CityConfig.debugMode) {
+				System.out.println("Player eating! Pause all tasks");
 			}
-			boolean mouldy = item.stackTagCompound.getBoolean("mouldy");
-			boolean burned = item.stackTagCompound.getBoolean("burned");
-			int expTime = item.stackTagCompound.getInteger("expiryTime");
-			int lvTime = item.stackTagCompound.getInteger("livingTime");
-			int temp = item.stackTagCompound.getInteger("temperature");
-			int roundTemp = Math.round(item.stackTagCompound.getInteger("temperature") / 1000);
-			
-			if (!mouldy) {
-				item.stackTagCompound.setInteger("livingTime", (lvTime + 1));
-			}
-			if (lvTime >= expTime && !burned) {
-				item.stackTagCompound.setBoolean("mouldy", true);
-				item.stackTagCompound.setDouble("feedValue", 0);
-				item.stackTagCompound.setFloat("satValue", 0);
-			}
-			
-			if ((item.stackTagCompound.getFloat("cookedValue")) >= (item.stackTagCompound.getFloat("cookedLevel")) && !burned) {
-				if (roundTemp >= GeneralUtils.getPlayerTemperature(player)) {
-					item.stackTagCompound.setInteger("temperature", temp - 1);
-				} else if (roundTemp <= GeneralUtils.getPlayerTemperature(player)) {
-					item.stackTagCompound.setInteger("temperature", temp + 1);
+		} else {
+			if (!world.isRemote) {
+				if (item.stackTagCompound == null) {
+					item.stackTagCompound = new NBTTagCompound();
+					item.stackTagCompound.setInteger("expiryTime", expiryTime); //Time in ticks until expiration
+					item.stackTagCompound.setInteger("livingTime", 0); //How long it has existed for
+					item.stackTagCompound.setDouble("feedValue", feedValue); //How much food to replenish. Rounded to an int upon consumption.
+					item.stackTagCompound.setInteger("temperature", 21000); //It's current temperature, in celcius x1000
+					item.stackTagCompound.setFloat("satValue", satValue); //The saturation value
+					item.stackTagCompound.setFloat("cookedValue", 0); //How much it has been cooked
+					item.stackTagCompound.setBoolean("burned", false); //Whether it is burnt
+					item.stackTagCompound.setBoolean("mouldy", false); //Whether it is mouldy
+					item.stackTagCompound.setBoolean("steak", steak); //Whether it is red meat (Affects naming and edibility)
+					item.stackTagCompound.setFloat("underCookedLevel", underCookedLevel); //The level it transitions from raw to undercooked
+					item.stackTagCompound.setFloat("cookedLevel", cookedLevel); //The level it transitions from undercooked to coooked
+					item.stackTagCompound.setFloat("burnedLevel", burnedLevel); //The level it transitions from cooked to burned
+					item.stackTagCompound.setInteger("cookedType", 0); //How it was cooked
+					item.stackTagCompound.setInteger("prefCookType", prefCookType); //Preferred cooking style (Affects final values)
+					item.stackTagCompound.setInteger("boneContents", boneConts); //What bones should be given on consumption
 				}
-			}
-			if ((item.stackTagCompound.getFloat("cookedValue")) >= (item.stackTagCompound.getFloat("burnedLevel"))) {
-				if (!world.isRemote) {
-					item.stackTagCompound.setBoolean("burned", true);
-					item.stackTagCompound.setDouble("feedValue", 0);
-					item.stackTagCompound.setFloat("satValue", 0);
-					item.stackTagCompound.setInteger("livingTime", item.stackTagCompound.getInteger("expiryTime"));
-				}
-			}
-			
-			//Math for calculating how much to restore. Incomplete until I override food itself to have higher max values.
-			if (!mouldy && !burned) {
-				float c = item.stackTagCompound.getFloat("cookedValue");
-				float ucooked = item.stackTagCompound.getFloat("underCookedLevel");
-				float cooked = item.stackTagCompound.getFloat("cookedLevel");
-				float fBurned = item.stackTagCompound.getFloat("burnedLevel");
+				boolean mouldy = item.stackTagCompound.getBoolean("mouldy");
+				boolean burned = item.stackTagCompound.getBoolean("burned");
+				int expTime = item.stackTagCompound.getInteger("expiryTime");
+				int lvTime = item.stackTagCompound.getInteger("livingTime");
+				int temp = item.stackTagCompound.getInteger("temperature");
+				int roundTemp = Math.round(item.stackTagCompound.getInteger("temperature") / 1000);
 				
-				if (c < ucooked) { //raw
-					item.stackTagCompound.setDouble("feedValue", feedValue);
-					item.stackTagCompound.setFloat("satValue", satValue);
-				} else if (c < cooked) { //undercooked
-					item.stackTagCompound.setDouble("feedValue", feedValue + 1);
-					item.stackTagCompound.setFloat("satValue", satValue);
-				} else if (c < fBurned) { //cooked
-					float fdFloat = (float) feedValue;
-					double finalFeed = (int) Math.round((fdFloat + 1) * 2.5);
-					float finalSat = satValue * 15;
-					item.stackTagCompound.setDouble("feedValue", finalFeed);
-					item.stackTagCompound.setFloat("satValue", finalSat);
-				} else { //burned
+				if (!mouldy) {
+					item.stackTagCompound.setInteger("livingTime", (lvTime + 1));
+				}
+				if (lvTime >= expTime && !burned) {
+					item.stackTagCompound.setBoolean("mouldy", true);
 					item.stackTagCompound.setDouble("feedValue", 0);
 					item.stackTagCompound.setFloat("satValue", 0);
+				}
+				
+				if ((item.stackTagCompound.getFloat("cookedValue")) >= (item.stackTagCompound.getFloat("cookedLevel")) && !burned) {
+					if (roundTemp >= GeneralUtils.getPlayerTemperature(player)) {
+						item.stackTagCompound.setInteger("temperature", temp - 1);
+					} else if (roundTemp <= GeneralUtils.getPlayerTemperature(player)) {
+						item.stackTagCompound.setInteger("temperature", temp + 1);
+					}
+				}
+				if ((item.stackTagCompound.getFloat("cookedValue")) >= (item.stackTagCompound.getFloat("burnedLevel"))) {
+					if (!world.isRemote) {
+						item.stackTagCompound.setBoolean("burned", true);
+						item.stackTagCompound.setDouble("feedValue", 0);
+						item.stackTagCompound.setFloat("satValue", 0);
+						item.stackTagCompound.setInteger("livingTime", item.stackTagCompound.getInteger("expiryTime"));
+					}
+				}
+				calculateFeedValue(item);
+				//Math for calculating how much to restore.
+				if (!mouldy && !burned) {
+					float c = item.stackTagCompound.getFloat("cookedValue");
+					float ucooked = item.stackTagCompound.getFloat("underCookedLevel");
+					float cooked = item.stackTagCompound.getFloat("cookedLevel");
+					float fBurned = item.stackTagCompound.getFloat("burnedLevel");
+					
+					if (c < ucooked) { //raw
+						item.stackTagCompound.setDouble("feedValue", feedValue);
+						item.stackTagCompound.setFloat("satValue", satValue);
+					} else if (c < cooked) { //undercooked
+						item.stackTagCompound.setDouble("feedValue", feedValue + 1);
+						item.stackTagCompound.setFloat("satValue", satValue);
+					} else if (c < fBurned) { //cooked
+						float fdFloat = (float) feedValue;
+						double finalFeed = (int) Math.round((fdFloat + 1) * 2.5);
+						float finalSat = satValue * 15;
+						item.stackTagCompound.setDouble("feedValue", finalFeed);
+						item.stackTagCompound.setFloat("satValue", finalSat);
+					} else { //burned
+						item.stackTagCompound.setDouble("feedValue", 0);
+						item.stackTagCompound.setFloat("satValue", 0);
+					}
 				}
 			}
 		}
+	}
+	
+	public double calculateFeedValue(ItemStack item) {
+		double feed = item.stackTagCompound.getDouble("feedValue");
+		boolean mouldy = item.stackTagCompound.getBoolean("mouldy");
+		boolean burned = item.stackTagCompound.getBoolean("burned");
+		float cookedValue = item.stackTagCompound.getFloat("cookedValue");
+		boolean steak = item.stackTagCompound.getBoolean("steak");
+		float ucl = item.stackTagCompound.getFloat("underCookedLevel");
+		float cl = item.stackTagCompound.getFloat("cookedLevel");
+		float bl = item.stackTagCompound.getFloat("burnedLevel");
+		int cookedType = item.stackTagCompound.getInteger("cookedType");
+		int cookedPref = item.stackTagCompound.getInteger("prefCookType");
+		
+		boolean roasted = false;
+		boolean fried = false;
+		boolean grilled = false;
+		boolean steamed = false;
+		
+        String prefStr = "" + cookedPref;        
+
+        if (prefStr.contains("1")) {
+        	roasted = true;
+        }
+        if (prefStr.contains("2")) {
+        	fried = true;
+        }
+        if (prefStr.contains("3")) {
+        	grilled = true;
+        }
+        if (prefStr.contains("4")) {
+        	steamed = true;
+        }
+		
+		if (!mouldy && !burned) {
+			if (!steak) {
+				if (cookedValue < ucl) { //Raw
+					return feed;
+				} else if (cookedValue < cl) { //Undercooked
+					return feed + 0.25;
+				} else if (cookedValue < bl) { //Cooked
+					if (cookedType == 1 && roasted) {
+						return feed * 5.2;
+					} else if (cookedType == 2 && fried) {
+						return feed * 5.5;
+					} else if (cookedType == 3 && grilled) {
+						return feed * 5.89;
+					} else if (cookedType == 4 && steamed) {
+						return feed * 6.7;
+					}
+				}
+			} else {
+				return feed;
+			}
+		} else if (burned || mouldy) {
+			return 0;
+		}
+		System.out.println("[FlenixCitiesFood] ERROR: Something went wrong with food value calculations! Setting to 0 to avoid bad bugs!");
+		if (CityConfig.debugMode) {
+			System.out.println("[FCF] ERROR: Food Calc break at item: " + item + ", cook value: " + cookedValue + ", Feed Value: " + feed);
+		}
+		return feed;
 	}
 	
 	@Override //If the food is considered unsafe to eat raw, add a poison effect.
@@ -171,28 +246,24 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
         player.getFoodStats().addStats((int) Math.round(item.stackTagCompound.getDouble("feedValue")), item.stackTagCompound.getFloat("satValue"));
         world.playSoundAtEntity(player, "random.burp", 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
         this.onFoodEaten(item, world, player);
-        if (boneSize < 0) {
-        	if (boneSize == 1) {
-        		//TODO Small bone
-        	}
-        	if (boneSize == 2) {
-        		//TODO Medium bone
-        	}
-        	if (boneSize == 3) {
-        		player.inventory.addItemStackToInventory(new ItemStack(Item.bone.itemID, boneQty, 1));
-        	}
-        	if (boneSize == 4) {
-        		//TODO Huge Bone
-        	}
-        	if (boneSize == 5) {
-        		player.inventory.addItemStackToInventory(new ItemStack(Item.bone.itemID, boneQty, 1));
-        		//player.inventory.addItemStackToInventory(new ItemStack(Item.bone.itemID, boneQty, 1)); //Small Bone
-        	}
-        	if (boneSize == 6) {
-        		player.inventory.addItemStackToInventory(new ItemStack(Item.bone.itemID, boneQty, 1));
-        		//player.inventory.addItemStackToInventory(new ItemStack(Item.bone.itemID, boneQty, 1)); //Medium Bone
-        	}
-        }
+
+        int bones = item.stackTagCompound.getInteger("boneContents");
+        String boneStr = "" + bones;
+        System.out.println("Bones: " + bones + " " + boneStr);
+
+        /*char tinyStr = boneStr.charAt(4);
+        char smallStr = boneStr.charAt(3);
+        char medStr = boneStr.charAt(2);
+        char largeStr = boneStr.charAt(1);
+        char hugeStr = boneStr.charAt(0);
+
+        int boneTiny = Character.getNumericValue(tinyStr);
+        int boneSmall = Character.getNumericValue(smallStr);
+        int boneMed = Character.getNumericValue(medStr);
+        int boneLarge = Character.getNumericValue(largeStr);
+        int boneHuge = Character.getNumericValue(hugeStr);*/
+        
+        player.inventory.addItemStackToInventory(new ItemStack(Item.bone.itemID, 1, 0));
         return item;
     }
 	
@@ -220,48 +291,80 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
 	//
 	//****************************************************************
 	//****************************************************************
-	
-	@Override //Alter name based on cooked state
-	public String getUnlocalizedName(ItemStack item) {
+	//Huge shoutout to PaleoCrafter, Kingrunes and ntzrmtthihu777 on Forge IRC for helping with this one!
+	@Override
+	public String getItemDisplayName(ItemStack item) {
+		String meat = StatCollector.translateToLocal("item." + meatName + ".name");
+		String frozen = StatCollector.translateToLocal("item.frozen.name");
+		String raw = StatCollector.translateToLocal("item.raw.name");
+		String underCooked = StatCollector.translateToLocal("item.undercooked.name");
+		String cooked = StatCollector.translateToLocal("item.cooked.name");
+		String roasted = StatCollector.translateToLocal("item.roasted.name");
+		String fried = StatCollector.translateToLocal("item.fried.name");
+		String grilled = StatCollector.translateToLocal("item.grilled.name");
+		String steamed = StatCollector.translateToLocal("item.steamed.name");
+		String burned = StatCollector.translateToLocal("item.burned.name");
+		
+		String finalName = "";
+		
 		if (item.stackTagCompound != null) {
 			float c = item.stackTagCompound.getFloat("cookedValue");
 			float ucooked = item.stackTagCompound.getFloat("underCookedLevel");
-			float cooked = item.stackTagCompound.getFloat("cookedLevel");
-			float burned = item.stackTagCompound.getFloat("burnedLevel");
+			float cookV = item.stackTagCompound.getFloat("cookedLevel");
+			float burnV = item.stackTagCompound.getFloat("burnedLevel");
+			boolean steak = item.stackTagCompound.getBoolean("steak");
 			int cookedType = item.stackTagCompound.getInteger("cookedType");
 			int slicedType = item.stackTagCompound.getInteger("slicedType");
-			String raw = StatCollector.translateToLocal("item.raw.desc");
-			String meat = StatCollector.translateToLocal("item." + meatName + ".name");
+			float cookedTo = (burnV - cookV) / 3;
+			
 			if (c < 0) {
-				return "item.frozen" + meatName;
+				finalName = frozen;
 			} else if (c < ucooked) {
-				return raw + meat;//This is the part I'm testing with.
-			} else if (c < cooked) {
-				return "item.underCooked" + meatName;
-			} else if (c < burned) {
+				finalName = raw;
+			} else if (c < cookV) {
+				finalName = underCooked;
+				
+			} else if (c < burnV) {
 				if (cookedType == 1) {
-					return "item.roasted" + meatName;
-				}
-				if (cookedType == 2) {
-					return "item.fried" + meatName;
-				}
-				if (cookedType == 3) {
-					return "item.grilled" + meatName;
-				}
-				if (cookedType == 4) {
-					return "item.steamed" + meatName;
-				}
-				return "item.cooked" + meatName;
+					finalName = roasted;
+				} else if (cookedType == 2) {
+					finalName = fried;
+				} else if (cookedType == 3) {
+					finalName = grilled;
+				} else if (cookedType == 4) {
+					finalName = steamed;
+				} else
+					finalName = cooked;
 			} else
-				return "item.burned" + meatName;
-		} else
-			return "item." + meatName;
+				finalName = burned;
+		}
+		return finalName + meat;
 	}
 		
 	//Add nutritional info, best before date, and mouldy/burned stats if applicable
     public void addInformation(ItemStack item, EntityPlayer player, List list, boolean bool) {
     	if (item.stackTagCompound != null) {
-	    	list.add("item.burnedLambShoulder");
+			float c = item.stackTagCompound.getFloat("cookedValue");
+			float ucooked = item.stackTagCompound.getFloat("underCookedLevel");
+			float cookV = item.stackTagCompound.getFloat("cookedLevel");
+			float burnV = item.stackTagCompound.getFloat("burnedLevel");
+			boolean steak = item.stackTagCompound.getBoolean("steak");
+			float cookedTo = (burnV - cookV) / 3;
+			
+			String rare = StatCollector.translateToLocal("item.rare.name");
+			String medium = StatCollector.translateToLocal("item.medium.name");
+			String welldone = StatCollector.translateToLocal("item.welldone.name");
+    		
+			if (steak) {
+				if (c <= (cookV + cookedTo)) {
+					list.add(rare);
+				} else if (c <= (cookV + (cookedTo * 2))) {
+					list.add(medium);
+				} else if (c <= (cookV + (cookedTo * 3)) && c < burnV) {
+					list.add(welldone);
+				}
+			}
+    		
     		int expTime = item.stackTagCompound.getInteger("expiryTime");
     		int livingTime = item.stackTagCompound.getInteger("livingTime");
     		double feed = item.stackTagCompound.getDouble("feedValue");

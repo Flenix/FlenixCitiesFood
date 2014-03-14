@@ -24,6 +24,7 @@ public class FoodConfig {
 	public static int fridgeID;
 	public static int largeFridgeID;
 	public static int vendingMachineID;
+	public static int stoveBlockID;
 	
 	public static int lambShoulderID;
 	public static int lambBreastID;
@@ -330,6 +331,7 @@ public class FoodConfig {
 			fridgeID = config.getBlock("Fridge", 1437).getInt();
 			largeFridgeID = config.getBlock("Large Fridge", 1438).getInt();
 			vendingMachineID = config.getBlock("Vending Machine", 1426).getInt();
+			stoveBlockID = config.getBlock("Stove", 1427).getInt();
 			
 			broccoliCropID = config.getBlock("Broccoli Crop", 1550).getInt();
 			lettuceCropID = config.getBlock("Lettuce Crop", 1551).getInt();

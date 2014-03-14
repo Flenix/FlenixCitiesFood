@@ -4,6 +4,7 @@ import co.uk.silvania.cities.food.blocks.*;
 import co.uk.silvania.cities.food.blocks.bushes.*;
 import co.uk.silvania.cities.food.blocks.crops.*;
 import co.uk.silvania.cities.food.blocks.trees.*;
+import co.uk.silvania.cities.food.blocks.utensils.StoveBlock;
 import net.minecraft.block.Block;
 
 public class FCF_Blocks {
@@ -12,6 +13,7 @@ public class FCF_Blocks {
 	public static Block fridgeBlock;
 	public static Block largeFridgeBlock;
 	public static Block vendingMachine;
+	public static Block stoveBlock;
 	
 	public static Block broccoliCrop;
 	public static Block tomatoCrop;
@@ -58,6 +60,7 @@ public class FCF_Blocks {
 		fridgeBlock = new FridgeBlock(config.fridgeID).setUnlocalizedName("fridgeBlock");
 		largeFridgeBlock = new LargeFridgeBlock(config.largeFridgeID).setUnlocalizedName("largeFridgeBlock");
 		vendingMachine = new VendingMachineBlock(config.vendingMachineID).setUnlocalizedName("vendingMachine");
+		stoveBlock = new StoveBlock(config.stoveBlockID).setUnlocalizedName("stoveBlock");
 	}
 	
 	public static void initCrops() {

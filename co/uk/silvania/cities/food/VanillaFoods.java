@@ -58,11 +58,11 @@ public class VanillaFoods {
 	            Item.carrot = (new ItemSeedFood(135, 1, 0.05F, Block.carrot.blockID, Block.tilledField.blockID)).setUnlocalizedName("carrots").setTextureName("carrot");
 	            Item.potato = (new ItemSeedFood(136, 1, 0.05F, Block.potato.blockID, Block.tilledField.blockID)).setUnlocalizedName("potato").setTextureName("potato");
 	            
-	            Item.porkRaw = (new ItemFoodMeat(63, 0, 0.05F, true, 96000, "PorkChop", 3, 7, 12, true, 0, 0)).setUnlocalizedName("porkchopRaw").setTextureName("porkchop_raw");
+	            Item.porkRaw = (new ItemFoodMeat(63, 0.0, 0.05F, true, 96000, "PorkChop", 3, 7, 12, true, 00000, true, 123)).setUnlocalizedName("porkchopRaw").setTextureName("porkchop_raw");
 	            Item.porkCooked = (new ItemDisabledFood(64, 3, 0.15F, true)).setUnlocalizedName("porkchopCooked").setTextureName("porkchop_cooked");
-	            Item.beefRaw = (new ItemFoodMeat(107, 0, 0.05F, true, 120000, "RumpSteak", 4, 8, 13, false, 0, 0)).setUnlocalizedName("beefRaw").setTextureName("beef_raw");
+	            Item.beefRaw = (new ItemFoodMeat(107, 0.0, 0.05F, true, 120000, "RumpSteak", 4, 8, 13, false, 00000, true, 123)).setUnlocalizedName("beefRaw").setTextureName("beef_raw");
 	            Item.beefCooked = (new ItemDisabledFood(108, 3, 0.15F, true)).setUnlocalizedName("beefCooked").setTextureName("beef_cooked");
-	            Item.chickenRaw = (new ItemFoodMeat(109, 0, 0.05F, true, 36000, "ChickenWhole", 2, 5, 8, true, 5, 3)).setPotionEffect(Potion.poison.id, 30, 0, 0.15F).setUnlocalizedName("chickenRaw").setTextureName("chicken_raw");
+	            Item.chickenRaw = (new ItemFoodMeat(109, 0.0, 0.05F, true, 36000, "ChickenWhole", 2, 5, 8, true, 02021, false, 123)).setPotionEffect(Potion.poison.id, 30, 0, 0.15F).setUnlocalizedName("chickenRaw").setTextureName("chicken_raw");
 	            Item.chickenCooked = (new ItemDisabledFood(110, 3, 0.15F, true)).setUnlocalizedName("chickenCooked").setTextureName("chicken_cooked");
 	        }
 		}

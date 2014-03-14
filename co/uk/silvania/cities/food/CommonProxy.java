@@ -21,6 +21,7 @@ public class CommonProxy {
         GameRegistry.registerBlock(FCF_Blocks.fridgeBlock, "fridgeBlock"); //FridgeItemBlock.class, "fc_food" + (FCF_Blocks.fridgeBlock.getUnlocalizedName().substring(5)));
         GameRegistry.registerBlock(FCF_Blocks.largeFridgeBlock, "largeFridgeBlock");
         GameRegistry.registerBlock(FCF_Blocks.vendingMachine, ItemVendingMachineBlock.class, "FlenixCities" + (FCF_Blocks.vendingMachine.getUnlocalizedName().substring(5)));
+        GameRegistry.registerBlock(FCF_Blocks.stoveBlock, "stoveBlock");
 
         GameRegistry.registerBlock(FCF_Blocks.broccoliCrop, "broccoliCrop");
         GameRegistry.registerBlock(FCF_Blocks.tomatoCrop, "tomatoCrop");
@@ -181,25 +182,6 @@ public class CommonProxy {
         GameRegistry.registerItem(FCF_Items.foodHotDog, "foodHotDog");
         GameRegistry.registerItem(FCF_Items.foodNoodles, "foodNoodles");
         GameRegistry.registerItem(FCF_Items.foodPizza, "foodPizza");
-    	
-    	GameRegistry.registerItem(FCF_Items.cookedSquid, "cookedSquid");
-    	GameRegistry.registerItem(FCF_Items.cookedCod, "cookedCod");
-    	GameRegistry.registerItem(FCF_Items.cookedLobster, "cookedLobster");
-    	GameRegistry.registerItem(FCF_Items.cookedCrab, "cookedCrab");
-    	GameRegistry.registerItem(FCF_Items.cookedPcookedn, "cookedPcookedn");
-    	GameRegistry.registerItem(FCF_Items.cookedShrimp, "cookedShrimp");
-    	GameRegistry.registerItem(FCF_Items.cookedAnchovy, "cookedAnchovy");
-    	GameRegistry.registerItem(FCF_Items.cookedTuna, "cookedTuna");
-    	GameRegistry.registerItem(FCF_Items.cookedSardine, "cookedSardine");
-    	GameRegistry.registerItem(FCF_Items.cookedCarp, "cookedCarp");
-    	GameRegistry.registerItem(FCF_Items.cookedOyster, "cookedOyster");
-    	GameRegistry.registerItem(FCF_Items.cookedMussel, "cookedMussel");
-    	GameRegistry.registerItem(FCF_Items.cookedShark, "cookedShark");
-    	GameRegistry.registerItem(FCF_Items.cookedTrout, "cookedTrout");
-    	GameRegistry.registerItem(FCF_Items.cookedBass, "cookedBass");
-    	GameRegistry.registerItem(FCF_Items.cookedHaddock, "cookedHaddock");
-    	GameRegistry.registerItem(FCF_Items.cookedSwordfish, "cookedSwordfish");
-    	GameRegistry.registerItem(FCF_Items.cookedMackeral, "cookedMackeral");
 
         //Seeds
         GameRegistry.registerItem(FCF_Items.broccoliSeed, "broccoliSeed");
@@ -259,6 +241,7 @@ public class CommonProxy {
     public void addNames() {
         LanguageRegistry.addName(FCF_Blocks.fridgeBlock, "Fridge");
         LanguageRegistry.addName(FCF_Blocks.largeFridgeBlock, "Large Fridge");
+        LanguageRegistry.addName(FCF_Blocks.stoveBlock, "Stove");
         
     	//Bushes
     	LanguageRegistry.addName(FCF_Blocks.blackberryBush, "Blackberry Bush");
@@ -398,25 +381,6 @@ public class CommonProxy {
         LanguageRegistry.addName(new ItemStack(FCF_Items.foodPizza, 1, 1), "Mushroom Pizza");
         LanguageRegistry.addName(new ItemStack(FCF_Items.foodPizza, 1, 2), "Pepperoni Pizza");
         LanguageRegistry.addName(new ItemStack(FCF_Items.foodPizza, 1, 3), "Mushroom & Pepperoni Pizza");
-    	
-    	LanguageRegistry.addName(FCF_Items.cookedSquid, "Cooked Squid");
-    	LanguageRegistry.addName(FCF_Items.cookedCod, "Cooked Cod");
-    	LanguageRegistry.addName(FCF_Items.cookedLobster, "Cooked Lobster");
-    	LanguageRegistry.addName(FCF_Items.cookedCrab, "Cooked Crab");
-    	LanguageRegistry.addName(FCF_Items.cookedPcookedn, "Cooked Pcookedn");
-    	LanguageRegistry.addName(FCF_Items.cookedShrimp, "Cooked Shrimp");
-    	LanguageRegistry.addName(FCF_Items.cookedAnchovy, "Cooked Anchovy");
-    	LanguageRegistry.addName(FCF_Items.cookedTuna, "Cooked Tuna");
-    	LanguageRegistry.addName(FCF_Items.cookedSardine, "Cooked Sardine");
-    	LanguageRegistry.addName(FCF_Items.cookedCarp, "Cooked Carp");
-    	LanguageRegistry.addName(FCF_Items.cookedOyster, "Cooked Oyster");
-    	LanguageRegistry.addName(FCF_Items.cookedMussel, "Cooked Mussel");
-    	LanguageRegistry.addName(FCF_Items.cookedShark, "Cooked Shark");
-    	LanguageRegistry.addName(FCF_Items.cookedTrout, "Cooked Trout");
-    	LanguageRegistry.addName(FCF_Items.cookedBass, "Cooked Bass");
-    	LanguageRegistry.addName(FCF_Items.cookedHaddock, "Cooked Haddock");
-    	LanguageRegistry.addName(FCF_Items.cookedSwordfish, "Cooked Swordfish");
-    	LanguageRegistry.addName(FCF_Items.cookedMackeral, "Cooked Mackeral");
 
         //Meals
         

@@ -3,6 +3,7 @@ package co.uk.silvania.cities.food;
 import co.uk.silvania.cities.food.blocks.TileEntityFridge;
 import co.uk.silvania.cities.food.blocks.TileEntityFridgeLarge;
 import co.uk.silvania.cities.food.blocks.TileEntityVendingMachine;
+import co.uk.silvania.cities.food.blocks.utensils.StoveEntity;
 import net.minecraft.block.Block;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
@@ -10,6 +11,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.Mod;
@@ -32,7 +34,7 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-@Mod(modid=FlenixCities_Food.modid, dependencies="required-after:flenixcities;required-after:FlenixTweaks", name="FlenixCities Food", version="0.4.1")
+@Mod(modid=FlenixCities_Food.modid, dependencies="required-after:flenixcities;required-after:FlenixTweaks", name="FlenixCities Food", version="1.0")
 @NetworkMod(clientSideRequired=true, serverSideRequired=false)
 public class FlenixCities_Food { 
 	
@@ -70,6 +72,8 @@ public class FlenixCities_Food {
     	FCF_Items.init();
     	
     	VanillaFoods.run();
+    	
+    	MinecraftForge.EVENT_BUS.register(new MobDrops());
     }
                
     @EventHandler
@@ -81,6 +85,7 @@ public class FlenixCities_Food {
         GameRegistry.registerTileEntity(TileEntityFridge.class, "tileEntityFridge");
         GameRegistry.registerTileEntity(TileEntityFridgeLarge.class, "tileEntityFridgeLarge");
         GameRegistry.registerTileEntity(TileEntityVendingMachine.class, "tileEntityVendingMachine");
+        GameRegistry.registerTileEntity(StoveEntity.class, "tileEntityStove");
         
         ItemStack beefStack = new ItemStack(Item.beefCooked);
         ItemStack porkStack = new ItemStack(Item.porkCooked);

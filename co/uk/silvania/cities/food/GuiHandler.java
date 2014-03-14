@@ -12,6 +12,11 @@ import co.uk.silvania.cities.food.blocks.GuiVendingMachine;
 import co.uk.silvania.cities.food.blocks.TileEntityFridge;
 import co.uk.silvania.cities.food.blocks.TileEntityFridgeLarge;
 import co.uk.silvania.cities.food.blocks.TileEntityVendingMachine;
+import co.uk.silvania.cities.food.blocks.utensils.ContainerStoveHob;
+import co.uk.silvania.cities.food.blocks.utensils.ContainerStoveOven;
+import co.uk.silvania.cities.food.blocks.utensils.StoveEntity;
+import co.uk.silvania.cities.food.client.GuiStoveHob;
+import co.uk.silvania.cities.food.client.GuiStoveOven;
 import cpw.mods.fml.common.network.IGuiHandler;
 
 public class GuiHandler implements IGuiHandler {
@@ -40,6 +45,18 @@ public class GuiHandler implements IGuiHandler {
                         return new ContainerVendingMachine(player.inventory, (TileEntityVendingMachine) tileEntity);
                 }	
         	}
+        	case 3: {
+        		TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+        		if (tileEntity instanceof StoveEntity) {
+        			return new ContainerStoveOven(player.inventory, (StoveEntity) tileEntity);
+        		}
+        	}
+        	case 4: {
+        		TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+        		if (tileEntity instanceof StoveEntity) {
+        			return new ContainerStoveHob(player.inventory, (StoveEntity) tileEntity);
+        		}
+        	}
         }
 			return null;	
     }
@@ -64,6 +81,18 @@ public class GuiHandler implements IGuiHandler {
                 if(tileEntity instanceof TileEntityVendingMachine) {
                         return new GuiVendingMachine(player.inventory, (TileEntityVendingMachine) tileEntity, world, x, y, z);
                 }	
+        	}
+        	case 3: {
+        		TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+        		if (tileEntity instanceof StoveEntity) {
+        			return new GuiStoveOven(player.inventory, (StoveEntity) tileEntity);
+        		}
+        	}
+        	case 4: {
+        		TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+        		if (tileEntity instanceof StoveEntity) {
+        			return new GuiStoveHob(player.inventory, (StoveEntity) tileEntity);
+        		}
         	}
         }
 			return null;
