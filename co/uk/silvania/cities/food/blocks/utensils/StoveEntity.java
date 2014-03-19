@@ -36,7 +36,8 @@ public class StoveEntity extends TileEntity implements IInventory {
 		NBTTagList nbtTagList = new NBTTagList();
 		for (int i = 0; i < this.items.length; ++i) {
 			if (this.items[i] != null) {
-				System.out.println("Writing Item in Slot " + i);
+				System.out.println("Items Length:" + items.length);
+				System.out.println("Writing Item in Slot (Stove)" + i);
 				NBTTagCompound compound = new NBTTagCompound();
 				nbt.setByte("Slot", (byte)i);
 				this.items[i].writeToNBT(compound);
