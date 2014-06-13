@@ -1,6 +1,9 @@
 package co.uk.silvania.cities.food.items.foods;
 
+import java.math.RoundingMode;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -12,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Icon;
 import net.minecraft.util.StatCollector;
@@ -94,16 +98,19 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
 					item.stackTagCompound.setDouble("feedValue", feedValue); //How much food to replenish. Rounded to an int upon consumption.
 					item.stackTagCompound.setInteger("temperature", 21000); //It's current temperature, in celcius x1000
 					item.stackTagCompound.setFloat("satValue", satValue); //The saturation value
-					item.stackTagCompound.setFloat("cookedValue", 0); //How much it has been cooked
+					item.stackTagCompound.setFloat("cookedValue", 0.01F); //How much it has been cooked
 					item.stackTagCompound.setBoolean("burned", false); //Whether it is burnt
 					item.stackTagCompound.setBoolean("mouldy", false); //Whether it is mouldy
 					item.stackTagCompound.setBoolean("steak", steak); //Whether it is red meat (Affects naming and edibility)
 					item.stackTagCompound.setFloat("underCookedLevel", underCookedLevel); //The level it transitions from raw to undercooked
 					item.stackTagCompound.setFloat("cookedLevel", cookedLevel); //The level it transitions from undercooked to coooked
+					item.stackTagCompound.setFloat("perfectCookedLevel", (cookedLevel + (cookedLevel / 4))); //The level at which the food is "perfectly" cooked, adding X to feed and sat.
 					item.stackTagCompound.setFloat("burnedLevel", burnedLevel); //The level it transitions from cooked to burned
 					item.stackTagCompound.setInteger("cookedType", 0); //How it was cooked
 					item.stackTagCompound.setInteger("prefCookType", prefCookType); //Preferred cooking style (Affects final values)
 					item.stackTagCompound.setInteger("boneContents", boneConts); //What bones should be given on consumption
+					item.stackTagCompound.setBoolean("hasBeenCooked", false); //Set to true if food's temp is over 100c when it ticks. It will never tick during the cooking stage, only when placed in an inventory.
+					item.stackTagCompound.setBoolean("perfect", false); //Perfectly cooked food is hard to get, but gives a bonus.
 				}
 				boolean mouldy = item.stackTagCompound.getBoolean("mouldy");
 				boolean burned = item.stackTagCompound.getBoolean("burned");
@@ -113,7 +120,9 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
 				int roundTemp = Math.round(item.stackTagCompound.getInteger("temperature") / 1000);
 				
 				if (!mouldy) {
-					item.stackTagCompound.setInteger("livingTime", (lvTime + 1));
+					if (temp >= 4000) {
+						item.stackTagCompound.setInteger("livingTime", (lvTime + 1));
+					}
 				}
 				if (lvTime >= expTime && !burned) {
 					item.stackTagCompound.setBoolean("mouldy", true);
@@ -121,11 +130,22 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
 					item.stackTagCompound.setFloat("satValue", 0);
 				}
 				
-				if ((item.stackTagCompound.getFloat("cookedValue")) >= (item.stackTagCompound.getFloat("cookedLevel")) && !burned) {
-					if (roundTemp >= GeneralUtils.getPlayerTemperature(player)) {
-						item.stackTagCompound.setInteger("temperature", temp - 1);
-					} else if (roundTemp <= GeneralUtils.getPlayerTemperature(player)) {
-						item.stackTagCompound.setInteger("temperature", temp + 1);
+				if (!burned) {
+					int playerTemp = ((GeneralUtils.getPlayerTemperature(player) < 5) ? 5 : GeneralUtils.getPlayerTemperature(player));
+					int newTemp = (Math.round(temp / 10)) * 10;
+					boolean alter = true;
+					int low = (playerTemp * 10) - 2;
+					int high = (playerTemp * 10) + 2;
+					if ((roundTemp * 10) <= high && (roundTemp * 10) >= low) {
+						alter = false;
+					}
+					if (alter) {
+						if (roundTemp >= playerTemp) {
+							newTemp = temp - 10;
+						} else if (roundTemp <= playerTemp) {
+							newTemp = temp + 10;
+						}
+						item.stackTagCompound.setInteger("temperature", newTemp);
 					}
 				}
 				if ((item.stackTagCompound.getFloat("cookedValue")) >= (item.stackTagCompound.getFloat("burnedLevel"))) {
@@ -136,29 +156,11 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
 						item.stackTagCompound.setInteger("livingTime", item.stackTagCompound.getInteger("expiryTime"));
 					}
 				}
-				calculateFeedValue(item);
-				//Math for calculating how much to restore.
-				if (!mouldy && !burned) {
-					float c = item.stackTagCompound.getFloat("cookedValue");
-					float ucooked = item.stackTagCompound.getFloat("underCookedLevel");
-					float cooked = item.stackTagCompound.getFloat("cookedLevel");
-					float fBurned = item.stackTagCompound.getFloat("burnedLevel");
-					
-					if (c < ucooked) { //raw
-						item.stackTagCompound.setDouble("feedValue", feedValue);
-						item.stackTagCompound.setFloat("satValue", satValue);
-					} else if (c < cooked) { //undercooked
-						item.stackTagCompound.setDouble("feedValue", feedValue + 1);
-						item.stackTagCompound.setFloat("satValue", satValue);
-					} else if (c < fBurned) { //cooked
-						float fdFloat = (float) feedValue;
-						double finalFeed = (int) Math.round((fdFloat + 1) * 2.5);
-						float finalSat = satValue * 15;
-						item.stackTagCompound.setDouble("feedValue", finalFeed);
-						item.stackTagCompound.setFloat("satValue", finalSat);
-					} else { //burned
-						item.stackTagCompound.setDouble("feedValue", 0);
-						item.stackTagCompound.setFloat("satValue", 0);
+				
+				//Deciding if the food can be cooked again:
+				if (!item.stackTagCompound.getBoolean("hasBeenCooked")) {
+					if (temp >= 100000) {
+						item.stackTagCompound.setBoolean("hasBeenCooked", true);
 					}
 				}
 			}
@@ -176,6 +178,18 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
 		float bl = item.stackTagCompound.getFloat("burnedLevel");
 		int cookedType = item.stackTagCompound.getInteger("cookedType");
 		int cookedPref = item.stackTagCompound.getInteger("prefCookType");
+		float temp = (item.stackTagCompound.getInteger("temperature") / 1000);
+		float bonus = 0;
+		
+		float pcl = item.stackTagCompound.getFloat("perfectCookedLevel");
+		if (cookedValue >= (pcl - 0.1F) && cookedValue <= (pcl + 0.1F)) {
+			item.stackTagCompound.setBoolean("perfect", true);
+			bonus = bonus + 2;
+		}
+		
+		if (temp >= 50) {
+			bonus = bonus + (temp / 20);
+		}
 		
 		boolean roasted = false;
 		boolean fried = false;
@@ -197,39 +211,59 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
         	steamed = true;
         }
 		
-		if (!mouldy && !burned) {
-			if (!steak) {
+        if (item.stackTagCompound.getBoolean("hasBeenCooked")) {
+			if (!mouldy && !burned) {
 				if (cookedValue < ucl) { //Raw
-					return feed;
+					return feed + bonus;
 				} else if (cookedValue < cl) { //Undercooked
-					return feed + 0.25;
+					double localFeed = 0.25;
+					if (steak) {
+						localFeed = 3;
+					}
+					return feed + localFeed + bonus;
 				} else if (cookedValue < bl) { //Cooked
 					if (cookedType == 1 && roasted) {
-						return feed * 5.2;
-					} else if (cookedType == 2 && fried) {
-						return feed * 5.5;
-					} else if (cookedType == 3 && grilled) {
-						return feed * 5.89;
-					} else if (cookedType == 4 && steamed) {
-						return feed * 6.7;
+						return feed * 5.2 + bonus;
+					} else if (cookedType == 1 && !roasted) {
+						return feed * 4.2 + bonus;
+					} 
+					
+					else if (cookedType == 2 && fried) {
+						return feed * 5.5 + bonus;
+					} else if (cookedType == 2 && !fried) {
+						return feed * 4.5 + bonus;
+					}
+					
+					else if (cookedType == 3 && grilled) {
+						return feed * 5.89 + bonus;
+					} else if (cookedType == 3 && !grilled) {
+						return feed * 4.89 + bonus;
+					}
+					
+					else if (cookedType == 4 && steamed) {
+						return feed * 6.7 + bonus;
+					} else if (cookedType == 4 && !steamed) {
+						return feed * 5.15 + bonus;
 					}
 				}
-			} else {
-				return feed;
+			} else if (burned || mouldy) {
+				return 0;
 			}
-		} else if (burned || mouldy) {
-			return 0;
-		}
-		System.out.println("[FlenixCitiesFood] ERROR: Something went wrong with food value calculations! Setting to 0 to avoid bad bugs!");
-		if (CityConfig.debugMode) {
-			System.out.println("[FCF] ERROR: Food Calc break at item: " + item + ", cook value: " + cookedValue + ", Feed Value: " + feed);
-		}
+			System.out.println("[FlenixCitiesFood] ERROR: Something went wrong with food value calculations! Setting to raw levels to avoid bad exploits!");
+			if (CityConfig.debugMode) {
+				System.out.println("[FCF] ERROR: Food Calc break at item: " + item + ", cook value: " + cookedValue + ", Feed Value: " + feed);
+			}
+        }
 		return feed;
 	}
 	
 	@Override //If the food is considered unsafe to eat raw, add a poison effect.
 	//Also give any bones back that were inside the food.
     public ItemStack onEaten(ItemStack item, World world, EntityPlayer player) {
+		if (item.stackTagCompound.getInteger("temperature") > 150000) {
+			player.addChatMessage(EnumChatFormatting.RED + "You burned your mouth on the hot food!");
+			player.attackEntityFrom(DamageSource.onFire, 1.0F);
+		}
     	if (item.stackTagCompound.getFloat("cookedValue") > item.stackTagCompound.getFloat("underCookedLevel")) {
     		player.addPotionEffect((new PotionEffect(Potion.poison.getId(), 10, 1)));
     		player.addPotionEffect((new PotionEffect(Potion.confusion.getId(), 10, 1)));
@@ -243,13 +277,12 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
     		player.addPotionEffect((new PotionEffect(Potion.confusion.getId(), 10, 3)));
     	}
         --item.stackSize;
-        player.getFoodStats().addStats((int) Math.round(item.stackTagCompound.getDouble("feedValue")), item.stackTagCompound.getFloat("satValue"));
+        player.getFoodStats().addStats((int) Math.round(calculateFeedValue(item)), item.stackTagCompound.getFloat("satValue"));
         world.playSoundAtEntity(player, "random.burp", 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
         this.onFoodEaten(item, world, player);
 
         int bones = item.stackTagCompound.getInteger("boneContents");
         String boneStr = "" + bones;
-        System.out.println("Bones: " + bones + " " + boneStr);
 
         /*char tinyStr = boneStr.charAt(4);
         char smallStr = boneStr.charAt(3);
@@ -273,14 +306,6 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
             player.setItemInUse(item, this.getMaxItemUseDuration(item));
         }
         getItemUseAction(item);
-        
-        //Temporary cooking mechanism
-		if (!world.isRemote) {
-	        if (player.isSneaking()) {
-	            System.out.println("Add to cooked value");
-	            item.stackTagCompound.setFloat("cookedValue", (item.stackTagCompound.getFloat("cookedValue") + 1));
-	        }
-		}
         return item;
     }
 	
@@ -367,10 +392,16 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
     		
     		int expTime = item.stackTagCompound.getInteger("expiryTime");
     		int livingTime = item.stackTagCompound.getInteger("livingTime");
-    		double feed = item.stackTagCompound.getDouble("feedValue");
+    		double feed = calculateFeedValue(item);
+    		boolean perfect = item.stackTagCompound.getBoolean("perfect");
     		float sat = item.stackTagCompound.getFloat("satValue");
     		boolean burn = item.stackTagCompound.getBoolean("burned");
     		boolean mouldy = item.stackTagCompound.getBoolean("mouldy");
+    		int temp = Math.round(item.stackTagCompound.getInteger("temperature") / 1000);
+    		
+    		if (perfect) {
+    			list.add(EnumChatFormatting.GREEN + "" + EnumChatFormatting.ITALIC + "Perfect");
+    		}
     		
     		int remainingTime = expTime - livingTime;
     		int timeHours = Math.round(remainingTime / 1000);
@@ -379,7 +410,7 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
     			timeDays = timeDays + 1;
     			timeHours = timeHours - 24;
     		}
-    		//list.add("expTime: " + expTime + ", livingtime: " + livingTime + ", remainingTime: " + remainingTime);
+    		//For debug only: list.add("expTime: " + expTime + ", livingtime: " + livingTime + ", remainingTime: " + remainingTime);
     		if (remainingTime > 0) {
     			EnumChatFormatting colour = EnumChatFormatting.WHITE;
     			if (remainingTime >= (expiryTime / 4) * 3) {
@@ -397,11 +428,6 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
     			if (timeHours == 1) {
     				hour = " Hour.";
     			}
-    			if (timeHours < 1) {
-    				hour = " Minutes.";
-        			list.add(colour + "Expires In: " + timeDays + day + (timeHours / 60) + hour);
-        	    	list.add("");
-    			} else
     			list.add(colour + "Expires In: " + timeDays + day + timeHours + hour);
     	    	list.add("");
     		} else
@@ -424,7 +450,7 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
 	    	} else if (feed > 4) {
 	    		fdColour = EnumChatFormatting.GREEN;
 	    	}
-	    	list.add("Fill: " + fdColour + feed);
+	    	list.add("Fill: " + fdColour + formatDouble(feed));
 	    	
 	    	EnumChatFormatting stColour = EnumChatFormatting.WHITE;
 	    	if (sat <= 0.1) {
@@ -443,20 +469,41 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
 	    		list.add("");
 	    		list.add(EnumChatFormatting.DARK_GRAY + "Burned");
 	    	}
+	    	
+	    	EnumChatFormatting tempColour = EnumChatFormatting.WHITE;
+	    	if (temp < 10) {
+	    		tempColour = EnumChatFormatting.AQUA;
+	    	} else if (temp < 25) {
+	    		tempColour = EnumChatFormatting.WHITE;
+	    	} else if (temp < 100) {
+	    		tempColour = EnumChatFormatting.YELLOW;
+	    	} else if (temp < 175) {
+	    		tempColour = EnumChatFormatting.RED;
+	    	} else if (temp >= 175) {
+	    		tempColour = EnumChatFormatting.DARK_RED;
+	    	}
+	    	list.add("");
+	    	list.add(tempColour + "Temperature: " + temp + "C");
     	}
     }
 	
 	@SideOnly(Side.CLIENT)
 	public Icon iconRaw;
+	@SideOnly(Side.CLIENT)
 	public Icon iconUnderCooked;
+	@SideOnly(Side.CLIENT)
 	public Icon iconCooked;
+	@SideOnly(Side.CLIENT)
 	public Icon iconBurned;
+	@SideOnly(Side.CLIENT)
+	public Icon iconMouldy;
 	
 	public void registerIcons(IconRegister iconRegister) {
 		iconRaw = iconRegister.registerIcon(FlenixCities_Food.modid + ":" + (this.getUnlocalizedName().toLowerCase().substring(5)) + "0");
 		iconUnderCooked = iconRegister.registerIcon(FlenixCities_Food.modid + ":" + (this.getUnlocalizedName().toLowerCase().substring(5)) + "1");
 		iconCooked = iconRegister.registerIcon(FlenixCities_Food.modid + ":" + (this.getUnlocalizedName().toLowerCase().substring(5)) + "2");
 		iconBurned = iconRegister.registerIcon(FlenixCities_Food.modid + ":" + (this.getUnlocalizedName().toLowerCase().substring(5)) + "3");
+		iconMouldy = iconRegister.registerIcon(FlenixCities_Food.modid + ":" + (this.getUnlocalizedName().toLowerCase().substring(5)) + "4");
 	}
 	
 	@Override //Required for icon switching
@@ -471,6 +518,9 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
 			float ucooked = item.stackTagCompound.getFloat("underCookedLevel");
 			float cooked = item.stackTagCompound.getFloat("cookedLevel");
 			float burned = item.stackTagCompound.getFloat("burnedLevel");
+			if (item.stackTagCompound.getBoolean("mouldy")) {
+				return iconMouldy;
+			}
 			if (c < ucooked) {
 				return iconRaw;
 			} else if (c < cooked) {
@@ -481,5 +531,16 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
 			return iconBurned;
 		} else
 			return iconRaw;
+	}
+	
+	public static String formatDouble(double d) {
+		NumberFormat nf = NumberFormat.getNumberInstance(Locale.ENGLISH);
+		nf.setMinimumFractionDigits(2);
+		nf.setMaximumFractionDigits(2);
+		nf.setRoundingMode(RoundingMode.HALF_UP);
+		String str = nf.format(d);
+		str = str.replace(",", "");
+
+		return str;
 	}
 }

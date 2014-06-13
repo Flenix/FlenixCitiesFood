@@ -112,9 +112,9 @@ public class GuiStoveHob extends GuiContainer {
 	@Override
 	protected void drawGuiContainerForegroundLayer(int par1, int par2) {
 		fontRenderer.drawString("Stove", 5, 5, 4210752);
-		fontRenderer.drawString("" + hob1Temp + "c", 70, 13, 4210752);
+		fontRenderer.drawString("" + hob1Temp + "c", 66, 13, 4210752);
 		fontRenderer.drawString("" + hob2Temp + "c", 114, 13, 4210752);
-		fontRenderer.drawString("" + hob3Temp + "c", 70, 121, 4210752);
+		fontRenderer.drawString("" + hob3Temp + "c", 66, 121, 4210752);
 		fontRenderer.drawString("" + hob4Temp + "c", 114, 121, 4210752);
 	}
 

@@ -48,7 +48,7 @@ public class GuiHandler implements IGuiHandler {
         	case 3: {
         		TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
         		if (tileEntity instanceof StoveEntity) {
-        			return new ContainerStoveOven(player.inventory, (StoveEntity) tileEntity);
+        			return new ContainerStoveHob(player.inventory, (StoveEntity) tileEntity);
         		}
         	}
         	case 4: {

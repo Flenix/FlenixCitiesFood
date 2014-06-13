@@ -15,13 +15,13 @@ import net.minecraft.util.ResourceLocation;
 
 import co.uk.silvania.cities.core.CityConfig;
 import co.uk.silvania.cities.econ.store.container.InvisibleButton;
-import co.uk.silvania.cities.food.blocks.utensils.ContainerStoveOven;
+import co.uk.silvania.cities.food.blocks.utensils.ContainerStoveHob;
 import co.uk.silvania.cities.food.blocks.utensils.StoveEntity;
 import cpw.mods.fml.common.network.PacketDispatcher;
 
 public class GuiStoveOven extends GuiContainer {
 	
-	private static final ResourceLocation texture = new ResourceLocation("fc_food", "textures/gui/guistovehob.png");
+	private static final ResourceLocation texture = new ResourceLocation("fc_food", "textures/gui/stoveovengui.png");
 	
 	public static int hob1Temp = 120;
 	public static int hob2Temp = 120;
@@ -29,10 +29,10 @@ public class GuiStoveOven extends GuiContainer {
 	public static int hob4Temp = 120;
 
 	public GuiStoveOven(InventoryPlayer invPlayer, StoveEntity te) {
-		super(new ContainerStoveOven(invPlayer, te));
+		super(new ContainerStoveHob(invPlayer, te));
 		
-		xSize = 202;
-		ySize = 222;
+		xSize = 188;
+		ySize = 252;
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -113,9 +113,9 @@ public class GuiStoveOven extends GuiContainer {
 	@Override
 	protected void drawGuiContainerForegroundLayer(int par1, int par2) {
 		fontRenderer.drawString("Stove", 5, 5, 4210752);
-		fontRenderer.drawString("" + hob1Temp + "c", 65, 13, 4210752);
+		fontRenderer.drawString("" + hob1Temp + "c", 62, 13, 4210752);
 		fontRenderer.drawString("" + hob2Temp + "c", 109, 13, 4210752);
-		fontRenderer.drawString("" + hob3Temp + "c", 65, 121, 4210752);
+		fontRenderer.drawString("" + hob3Temp + "c", 62, 121, 4210752);
 		fontRenderer.drawString("" + hob4Temp + "c", 109, 121, 4210752);
 	}
 

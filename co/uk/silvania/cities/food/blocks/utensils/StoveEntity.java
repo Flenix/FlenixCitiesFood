@@ -1,66 +1,80 @@
 package co.uk.silvania.cities.food.blocks.utensils;
 
+import co.uk.silvania.cities.food.items.ItemHobUtensil;
 import co.uk.silvania.cities.food.util.IFlenixFoods;
 import co.uk.silvania.cities.food.util.IHobUtensil;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Slot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityFurnace;
 
 public class StoveEntity extends TileEntity implements IInventory {
+	
+	//TODO Durability
 	
 	private ItemStack[] items;
 	
 	private int temperature;
-	private double fuelValue;
+	private int fuelValue;
+	private int damage;
+	private int maxDamage;
 	
-	public int grill1Setting;
-	public int oven1Setting;
-	public int oven2Setting;
-	public int hob1Setting;
-	public int hob2Setting;
-	public int hob3Setting;
-	public int hob4Setting;
+	public int grill1Setting = 120;
+	public int oven1Setting = 120;
+	public int oven2Setting = 120;
+	public int hob1Setting = 120;
+	public int hob2Setting = 120;
+	public int hob3Setting = 120;
+	public int hob4Setting = 120;
 	
 	
 	public StoveEntity() {
-		items = new ItemStack[32];
+		items = new ItemStack[58];
 	}
 	
 	@Override
 	public void writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
-		NBTTagList nbtTagList = new NBTTagList();
-		for (int i = 0; i < this.items.length; ++i) {
+		NBTTagList tags = new NBTTagList();
+		
+		for (int i = 0; i < this.items.length; i++) {
 			if (this.items[i] != null) {
-				System.out.println("Items Length:" + items.length);
-				System.out.println("Writing Item in Slot (Stove)" + i);
-				NBTTagCompound compound = new NBTTagCompound();
-				nbt.setByte("Slot", (byte)i);
-				this.items[i].writeToNBT(compound);
-				nbtTagList.appendTag(compound);
+				NBTTagCompound nbt2 = new NBTTagCompound();
+				nbt2.setByte("Slot", (byte)i);
+				this.items[i].writeToNBT(nbt2);
+				tags.appendTag(nbt2);
 			}
 		}
-		nbt.setTag("Items",  nbtTagList);
+		
+		nbt.setTag("Items", tags);
+
 		nbt.setInteger("temperature", temperature);
-		nbt.setDouble("fuelValue", fuelValue);
+		nbt.setInteger("fuelValue", fuelValue);
 	}
 	
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		NBTTagList nbtTagList = nbt.getTagList("Items");
-		for (int i = 0; i < nbtTagList.tagCount(); i++) {
-			NBTTagCompound nbt1 = (NBTTagCompound)nbtTagList.tagAt(i);
-			int j = nbt1.getByte("Slot") & 255;
-			System.out.println("Reading Item in Slot " + i + "/" + j);
-			this.items[i] = ItemStack.loadItemStackFromNBT(nbt1);
+		NBTTagList tags = nbt.getTagList("Items");
+		this.items = new ItemStack[this.getSizeInventory()];
+		
+		for (int i = 0; i < tags.tagCount(); i++) {
+			NBTTagCompound nbt2 = (NBTTagCompound) tags.tagAt(i);
+			int j = nbt2.getByte("Slot") & 255;
+			
+			if (j >= 0 && j < this.items.length) {
+				this.items[j] = ItemStack.loadItemStackFromNBT(nbt2);
+			}
 		}
+		
 		this.temperature = nbt.getInteger("temperature");
-		this.fuelValue = nbt.getDouble("fuelValue");
+		this.fuelValue = nbt.getInteger("fuelValue");
 	}
 	
 	@Override
@@ -158,40 +172,203 @@ public class StoveEntity extends TileEntity implements IInventory {
 	@Override
 	public void updateEntity() {
 		ItemStack fuel = getStackInSlot(0);
-		ItemStack hob1 = getStackInSlot(1);
-		ItemStack hob2 = getStackInSlot(2);
-		ItemStack hob3 = getStackInSlot(3);
-		ItemStack hob4 = getStackInSlot(4);
+		ItemStack hob1 = getStackInSlot(4);
+		ItemStack hob2 = getStackInSlot(5);
+		ItemStack hob3 = getStackInSlot(6);
+		ItemStack hob4 = getStackInSlot(7);
 		ItemStack grill1 = getStackInSlot(5);
 		ItemStack oven1 = getStackInSlot(6);
 		ItemStack oven2 = getStackInSlot(7);
-		int fuelVal = GameRegistry.getFuelValue(fuel);
-		if (fuelValue > 0) {
-			//Temperature Setting for each section affects cook speed.
-			//Grill 1
-			if (grill1 != null) {
-				if (temperature >= grill1Setting) {
-					if (grill1.getItem() instanceof IFlenixFoods) {
-						grill1.stackTagCompound.setInteger("cookedStyle", 3);
-						float localCV = 0.0F;
-						float cookedValue = grill1.stackTagCompound.getFloat("cookedValue");
-						float maxCV = grill1.stackTagCompound.getFloat("burnedLevel");
-						int foodTemp = grill1.stackTagCompound.getInteger("temperature");
-						if (foodTemp >= temperature) {
-							
-						} else {
-							grill1.stackTagCompound.setInteger("temperature", foodTemp + 1);
-						}
-						if (cookedValue <= maxCV) {
-							float cookMultiplier = temperature / 100000;
-							fuelValue = fuelValue - (cookMultiplier * 100);
-							grill1.stackTagCompound.setFloat("cookedValue", cookedValue + cookMultiplier);
-						}
+
+		if (!worldObj.isRemote) {
+			if (fuel != null) {
+				if (fuelValue <= (40000 - TileEntityFurnace.getItemBurnTime(fuel))) {
+					fuelValue = fuelValue + TileEntityFurnace.getItemBurnTime(fuel);
+					if (fuel.stackSize > 1) {
+						this.setInventorySlotContents(0, new ItemStack(fuel.getItem(), fuel.stackSize - 1, fuel.getItemDamage()));
+					} else {
+						this.setInventorySlotContents(0, null);
 					}
-				} else {
-					temperature++;
 				}
 			}
+			System.out.println("Fuel value: " + fuelValue);
+			
+			if (fuelValue > 0) {
+				//Temperature Setting for each section affects cook speed.
+				//Hob 1
+				if (hob1 != null && hob1.getItem() instanceof IHobUtensil) {
+					ItemHobUtensil hobUtil = (ItemHobUtensil) hob1.getItem();
+					if (hob1.stackTagCompound != null) {
+						for (int s = 8; s < 13; s++) {
+							ItemStack food = getStackInSlot(s);
+							int utensilTemp = hob1.stackTagCompound.getInteger("temperature");
+							
+							if ((utensilTemp / 1000) >= hob1Setting) {
+							
+								if (food != null) {
+									if (food.getItem() instanceof IFlenixFoods) {
+										int temp = food.stackTagCompound.getInteger("temperature");
+										
+										
+										if (temp < utensilTemp) {
+											food.stackTagCompound.setInteger("temperature", temp + 1000);
+										}
+										if (temp > utensilTemp) {
+											food.stackTagCompound.setInteger("temperature", utensilTemp);
+										}
+										
+										if ((temp / 1000) >= hob1Setting) {
+											food.stackTagCompound.setInteger("cookedType", hobUtil.cookType());
+											float cookedValue = food.stackTagCompound.getFloat("cookedValue");
+											
+											float cookMultiplier = temperature / 100000;
+											fuelValue = Math.round(fuelValue - (cookMultiplier * 100));
+											food.stackTagCompound.setFloat("cookedValue", cookedValue + 0.01F + cookMultiplier);
+										} 
+									}
+								}
+							} else {
+									hob1.stackTagCompound.setInteger("temperature", utensilTemp + 100);
+							}
+						}
+					}
+				}
+				
+				//Hob 2
+				if (hob2 != null && hob2.getItem() instanceof IHobUtensil) {
+					ItemHobUtensil hobUtil = (ItemHobUtensil) hob2.getItem();
+					if (hob2.stackTagCompound != null) {
+						for (int s = 8; s < 13; s++) {
+							ItemStack food = getStackInSlot(s);
+							int utensilTemp = hob2.stackTagCompound.getInteger("temperature");
+							
+							if ((utensilTemp / 1000) >= hob2Setting) {
+							
+								if (food != null) {
+									if (food.getItem() instanceof IFlenixFoods) {
+										int temp = food.stackTagCompound.getInteger("temperature");
+										
+										
+										if (temp < utensilTemp) {
+											food.stackTagCompound.setInteger("temperature", temp + 1000);
+										}
+										if (temp > utensilTemp) {
+											food.stackTagCompound.setInteger("temperature", utensilTemp);
+										}
+										
+										if ((temp / 1000) >= hob2Setting) {
+											food.stackTagCompound.setInteger("cookedType", hobUtil.cookType());
+											float cookedValue = food.stackTagCompound.getFloat("cookedValue");
+											
+											float cookMultiplier = temperature / 100000;
+											fuelValue = Math.round(fuelValue - (cookMultiplier * 100));
+											food.stackTagCompound.setFloat("cookedValue", cookedValue + 0.01F + cookMultiplier);
+										} 
+									}
+								}
+							} else {
+									hob2.stackTagCompound.setInteger("temperature", utensilTemp + 100);
+							}
+						}
+					}
+				}
+				
+				//Hob 3
+				if (hob3 != null && hob3.getItem() instanceof IHobUtensil) {
+					ItemHobUtensil hobUtil = (ItemHobUtensil) hob3.getItem();
+					if (hob3.stackTagCompound != null) {
+						for (int s = 8; s < 13; s++) {
+							ItemStack food = getStackInSlot(s);
+							int utensilTemp = hob3.stackTagCompound.getInteger("temperature");
+							
+							if ((utensilTemp / 1000) >= hob3Setting) {
+							
+								if (food != null) {
+									if (food.getItem() instanceof IFlenixFoods) {
+										int temp = food.stackTagCompound.getInteger("temperature");
+										
+										
+										if (temp < utensilTemp) {
+											food.stackTagCompound.setInteger("temperature", temp + 1000);
+										}
+										if (temp > utensilTemp) {
+											food.stackTagCompound.setInteger("temperature", utensilTemp);
+										}
+										
+										if ((temp / 1000) >= hob3Setting) {
+											food.stackTagCompound.setInteger("cookedType", hobUtil.cookType());
+											float cookedValue = food.stackTagCompound.getFloat("cookedValue");
+											
+											float cookMultiplier = temperature / 100000;
+											fuelValue = Math.round(fuelValue - (cookMultiplier * 100));
+											food.stackTagCompound.setFloat("cookedValue", cookedValue + 0.01F + cookMultiplier);
+										} 
+									}
+								}
+							} else {
+									hob3.stackTagCompound.setInteger("temperature", utensilTemp + 100);
+							}
+						}
+					}
+				}
+				
+				//Hob 4
+				if (hob4 != null && hob4.getItem() instanceof IHobUtensil) {
+					ItemHobUtensil hobUtil = (ItemHobUtensil) hob4.getItem();
+					if (hob4.stackTagCompound != null) {
+						for (int s = 8; s < 13; s++) {
+							ItemStack food = getStackInSlot(s);
+							int utensilTemp = hob4.stackTagCompound.getInteger("temperature");
+							
+							if ((utensilTemp / 1000) >= hob4Setting) {
+							
+								if (food != null) {
+									if (food.getItem() instanceof IFlenixFoods) {
+										int temp = food.stackTagCompound.getInteger("temperature");
+										
+										
+										if (temp < utensilTemp) {
+											food.stackTagCompound.setInteger("temperature", temp + 1000);
+										}
+										if (temp > utensilTemp) {
+											food.stackTagCompound.setInteger("temperature", utensilTemp);
+										}
+										
+										if ((temp / 1000) >= hob4Setting) {
+											food.stackTagCompound.setInteger("cookedType", hobUtil.cookType());
+											float cookedValue = food.stackTagCompound.getFloat("cookedValue");
+											
+											float cookMultiplier = temperature / 100000;
+											fuelValue = Math.round(fuelValue - (cookMultiplier * 100));
+											food.stackTagCompound.setFloat("cookedValue", cookedValue + 0.01F + cookMultiplier);
+										} 
+									}
+								}
+							} else {
+									hob4.stackTagCompound.setInteger("temperature", utensilTemp + 100);
+							}
+						}
+					}
+				}
+				
+				
+				//Grill 1
+
+				
+				//Oven 1
+				
+				
+				//Oven 2
+				
+				
+				
+				fuelValue--;
+			}
 		}
+	}
+	
+	
+	public void sentInfoToClient(int hob1, int hob2, int hob3, int hob4, int grill1, int oven1, int oven2) {
+		
 	}
 }
