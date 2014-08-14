@@ -1,3 +1,3 @@
-FlenixRoads
+FlenixCitiesFood
 
-Road and Decoration mod by Flenix
+Food module for FlenixCities
