@@ -159,67 +159,6 @@ public class FCF_Items {
 	public static Item bananaItem;
 	public static Item seaweedItem;
 	public static Item rhubarbItem;
-	
-	//Prepared Ingredients
-	public static Item foodChocolateBar;
-	public static Item foodCrisps;
-	public static Item foodEnergyBar;
-	public static Item foodCheeseMolten;
-	public static Item foodCheeseMild;
-	public static Item foodCheeseMedium;
-	public static Item foodCheeseMature;
-	public static Item foodCheeseBlue;
-	public static Item foodCheeseMouldy;
-	public static Item foodSausage;
-	public static Item pastryItem;
-	public static Item doughItem;
-	public static Item chocolateItem;
-	public static Item chocolateChips;
-	public static Item breadSlice;
-	public static Item breadCrumbs;
-	public static Item mincedBeef;
-	public static Item coneItem;
-	
-	//Snacks etc
-	public static Item foodDonut;
-	public static Item foodSweets;
-	public static Item foodFries;
-	public static Item foodPopcorn;
-	public static Item foodIceCream;
-	public static Item foodChocolateIceCream;
-	public static Item foodMuffin;
-	public static Item foodChocolateMuffin;
-	public static Item foodBlueberryMuffin;
-	public static Item chocolateCake;
-	public static Item chocolateCakeSlice;
-	public static Item cakeSlice;
-	public static Item strawberryCheesecake;
-	public static Item chocolateCheesecake;
-	public static Item foodVanillaCone;
-	public static Item foodChocolateCone;
-	public static Item strawberryIceLolly;
-	public static Item chocolateIceLolly;
-	public static Item milkIceLolly;
-	
-	//Meal Parts
-	public static Item foodChickenWings;
-	public static Item foodChickenNuggets;
-	public static Item foodSausageRoll;
-	public static Item foodCheeseBurger;
-	public static Item foodBurger;
-	public static Item foodHotDog;
-	public static Item foodNoodles;
-	public static Item foodPizza;
-	
-	//Meals
-	
-	
-	//Condements
-	public static Item tomatoKetchup;
-	public static Item brownSauce;
-	public static Item saltItem;
-	public static Item vinegarItem;
-	public static Item mustardItem;
 
 	//Seeds
 	public static Item broccoliSeed;

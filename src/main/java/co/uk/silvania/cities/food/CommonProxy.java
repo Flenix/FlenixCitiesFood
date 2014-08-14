@@ -125,57 +125,6 @@ public class CommonProxy {
         GameRegistry.registerItem(FCF_Items.seaweedItem, "seaweedItem");
         GameRegistry.registerItem(FCF_Items.redGrapesItem, "redGrapesItem");
         GameRegistry.registerItem(FCF_Items.rhubarbItem, "rhubarbItem");
-        
-        //Prepared Ingredients
-        GameRegistry.registerItem(FCF_Items.foodChocolateBar, "foodChocolateBar");
-        GameRegistry.registerItem(FCF_Items.foodCrisps, "foodCrisps");
-        GameRegistry.registerItem(FCF_Items.foodEnergyBar, "foodEnergyBar");
-        GameRegistry.registerItem(FCF_Items.foodCheeseMolten, "foodCheese");
-        GameRegistry.registerItem(FCF_Items.foodCheeseMild, "foodCheeseMild");
-        GameRegistry.registerItem(FCF_Items.foodCheeseMedium, "foodCheeseMedium");
-        GameRegistry.registerItem(FCF_Items.foodCheeseMature, "foodCheeseMature");
-        GameRegistry.registerItem(FCF_Items.foodCheeseBlue, "foodCheeseBlue");
-        GameRegistry.registerItem(FCF_Items.foodCheeseMouldy, "foodCheeseMouldy");
-        GameRegistry.registerItem(FCF_Items.foodSausage, "foodSausage");
-        GameRegistry.registerItem(FCF_Items.pastryItem, "pastryItem");
-        GameRegistry.registerItem(FCF_Items.doughItem, "doughItem");
-        GameRegistry.registerItem(FCF_Items.chocolateItem, "chocolateItem");
-        GameRegistry.registerItem(FCF_Items.chocolateChips, "chocolateChips");
-        GameRegistry.registerItem(FCF_Items.breadSlice, "breadSlice");
-        GameRegistry.registerItem(FCF_Items.breadCrumbs, "breadCrumbs");
-        GameRegistry.registerItem(FCF_Items.mincedBeef, "mincedBeef");
-        GameRegistry.registerItem(FCF_Items.coneItem, "coneItem");
-        
-        //Snacks etc
-        GameRegistry.registerItem(FCF_Items.foodDonut, "foodDonut");
-        GameRegistry.registerItem(FCF_Items.foodSweets, "foodSweets");
-        GameRegistry.registerItem(FCF_Items.foodFries, "foodFries");
-        GameRegistry.registerItem(FCF_Items.foodPopcorn, "foodPopcorn");
-        GameRegistry.registerItem(FCF_Items.foodIceCream, "foodIceCream");
-        GameRegistry.registerItem(FCF_Items.foodChocolateIceCream, "foodChocolateIceCream");
-        GameRegistry.registerItem(FCF_Items.foodMuffin, "foodMuffin");
-        GameRegistry.registerItem(FCF_Items.foodChocolateMuffin, "foodChocolateMuffin");
-        GameRegistry.registerItem(FCF_Items.foodBlueberryMuffin, "foodBlueberryMuffin");
-        GameRegistry.registerItem(FCF_Items.chocolateCake, "chocolateCake");
-        GameRegistry.registerItem(FCF_Items.chocolateCakeSlice, "chocolateCakeSlice");
-        GameRegistry.registerItem(FCF_Items.cakeSlice, "cakeSlice");
-        GameRegistry.registerItem(FCF_Items.strawberryCheesecake, "strawberryCheesecake");
-        GameRegistry.registerItem(FCF_Items.chocolateCheesecake, "chocolateCheesecake");
-        GameRegistry.registerItem(FCF_Items.foodVanillaCone, "foodVanillaCone");
-        GameRegistry.registerItem(FCF_Items.foodChocolateCone, "foodChocolateCone");
-        GameRegistry.registerItem(FCF_Items.strawberryIceLolly, "strawberryIceLolly");
-        GameRegistry.registerItem(FCF_Items.chocolateIceLolly, "chocolateIceLolly");
-        GameRegistry.registerItem(FCF_Items.milkIceLolly, "milkIceLolly");
-        
-        //Meal Parts
-        GameRegistry.registerItem(FCF_Items.foodChickenWings, "foodChickenWings");
-        GameRegistry.registerItem(FCF_Items.foodChickenNuggets, "foodChickenNuggets");
-        GameRegistry.registerItem(FCF_Items.foodSausageRoll, "foodSausageRoll");
-        GameRegistry.registerItem(FCF_Items.foodCheeseBurger, "foodCheeseBurger");
-        GameRegistry.registerItem(FCF_Items.foodBurger, "foodBurger");
-        GameRegistry.registerItem(FCF_Items.foodHotDog, "foodHotDog");
-        GameRegistry.registerItem(FCF_Items.foodNoodles, "foodNoodles");
-        GameRegistry.registerItem(FCF_Items.foodPizza, "foodPizza");
 
         //Seeds
         GameRegistry.registerItem(FCF_Items.broccoliSeed, "broccoliSeed");
