@@ -20,7 +20,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid=FlenixCities_Food.modid, dependencies="required-after:flenixcities;required-after:FlenixTweaks", name="FlenixCities Food", version="0.5")
+@Mod(modid=FlenixCities_Food.modid, dependencies="required-after:flenixcities"/*;required-after:FlenixTweaks"*/, name="FlenixCities Food", version="0.5")
 public class FlenixCities_Food { 
 	
 	public static final String modid = "fc_food";
