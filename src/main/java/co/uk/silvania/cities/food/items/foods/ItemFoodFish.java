@@ -410,8 +410,11 @@ public class ItemFoodFish extends ItemFood implements IFlenixFoods {
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon iconRaw;
+	@SideOnly(Side.CLIENT)
 	public IIcon iconUnderCooked;
+	@SideOnly(Side.CLIENT)
 	public IIcon iconCooked;
+	@SideOnly(Side.CLIENT)
 	public IIcon iconBurned;
 	
 	@Override
@@ -428,6 +431,7 @@ public class ItemFoodFish extends ItemFood implements IFlenixFoods {
 	}
 	
 	//Set the icon based on cooked state
+	@Override
 	public IIcon getIcon(ItemStack item, int pass) {
 		if (item.stackTagCompound != null) {
 			float c = item.stackTagCompound.getFloat("cookedValue");
