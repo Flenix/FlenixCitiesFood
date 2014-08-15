@@ -494,6 +494,7 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
 	@SideOnly(Side.CLIENT)
 	public IIcon iconMouldy;
 	
+	@Override
 	public void registerIcons(IIconRegister iconRegister) {
 		iconRaw = iconRegister.registerIcon(FlenixCities_Food.modid + ":" + (this.getUnlocalizedName().toLowerCase().substring(5)) + "0");
 		iconUnderCooked = iconRegister.registerIcon(FlenixCities_Food.modid + ":" + (this.getUnlocalizedName().toLowerCase().substring(5)) + "1");
@@ -508,6 +509,7 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
 	}
 	
 	//Set the icon based on cooked state
+	@Override
 	public IIcon getIcon(ItemStack item, int pass) {
 		if (item.stackTagCompound != null) {
 			float c = item.stackTagCompound.getFloat("cookedValue");
