@@ -41,7 +41,7 @@ public class FridgeBlock extends BlockContainer {
 	
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int i, float j, float k, float l) {
-    	player.openGui(FlenixCities_Food.instance, 0, world, x, y, z);
+    	//player.openGui(FlenixCities_Food.instance, 0, world, x, y, z);
         return true;
     }
 	
