@@ -57,7 +57,7 @@ public class FlenixCities_Food {
     	
     	VanillaFoods.run();
     	
-    	MinecraftForge.EVENT_BUS.register(new MobDrops());
+    	//MinecraftForge.EVENT_BUS.register(new MobDrops());
     }
                
     @EventHandler
