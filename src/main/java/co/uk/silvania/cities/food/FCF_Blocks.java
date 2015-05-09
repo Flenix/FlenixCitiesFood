@@ -88,7 +88,7 @@ public class FCF_Blocks {
 		strawberryBush = new BlockStrawberryBush().setBlockName("strawberryBush");
 		raspberryBush = new BlockRaspberryBush().setBlockName("raspberryBush");
 		seaweedBush = new BlockSeaweedBush().setBlockName("seaweedBush");
-		greenGrapeVine = new BlockGreenGrapeVineBare().setBlockName("greenGrapeVine");
+		greenGrapeVine = new BlockGreenGrapeVine().setBlockName("greenGrapeVine");
 		redGrapeVine = new BlockRedGrapeVineBare().setBlockName("redGrapeVine");
 	}
 	

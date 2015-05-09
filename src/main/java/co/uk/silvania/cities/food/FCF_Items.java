@@ -389,13 +389,15 @@ public class FCF_Items {
     	broccoliItem = new CityFoods(1, 0.05F, false).setUnlocalizedName("broccoliItem");
     	cabbageItem = new CityFoods(1, 0.05F, false).setUnlocalizedName("cabbageItem");
     	celeryItem = new CityFoods(1, 0.05F, false).setUnlocalizedName("celeryItem");
-    	cornItem = new CraftingItems().setUnlocalizedName("cornItem");
+    	cornItem = new CityFoods(1, 0.05F, false).setUnlocalizedName("cornItem");
     	cucumberItem = new CityFoods(1, 0.05F, false).setUnlocalizedName("cucumberItem");
+    	onionItem = new CityFoods(1, 0.05F, false).setUnlocalizedName("onionItem");
+    	rhubarbItem = new CityFoods(1, 0.05F, false).setUnlocalizedName("rhubarbItem");
+    	
     	redPepperItem = new CityFoods(1, 0.05F, false).setUnlocalizedName("redPepperItem");
     	yellowPepperItem = new CityFoods(1, 0.05F, false).setUnlocalizedName("yellowPepperItem");
     	greenPepperItem = new CityFoods(1, 0.05F, false).setUnlocalizedName("greenPepperItem");
     	leekItem = new CityFoods(1, 0.05F, false).setUnlocalizedName("leekItem");
-    	onionItem = new CityFoods(1, 0.05F, false).setUnlocalizedName("onionItem");
     	blackberryItem = new CityFoods(1, 0.05F, false).setUnlocalizedName("blackberryItem");
     	blueberryItem = new CityFoods(1, 0.05F, false).setUnlocalizedName("blueberryItem");
     	blackcurrantItem = new CityFoods(1, 0.05F, false).setUnlocalizedName("blackcurrentItem");
@@ -410,7 +412,6 @@ public class FCF_Items {
     	pearItem = new CityFoods(1, 0.05F, false).setUnlocalizedName("pearItem");
     	bananaItem = new CityFoods(1, 0.05F, false).setUnlocalizedName("bananaItem");
     	seaweedItem = new CityFoods(1, 0.05F, false).setUnlocalizedName("seaweedItem");
-    	rhubarbItem = new CityFoods(1, 0.05F, false).setUnlocalizedName("rhubarbItem");
 	}
 	
 	public static void initDrinks() {
