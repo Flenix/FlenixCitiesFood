@@ -138,7 +138,7 @@ public class CommonProxy {
     	GameRegistry.registerItem(FCF_Items.porkRib, "porkRib");
     	GameRegistry.registerItem(FCF_Items.porkLoin, "porkLoin");
     	GameRegistry.registerItem(FCF_Items.porkLeg, "porkLeg");
-    	GameRegistry.registerItem(FCF_Items.porkchop, "porkchop");
+    	//TODO GameRegistry.registerItem(FCF_Items.porkchop, "porkchop");
     	GameRegistry.registerItem(FCF_Items.porkBelly, "porkBelly");
     	
     	GameRegistry.registerItem(FCF_Items.chickenWing, "chickenWing");
