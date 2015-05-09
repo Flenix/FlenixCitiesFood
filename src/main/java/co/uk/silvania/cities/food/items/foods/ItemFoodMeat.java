@@ -83,9 +83,11 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
 	//Control the food; do things like tick it to slowly rot.
     public void onUpdate(ItemStack item, World world, Entity entity, int par4, boolean par5) {
 		EntityPlayer player = (EntityPlayer) entity;
-		if (player.isEating()) {
-			if (CityConfig.debugMode) {
-				System.out.println("Player eating! Pause all tasks");
+		if (world.isRemote) {
+			if (player.isEating()) {
+				if (CityConfig.debugMode) {
+					System.out.println("Player eating! Pause all tasks");
+				}
 			}
 		} else {
 			if (!world.isRemote) {
