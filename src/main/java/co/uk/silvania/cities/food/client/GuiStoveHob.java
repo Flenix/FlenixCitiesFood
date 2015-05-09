@@ -30,7 +30,6 @@ public class GuiStoveHob extends GuiContainer {
 		
 		xSize = 202;
 		ySize = 222;
-		// TODO Auto-generated constructor stub
 	}
 	
 	@SuppressWarnings("unchecked")

@@ -30,7 +30,6 @@ public class GuiStoveOven extends GuiContainer {
 		
 		xSize = 188;
 		ySize = 252;
-		// TODO Auto-generated constructor stub
 	}
 	
 	@SuppressWarnings("unchecked")

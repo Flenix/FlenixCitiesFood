@@ -138,9 +138,9 @@ public class StoveEntity extends TileEntity implements IInventory {
 		ItemStack hob2 = getStackInSlot(5);
 		ItemStack hob3 = getStackInSlot(6);
 		ItemStack hob4 = getStackInSlot(7);
-		ItemStack grill1 = getStackInSlot(5);
-		ItemStack oven1 = getStackInSlot(6);
-		ItemStack oven2 = getStackInSlot(7);
+		ItemStack grill1 = getStackInSlot(36);
+		ItemStack oven1 = getStackInSlot(43);
+		ItemStack oven2 = getStackInSlot(50);
 
 		if (!worldObj.isRemote) {
 			if (fuel != null) {
@@ -153,7 +153,6 @@ public class StoveEntity extends TileEntity implements IInventory {
 					}
 				}
 			}
-			System.out.println("Fuel value: " + fuelValue);
 			
 			if (fuelValue > 0) {
 				//Temperature Setting for each section affects cook speed.
@@ -200,7 +199,7 @@ public class StoveEntity extends TileEntity implements IInventory {
 				if (hob2 != null && hob2.getItem() instanceof IHobUtensil) {
 					ItemHobUtensil hobUtil = (ItemHobUtensil) hob2.getItem();
 					if (hob2.stackTagCompound != null) {
-						for (int s = 8; s < 13; s++) {
+						for (int s = 14; s < 19; s++) {
 							ItemStack food = getStackInSlot(s);
 							int utensilTemp = hob2.stackTagCompound.getInteger("temperature");
 							
@@ -239,7 +238,7 @@ public class StoveEntity extends TileEntity implements IInventory {
 				if (hob3 != null && hob3.getItem() instanceof IHobUtensil) {
 					ItemHobUtensil hobUtil = (ItemHobUtensil) hob3.getItem();
 					if (hob3.stackTagCompound != null) {
-						for (int s = 8; s < 13; s++) {
+						for (int s = 20; s < 25; s++) {
 							ItemStack food = getStackInSlot(s);
 							int utensilTemp = hob3.stackTagCompound.getInteger("temperature");
 							
@@ -278,7 +277,7 @@ public class StoveEntity extends TileEntity implements IInventory {
 				if (hob4 != null && hob4.getItem() instanceof IHobUtensil) {
 					ItemHobUtensil hobUtil = (ItemHobUtensil) hob4.getItem();
 					if (hob4.stackTagCompound != null) {
-						for (int s = 8; s < 13; s++) {
+						for (int s = 26; s < 31; s++) {
 							ItemStack food = getStackInSlot(s);
 							int utensilTemp = hob4.stackTagCompound.getInteger("temperature");
 							
