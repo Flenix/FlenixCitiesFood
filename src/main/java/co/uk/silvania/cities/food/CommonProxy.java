@@ -62,19 +62,88 @@ public class CommonProxy {
     	GameRegistry.registerItem(FCF_Items.lambRack, "lambRack");
     	GameRegistry.registerItem(FCF_Items.lambShank, "lambShank");
     	GameRegistry.registerItem(FCF_Items.lambChop, "lambChop");
-    	/*
-    	GameRegistry.registerItem(FCF_Items.rawDuck, "rawDuck");
-    	GameRegistry.registerItem(FCF_Items.rawMutton, "rawMutton");
-    	GameRegistry.registerItem(FCF_Items.rawTurkey, "rawTurkey");
-    	GameRegistry.registerItem(FCF_Items.rawPheasant, "rawPheasant");
-    	GameRegistry.registerItem(FCF_Items.rawHorse, "rawHorse");
-    	GameRegistry.registerItem(FCF_Items.rawRabbit, "rawRabbit");
-    	GameRegistry.registerItem(FCF_Items.rawVenison, "rawVenison");
-    	GameRegistry.registerItem(FCF_Items.rawGoat, "rawGoat");
-    	GameRegistry.registerItem(FCF_Items.rawPigeon, "rawPigeon");
-    	GameRegistry.registerItem(FCF_Items.rawOx, "rawOx");
-    	GameRegistry.registerItem(FCF_Items.rawBuffalo, "rawBuffalo");
-    	GameRegistry.registerItem(FCF_Items.rawBoar, "rawBoar");*/
+    	
+    	GameRegistry.registerItem(FCF_Items.muttonShoulder, "muttonShoulder");
+    	GameRegistry.registerItem(FCF_Items.muttonBreast, "muttonBreast");
+    	GameRegistry.registerItem(FCF_Items.muttonFlank, "muttonFlank");
+    	GameRegistry.registerItem(FCF_Items.muttonLeg, "muttonLeg");
+    	GameRegistry.registerItem(FCF_Items.muttonLoin, "muttonLoin");
+    	GameRegistry.registerItem(FCF_Items.muttonRack, "muttonRack");
+    	
+    	GameRegistry.registerItem(FCF_Items.duckBreast, "duckBreast");
+    	GameRegistry.registerItem(FCF_Items.duckLeg, "duckLeg");
+    	GameRegistry.registerItem(FCF_Items.duckWhole, "duckWhole");
+    	GameRegistry.registerItem(FCF_Items.duckWing, "duckWing");
+    	
+    	GameRegistry.registerItem(FCF_Items.turkeyBreast, "turkeyBreast");
+    	GameRegistry.registerItem(FCF_Items.turkeyLeg, "turkeyLeg");
+    	GameRegistry.registerItem(FCF_Items.turkeyWhole, "turkeyWhole");
+    	GameRegistry.registerItem(FCF_Items.turkeyWing, "turkeyWing");
+    	
+    	GameRegistry.registerItem(FCF_Items.pheasantBreast, "pheasantBreast");
+    	GameRegistry.registerItem(FCF_Items.pheasantLeg, "pheasantLeg");
+    	GameRegistry.registerItem(FCF_Items.pheasantWhole, "pheasantWhole");
+    	GameRegistry.registerItem(FCF_Items.pheasantWing, "pheasantWing");
+    	
+    	GameRegistry.registerItem(FCF_Items.horseRib, "horseRib");
+    	GameRegistry.registerItem(FCF_Items.horseRump, "horseRump");
+    	GameRegistry.registerItem(FCF_Items.horseShank, "horseShank");
+    	GameRegistry.registerItem(FCF_Items.horseShoulder, "horseShoulder");
+    	GameRegistry.registerItem(FCF_Items.horseSirloin, "horseSirloin");
+    	
+    	GameRegistry.registerItem(FCF_Items.rabbitMeat, "rabbitMeat");
+    	
+    	GameRegistry.registerItem(FCF_Items.venisonLoin, "venisonLoin");
+    	GameRegistry.registerItem(FCF_Items.venisonRibs, "venisonRibs");
+    	GameRegistry.registerItem(FCF_Items.venisonShank, "venisonShank");
+    	GameRegistry.registerItem(FCF_Items.venisonShoulder, "venisonShoulder");
+    	
+    	GameRegistry.registerItem(FCF_Items.goatLeg, "goatLeg");
+    	GameRegistry.registerItem(FCF_Items.goatLoin, "goatLoin");
+    	GameRegistry.registerItem(FCF_Items.goatRack, "goatRack");
+    	
+    	GameRegistry.registerItem(FCF_Items.pigeonBreast, "pigeonBreast");
+    	GameRegistry.registerItem(FCF_Items.pigeonLeg, "pigeonLeg");
+    	GameRegistry.registerItem(FCF_Items.pigeonWhole, "pigeonWhole");
+    	GameRegistry.registerItem(FCF_Items.pigeonWing, "pigeonWing");
+    	
+    	GameRegistry.registerItem(FCF_Items.oxTongue, "oxTongue");
+    	GameRegistry.registerItem(FCF_Items.oxTBone, "oxTBone");
+    	GameRegistry.registerItem(FCF_Items.oxTail, "oxTail");
+    	GameRegistry.registerItem(FCF_Items.oxSirloin, "oxSirloin");
+    	GameRegistry.registerItem(FCF_Items.oxRump, "oxRump");
+    	GameRegistry.registerItem(FCF_Items.oxRib, "oxRib");
+    	GameRegistry.registerItem(FCF_Items.oxLeg, "oxLeg");
+    	GameRegistry.registerItem(FCF_Items.oxFlank, "oxFlank");
+    	GameRegistry.registerItem(FCF_Items.oxFillet, "oxFillet");
+    	GameRegistry.registerItem(FCF_Items.oxBrisket, "oxBrisket");
+    	GameRegistry.registerItem(FCF_Items.oxBlade, "oxBlade");
+    	
+    	GameRegistry.registerItem(FCF_Items.buffaloSirloin, "buffaloSirloin");
+    	GameRegistry.registerItem(FCF_Items.buffaloRib, "buffaloRib");
+    	GameRegistry.registerItem(FCF_Items.buffaloFlank, "buffaloFlank");
+    	GameRegistry.registerItem(FCF_Items.buffaloBreast, "buffaloBreast");
+    	
+    	GameRegistry.registerItem(FCF_Items.boarShoulder, "boarShoulder");
+    	GameRegistry.registerItem(FCF_Items.boarLoin, "boarLoin");
+    	GameRegistry.registerItem(FCF_Items.boarLeg, "boarLeg");
+    	GameRegistry.registerItem(FCF_Items.boarBelly, "boarBelly");
+    	
+    	GameRegistry.registerItem(FCF_Items.beefSirloin, "beefSirloin");
+    	GameRegistry.registerItem(FCF_Items.beefRib, "beefRib");
+    	GameRegistry.registerItem(FCF_Items.beefLeg, "beefLeg");
+    	GameRegistry.registerItem(FCF_Items.beefFlank, "beefFlank");
+    	GameRegistry.registerItem(FCF_Items.beefBrisket, "beefBrisket");
+    	
+    	GameRegistry.registerItem(FCF_Items.porkRib, "porkRib");
+    	GameRegistry.registerItem(FCF_Items.porkLoin, "porkLoin");
+    	GameRegistry.registerItem(FCF_Items.porkLeg, "porkLeg");
+    	GameRegistry.registerItem(FCF_Items.porkchop, "porkchop");
+    	GameRegistry.registerItem(FCF_Items.porkBelly, "porkBelly");
+    	
+    	GameRegistry.registerItem(FCF_Items.chickenWing, "chickenWing");
+    	GameRegistry.registerItem(FCF_Items.chickenLeg, "chickenLeg");
+    	GameRegistry.registerItem(FCF_Items.chickenBreast, "chickenBreast");
     	
     	GameRegistry.registerItem(FCF_Items.rawSquid, "rawSquid");
     	GameRegistry.registerItem(FCF_Items.rawCod, "rawCod");

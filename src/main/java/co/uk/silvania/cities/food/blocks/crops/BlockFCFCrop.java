@@ -33,7 +33,7 @@ public abstract class BlockFCFCrop extends BlockCrops {
 		this.icons = new IIcon[4];
 		
 		for (int i = 0; i < this.icons.length; ++i) {
-			this.icons[i] = icon.registerIcon(FlenixCities_Food.modid + ":" + (this.getUnlocalizedName().toLowerCase().substring(5)) + "_stage_" + i);
+			this.icons[i] = icon.registerIcon(FlenixCities_Food.modid + ":" + (this.getUnlocalizedName().substring(5)) + "_stage_" + i);
 		}
 	}
 

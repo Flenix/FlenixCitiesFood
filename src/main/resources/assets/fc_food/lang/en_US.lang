@@ -131,7 +131,7 @@ item.Mackeral.name=Mackeral
 item.foodTomato.name=Tomato
 item.lettuceItem.name=Lettuce
 item.garlicItem.name=Garlic
-item.brocolliItem.name=Brocolli
+item.broccoliItem.name=Broccoli
 item.cabbageItem.name=Cabbage
 item.celeryItem.name=Celery
 item.cucumberItem.name=Cucumber
@@ -140,6 +140,7 @@ item.yellowPepperItem.name=Yellow Pepper
 item.greenPepperItem.name=Green Pepper
 item.leekItem.name=Leek
 item.onionItem.name=Onion
+item.cornItem.name=Corn
 item.blackberryItem.name=Blackberry
 item.blueberryItem.name=Blueberry
 item.blackcurrentItem.name=Blackcurrant
@@ -166,7 +167,7 @@ item.drinkMilkshake.name=Milkshake
 item.drinkCoffee.name=Coffee
 item.drinkHotChocolate.name=Hot Chocolate
 
-item.brocolliSeed.name=Brocolli Seed
+item.broccoliSeed.name=Broccoli Seed
 item.tomatoSeed.name=Tomato Seed
 item.lettuceSeed.name=Lettuce Seed
 item.garlicSeed.name=Garlic Seed
@@ -186,9 +187,20 @@ item.onionSeed.name=Onion Seed
 item.riceItem.name=Rice
 item.rapeSeed.name=Rapeseed
 
-item.stoveBlock.name=Stove
+tile.blackberryBush.name=Blackberry Bush
+tile.raspberryBush.name=Raspberry Bush
+tile.strawberryBush.name=Strawberry Bush
+tile.seaweedBush.name=Seaweed
+tile.redGrapeVine.name=Red Grapevine
+tile.greenGrapeVine.name=Green Grapevine
+
+tile.stoveBlock.name=Stove
+tile.largeFridgeBlock.name=Large Fridge
+tile.vendingMachine.0.name=Vending Machine
+
+
 item.knifeForkItem.name=Knife & Fork
-item.spoon.name=Spoon
+item.spoonItem.name=Spoon
 item.woodenSpoon.name=Wooden Spoon
 item.breadKnife.name=Bread Knife
 item.cheeseKnife.name=Cheese Knife
@@ -206,3 +218,4 @@ item.bowlItem.name=Bowl
 item.mugItem.name=Mug
 item.plasticCup.name=Plastic Cup
 item.glassCup.name=Glass Cup
+item.pieTin.name=Pie Tin
