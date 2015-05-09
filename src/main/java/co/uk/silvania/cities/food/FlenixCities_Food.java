@@ -15,6 +15,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid=FlenixCities_Food.modid, dependencies="required-after:flenixcities"/*;required-after:FlenixTweaks"*/, name="FlenixCities Food", version="0.5")
@@ -50,7 +51,7 @@ public class FlenixCities_Food {
     	
         proxy.registerRenderThings();
         proxy.registerRenderers();
-    	//TODO NetworkRegistry.instance().registerGuiHandler(this, foodGuiHandler);
+    	NetworkRegistry.INSTANCE.registerGuiHandler(this, foodGuiHandler);
     	FCF_Blocks.init();
     	FCF_Items.init();
     	
