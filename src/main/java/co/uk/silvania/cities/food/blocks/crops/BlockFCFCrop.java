@@ -30,7 +30,7 @@ public abstract class BlockFCFCrop extends BlockCrops {
 	
 	@Override
 	public void registerBlockIcons(IIconRegister icon) {
-		this.icons = new IIcon[4];
+		this.icons = new IIcon[8];
 		
 		for (int i = 0; i < this.icons.length; ++i) {
 			this.icons[i] = icon.registerIcon(FlenixCities_Food.modid + ":" + (this.getUnlocalizedName().substring(5)) + "_stage_" + i);
@@ -40,8 +40,8 @@ public abstract class BlockFCFCrop extends BlockCrops {
 	
 	@Override
 	public IIcon getIcon(int side, int meta) {
-		if (meta < 0 || meta > 3) {
-			meta = 3;
+		if (meta < 0 || meta > 7) {
+			meta = 7;
 		}
 		
 		return this.icons[meta];

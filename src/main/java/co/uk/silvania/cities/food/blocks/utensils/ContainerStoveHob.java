@@ -79,28 +79,28 @@ public class ContainerStoveHob extends Container {
 		if (screen instanceof GuiStoveHob) {
 			for (int c = 0; c < 3; c++) {
 				for (int r = 0; r < 9; r++) {
-					int slot = r + c * 9 + 9 + 56;
+					int slot = r + c * 9 + 9;
 					addSlotToContainer(new Slot(invPlayer, slot, 21 + r * 18, 140 + c * 18));
 					System.out.println("HOB PLAYER INVENTORY: " + slot);
 				}
 			}
 		
 			for (int h = 0; h < 9; h++) {
-				int slot = h + 56;
+				int slot = h;
 				addSlotToContainer(new Slot(invPlayer, slot, 21 + h * 18, 198));
 				System.out.println("HOB PLAYER HOTBAR: " + slot);
 			}
 		} else {
 			for (int c = 0; c < 3; c++) {
 				for (int r = 0; r < 9; r++) {
-					int slot = r + c * 9 + 9 + 56;
+					int slot = r + c * 9 + 9;
 					addSlotToContainer(new Slot(invPlayer, slot, 20 + r * 18, 174 + c * 18));
 					System.out.println("GRILL PLAYER INVENTORY: " + slot);
 				}
 			}
 		
 			for (int h = 0; h < 9; h++) {
-				int slot = h + 56;
+				int slot = h;
 				addSlotToContainer(new Slot(invPlayer, slot, 20 + h * 18, 232));
 				System.out.println("GRILL PLAYER HOTBAR: " + slot);
 			}
@@ -112,7 +112,13 @@ public class ContainerStoveHob extends Container {
 		return true;
 	}
 	
+	
 	@Override
+	public ItemStack transferStackInSlot(EntityPlayer player, int slot) {
+		return null;
+	}
+	
+	/*@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int slot) {
 		ItemStack item = null;
 		Slot slotObject = (Slot)this.inventorySlots.get(slot);
@@ -148,7 +154,7 @@ public class ContainerStoveHob extends Container {
 	}
 
 	
-	/*@Override
+	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int slot) {
 		ItemStack stack = null;
         Slot slotObject = (Slot) inventorySlots.get(slot);
