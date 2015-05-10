@@ -19,7 +19,6 @@ public class FCF_Blocks {
 	public static Block garlicCrop;
 	public static Block cabbageCrop;
 	public static Block celeryCrop;
-	public static Block cornCrop;
 	public static Block cucumberCrop;
 	public static Block redPepperCrop;
 	public static Block yellowPepperCrop;
@@ -32,6 +31,10 @@ public class FCF_Blocks {
 	public static Block blackCurrantCrop;
 	public static Block avocadoCrop;
 	public static Block rhubarbCrop;
+	
+	public static Block cornCrop1;
+	public static Block cornCrop2;
+	public static Block cornCrop3;
 	
 	public static Block blackberryBush;
 	public static Block strawberryBush;
@@ -68,7 +71,6 @@ public class FCF_Blocks {
 		garlicCrop = new BlockGarlicCrop().setBlockName("garlicCrop");
 		cabbageCrop = new BlockCabbageCrop().setBlockName("cabbageCrop");
 		celeryCrop = new BlockCeleryCrop().setBlockName("celeryCrop");
-		cornCrop = new BlockCornCrop().setBlockName("cornCrop");
 		cucumberCrop = new BlockCucumberCrop().setBlockName("cucumberCrop");
 		redPepperCrop = new BlockRedPepperCrop().setBlockName("redPepperCrop");
 		yellowPepperCrop = new BlockYellowPepperCrop().setBlockName("yellowPepperCrop");
@@ -81,6 +83,10 @@ public class FCF_Blocks {
 		blackCurrantCrop = new BlockBlackCurrantCrop().setBlockName("blackCurrantCrop");
 		avocadoCrop = new BlockAvocadoCrop().setBlockName("avocadoCrop");
 		rhubarbCrop = new BlockRhubarbCrop().setBlockName("rhubarbCrop");
+		
+		cornCrop1 = new BlockCornCrop1().setBlockName("cornCrop1");
+		cornCrop2 = new BlockCornCrop2().setBlockName("cornCrop2");
+		cornCrop3 = new BlockCornCrop3().setBlockName("cornCrop3");
 	}
 	
 	public static void initBushes() {

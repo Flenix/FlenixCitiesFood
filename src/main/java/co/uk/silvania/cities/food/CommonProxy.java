@@ -23,7 +23,6 @@ public class CommonProxy {
     	GameRegistry.registerBlock(FCF_Blocks.garlicCrop, "garlicCrop");
     	GameRegistry.registerBlock(FCF_Blocks.cabbageCrop, "cabbageCrop");
     	GameRegistry.registerBlock(FCF_Blocks.celeryCrop, "celeryCrop");
-    	GameRegistry.registerBlock(FCF_Blocks.cornCrop, "cornCrop");
     	GameRegistry.registerBlock(FCF_Blocks.cucumberCrop, "cucumberCrop");
     	GameRegistry.registerBlock(FCF_Blocks.redPepperCrop, "redPepperCrop");
     	GameRegistry.registerBlock(FCF_Blocks.yellowPepperCrop, "yellowPepperCrop");
@@ -36,6 +35,10 @@ public class CommonProxy {
     	GameRegistry.registerBlock(FCF_Blocks.onionCrop, "onionCrop");
     	GameRegistry.registerBlock(FCF_Blocks.riceCrop, "riceCrop");
     	GameRegistry.registerBlock(FCF_Blocks.rapeCrop, "rapeCrop");
+    	
+    	GameRegistry.registerBlock(FCF_Blocks.cornCrop1, "cornCrop1");
+    	GameRegistry.registerBlock(FCF_Blocks.cornCrop2, "cornCrop2");
+    	GameRegistry.registerBlock(FCF_Blocks.cornCrop3, "cornCrop3");
     	
     	//Bushes
     	GameRegistry.registerBlock(FCF_Blocks.blackberryBush, "blackberryBush");

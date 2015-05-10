@@ -433,7 +433,7 @@ public class FCF_Items {
 		garlicSeed = new SeedItems(FCF_Blocks.garlicCrop).setUnlocalizedName("garlicSeed");
 		cabbageSeed = new SeedItems(FCF_Blocks.cabbageCrop).setUnlocalizedName("cabbageSeed");
 		celerySeed = new SeedItems(FCF_Blocks.celeryCrop).setUnlocalizedName("celerySeed");
-		cornSeed = new SeedItems(FCF_Blocks.cornCrop).setUnlocalizedName("cornSeed");
+		cornSeed = new SeedItems(FCF_Blocks.cornCrop1).setUnlocalizedName("cornSeed");
 		cucumberSeed = new SeedItems(FCF_Blocks.cucumberCrop).setUnlocalizedName("cucumberSeed");
 		redPepperSeed = new SeedItems(FCF_Blocks.redPepperCrop).setUnlocalizedName("redPepperSeed");
 		yellowPepperSeed = new SeedItems(FCF_Blocks.yellowPepperCrop).setUnlocalizedName("yellowPepperSeed");
