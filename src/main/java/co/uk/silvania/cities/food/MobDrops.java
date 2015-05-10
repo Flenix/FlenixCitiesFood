@@ -1,6 +1,8 @@
 package co.uk.silvania.cities.food;
 
+import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
+import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.init.Items;
@@ -20,6 +22,13 @@ public class MobDrops {
 			int random = (int) ((Math.round(rand * 10)) / 2);
 			if (random < 0) {
 				random = 0;
+			}
+			
+			if (event.entityLiving instanceof EntityChicken) {
+				event.drops.clear();
+				event.entityLiving.dropItem(FCF_Items.chickenBreast, 2);
+				event.entityLiving.dropItem(FCF_Items.chickenWing, 2);
+				event.entityLiving.dropItem(FCF_Items.chickenLeg, 2);
 			}
 			
 			if (event.entityLiving instanceof EntityCow) {
@@ -43,7 +52,7 @@ public class MobDrops {
 			}
 			
 			if (event.entityLiving instanceof EntitySheep) {
-				if (event.entityLiving.isChild()) {
+				//if (event.entityLiving.isChild()) {
 					event.entityLiving.dropItem(FCF_Items.lambBreast, Math.max(0, random - 3));
 					event.entityLiving.dropItem(FCF_Items.lambChop, bool);
 					event.entityLiving.dropItem(FCF_Items.lambFlank, bool);
@@ -52,14 +61,21 @@ public class MobDrops {
 					event.entityLiving.dropItem(FCF_Items.lambRack, bool);
 					event.entityLiving.dropItem(FCF_Items.lambShank, bool);
 					event.entityLiving.dropItem(FCF_Items.lambShoulder, bool);
-				} else {
+				/*} else {
 					event.entityLiving.dropItem(FCF_Items.muttonBreast, Math.max(0, random - 2));
 					event.entityLiving.dropItem(FCF_Items.muttonFlank, bool);
 					event.entityLiving.dropItem(FCF_Items.muttonLeg, Math.max(0, random - 2));
 					event.entityLiving.dropItem(FCF_Items.muttonLoin, bool);
 					event.entityLiving.dropItem(FCF_Items.muttonRack, bool);
-					event.entityLiving.dropItem(FCF_Items.muttonShoulder, bool);
+					event.entityLiving.dropItem(FCF_Items.muttonShoulder, bool);*/
 				}
+		
+			if (event.entityLiving instanceof EntityHorse) {
+				event.entityLiving.dropItem(FCF_Items.horseRib, bool);
+				event.entityLiving.dropItem(FCF_Items.horseRump, bool);
+				event.entityLiving.dropItem(FCF_Items.horseShank, bool);
+				event.entityLiving.dropItem(FCF_Items.horseShoulder, Math.max(0, random - 3));
+				event.entityLiving.dropItem(FCF_Items.horseSirloin, Math.max(0, random - 3));
 			}
 		}
 	}

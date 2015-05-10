@@ -7,6 +7,7 @@ import co.uk.silvania.cities.food.blocks.utensils.StoveEntity;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -57,7 +58,26 @@ public class FlenixCities_Food {
     	
     	VanillaFoods.run();
     	
-    	//MinecraftForge.EVENT_BUS.register(new MobDrops());
+    	MinecraftForge.EVENT_BUS.register(new MobDrops());
+    	
+    	MinecraftForge.addGrassSeed(new ItemStack(FCF_Items.avocadoSeed), 5);
+    	//MinecraftForge.addGrassSeed(new ItemStack(FCF_Items.blackCurrantSeed), 5);
+    	MinecraftForge.addGrassSeed(new ItemStack(FCF_Items.blueBerrySeed), 5);
+    	MinecraftForge.addGrassSeed(new ItemStack(FCF_Items.broccoliSeed), 5);
+    	MinecraftForge.addGrassSeed(new ItemStack(FCF_Items.cabbageSeed), 5);
+    	MinecraftForge.addGrassSeed(new ItemStack(FCF_Items.celerySeed), 5);
+    	//MinecraftForge.addGrassSeed(new ItemStack(FCF_Items.cornSeed), 5);
+    	MinecraftForge.addGrassSeed(new ItemStack(FCF_Items.cucumberSeed), 5);
+    	MinecraftForge.addGrassSeed(new ItemStack(FCF_Items.garlicSeed), 5);
+    	MinecraftForge.addGrassSeed(new ItemStack(FCF_Items.greenPepperSeed), 5);
+    	MinecraftForge.addGrassSeed(new ItemStack(FCF_Items.leekSeed), 5);
+    	MinecraftForge.addGrassSeed(new ItemStack(FCF_Items.lettuceSeed), 5);
+    	MinecraftForge.addGrassSeed(new ItemStack(FCF_Items.onionSeed), 5);
+    	MinecraftForge.addGrassSeed(new ItemStack(FCF_Items.rapeSeed), 5);
+    	MinecraftForge.addGrassSeed(new ItemStack(FCF_Items.redPepperSeed), 5);
+    	MinecraftForge.addGrassSeed(new ItemStack(FCF_Items.rhubarbSeed), 5);
+    	MinecraftForge.addGrassSeed(new ItemStack(FCF_Items.tomatoSeed), 5);
+    	MinecraftForge.addGrassSeed(new ItemStack(FCF_Items.yellowPepperSeed), 5);
     }
                
     @EventHandler

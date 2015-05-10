@@ -7,12 +7,15 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import co.uk.silvania.cities.food.FCF_Blocks;
 import co.uk.silvania.cities.food.FCF_Items;
 import co.uk.silvania.cities.food.FlenixCities_Food;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockCornCrop3 extends BlockFCFCrop {
 
@@ -73,6 +76,12 @@ public class BlockCornCrop3 extends BlockFCFCrop {
 		}
 	}
 	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public IIcon getIcon(int side, int meta) {
+		return icons[meta];
+	}
+	
 	@Override 
 	public IIcon getIcon(IBlockAccess block, int x, int y, int z, int side) {
 		int meta = block.getBlockMetadata(x, y, z);
@@ -84,4 +93,25 @@ public class BlockCornCrop3 extends BlockFCFCrop {
 		}
 		return this.icons[meta];
 	}
+	
+	@Override
+	public boolean func_149851_a(World world, int x, int y, int z, boolean p_149851_5_) {
+		return world.getBlockMetadata(x, y, z) != 7;
+	}
+	
+	@Override public boolean func_149852_a(World world, Random rand, int p_149852_3_, int p_149852_4_, int p_149852_5_) { return true; }
+	
+	@Override 
+	public void func_149853_b(World world, Random rand, int x, int y, int z) {
+		this.metaSafetyCheck(world, x, y, z);
+	}
+	
+    public void metaSafetyCheck (World world, int x, int y, int z) {
+        int meta = world.getBlockMetadata(x, y, z) + MathHelper.getRandomIntegerInRange(world.rand, 2, 5);
+
+        if (meta > 7) { 
+        	meta = 7; 
+        }
+        world.setBlockMetadataWithNotify(x, y, z, meta, 3);
+    }
 }
