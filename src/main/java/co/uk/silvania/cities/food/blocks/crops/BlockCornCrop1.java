@@ -57,7 +57,7 @@ public class BlockCornCrop1 extends BlockFCFCrop {
                     world.setBlockMetadataWithNotify(x, y, z, meta, 2);
                 }
             } else if (meta >= 7) {
-            	world.setBlock(x, y, z, FCF_Blocks.cornCrop2);
+            	world.setBlock(x, y+1, z, FCF_Blocks.cornCrop2);
             }
             
         }
