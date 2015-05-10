@@ -32,6 +32,11 @@ public class BlockCornCrop1 extends BlockFCFCrop {
 	}
 	
 	@Override
+    public Item getItemDropped(int meta, Random p_149650_2_, int p_149650_3_) {
+        return this.getSeedItem();
+    }
+	
+	@Override
 	public void registerBlockIcons(IIconRegister icon) {
 		this.icons = new IIcon[10];
 		
@@ -44,7 +49,7 @@ public class BlockCornCrop1 extends BlockFCFCrop {
     public void updateTick(World world, int x, int y, int z, Random rand) {
         super.updateTick(world, x, y, z, rand);
 
-        if (world.getBlockLightValue(x, y + 1, z) >= 9)
+        if (world.getBlockLightValue(x, y + 3, z) >= 9)
         {
             int meta = world.getBlockMetadata(x, y, z);
 
@@ -122,13 +127,16 @@ public class BlockCornCrop1 extends BlockFCFCrop {
 	
 	@Override 
 	public IIcon getIcon(IBlockAccess block, int x, int y, int z, int side) {
+		System.out.println("Corn 1 texture being registered");
 		int meta = block.getBlockMetadata(x, y, z);
 		
 		if (block.getBlock(x, y+2, z) instanceof BlockCornCrop3) {
 			if (block.getBlockMetadata(x, y+2, z) >= 7) {
+				System.out.println("Corn should be complete if this appears.");
 				return this.icons[13];
 			}
 		} else if (block.getBlock(x, y+1, z) instanceof BlockCornCrop2) {
+			System.out.println("Corn should be 2-high if this appears.");
 			return this.icons[9];
 		} else if (meta < 0 || meta > 7) {
 			meta = 7;

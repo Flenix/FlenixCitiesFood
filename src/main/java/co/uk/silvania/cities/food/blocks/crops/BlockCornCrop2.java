@@ -3,6 +3,7 @@ package co.uk.silvania.cities.food.blocks.crops;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -15,26 +16,37 @@ import co.uk.silvania.cities.food.FCF_Blocks;
 import co.uk.silvania.cities.food.FCF_Items;
 import co.uk.silvania.cities.food.FlenixCities_Food;
 
-public class BlockCornCrop2 extends BlockFCFCrop {
+public class BlockCornCrop2 extends Block {
 
 	public BlockCornCrop2() {
-		super();
+		super(Material.plants);
 		this.setTickRandomly(true);
 	}
 	
-	@Override
+	public IIcon[] icons;
+	
+	
 	protected Item getSeedItem() {
 		return FCF_Items.cornSeed;
 	}
 	
-	@Override
 	protected Item getCropItem() {
 		return FCF_Items.cornItem;
 	}
 	
 	@Override
-	protected boolean canPlaceBlockOn(Block block) {
-        return block == FCF_Blocks.cornCrop1;
+    public Item getItemDropped(int meta, Random p_149650_2_, int p_149650_3_) {
+        return null;
+    }
+	
+	@Override
+    public boolean canBlockStay(World world, int x, int y, int z) {
+        return (world.getBlock(x, y-1, z) instanceof BlockCornCrop1);
+    }
+    
+    @Override
+    public int getRenderType() {
+        return 6;
     }
 	
 	@Override
@@ -50,7 +62,7 @@ public class BlockCornCrop2 extends BlockFCFCrop {
     public void updateTick(World world, int x, int y, int z, Random rand) {
         super.updateTick(world, x, y, z, rand);
 
-        if (world.getBlockLightValue(x, y + 1, z) >= 9)
+        if (world.getBlockLightValue(x, y + 2, z) >= 9)
         {
             int meta = world.getBlockMetadata(x, y, z);
 
@@ -67,7 +79,7 @@ public class BlockCornCrop2 extends BlockFCFCrop {
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int i, float j, float k, float l) {
 		int meta = world.getBlockMetadata(x, y, z);
-		System.out.println("Crop 1 Metadata: " + meta);
+		System.out.println("Crop 2 Metadata: " + meta);
 		return false;
 	}
 	

@@ -37,6 +37,11 @@ public class BlockCornCrop3 extends BlockFCFCrop {
     }
 	
 	@Override
+    public Item getItemDropped(int meta, Random p_149650_2_, int p_149650_3_) {
+        return meta == 7 ? this.getCropItem() : this.getSeedItem();
+    }
+	
+	@Override
     public void updateTick(World world, int x, int y, int z, Random rand) {
         super.updateTick(world, x, y, z, rand);
 
@@ -55,7 +60,7 @@ public class BlockCornCrop3 extends BlockFCFCrop {
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int i, float j, float k, float l) {
 		int meta = world.getBlockMetadata(x, y, z);
-		System.out.println("Crop 1 Metadata: " + meta);
+		System.out.println("Crop 2 Metadata: " + meta);
 		return false;
 	}
 	
