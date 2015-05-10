@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
@@ -34,6 +35,29 @@ public class BlockCornCrop3 extends BlockFCFCrop {
 	protected boolean canPlaceBlockOn(Block block) {
         return block == FCF_Blocks.cornCrop2;
     }
+	
+	@Override
+    public void updateTick(World world, int x, int y, int z, Random rand) {
+        super.updateTick(world, x, y, z, rand);
+
+        if (world.getBlockLightValue(x, y + 1, z) >= 9)
+        {
+            int meta = world.getBlockMetadata(x, y, z);
+
+            if (meta < 7)
+            {
+                ++meta;
+                world.setBlockMetadataWithNotify(x, y, z, meta, 3);
+            }            
+        }
+    }
+	
+	@Override
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int i, float j, float k, float l) {
+		int meta = world.getBlockMetadata(x, y, z);
+		System.out.println("Crop 1 Metadata: " + meta);
+		return false;
+	}
 	
 	@Override
 	public void registerBlockIcons(IIconRegister icon) {

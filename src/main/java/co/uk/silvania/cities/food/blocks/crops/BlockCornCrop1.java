@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
@@ -54,14 +55,21 @@ public class BlockCornCrop1 extends BlockFCFCrop {
                 if (rand.nextInt((int)(25.0F / f) + 1) == 0)
                 {
                     ++meta;
-                    world.setBlockMetadataWithNotify(x, y, z, meta, 2);
+                    world.setBlockMetadataWithNotify(x, y, z, meta, 3);
                 }
             } else if (meta >= 7) {
-            	world.setBlock(x, y+1, z, FCF_Blocks.cornCrop2);
+            	world.setBlock(x, y+1, z, FCF_Blocks.cornCrop2, 1, 3);
             }
             
         }
     }
+	
+	@Override
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int i, float j, float k, float l) {
+		int meta = world.getBlockMetadata(x, y, z);
+		System.out.println("Crop 1 Metadata: " + meta);
+		return false;
+	}
 	
 	//Stolen directly from the BlockCrop class due to the fact I'm overriding updateTick, and this was private.
 	private float func_149864_n(World p_149864_1_, int p_149864_2_, int p_149864_3_, int p_149864_4_)
