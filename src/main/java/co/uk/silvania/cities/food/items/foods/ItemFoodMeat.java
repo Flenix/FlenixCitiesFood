@@ -79,6 +79,8 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
 		this.setMaxStackSize(1);
 	}
 	
+	
+	
 	@Override
 	//Control the food; do things like tick it to slowly rot.
     public void onUpdate(ItemStack item, World world, Entity entity, int par4, boolean par5) {

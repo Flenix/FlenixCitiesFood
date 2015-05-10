@@ -10,6 +10,7 @@ public class ItemUtensil extends Item {
 
 	public ItemUtensil() {
 		super();
+		this.setMaxStackSize(1);
 		this.setCreativeTab(FlenixCities_Food.tabCityFood);
 	}
 	

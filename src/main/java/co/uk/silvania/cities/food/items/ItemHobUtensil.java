@@ -23,6 +23,7 @@ public class ItemHobUtensil extends Item implements IHobUtensil {
 		super();
 		this.setCreativeTab(FlenixCities_Food.tabCityFood);
 		this.cookType = cookType;
+		this.setMaxStackSize(1);
 	}
 	
 	@Override

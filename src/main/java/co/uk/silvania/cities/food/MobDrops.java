@@ -24,11 +24,16 @@ public class MobDrops {
 				random = 0;
 			}
 			
+			//Everything must only drop 1 or 0 due to stack size limits.
+			
 			if (event.entityLiving instanceof EntityChicken) {
 				event.drops.clear();
-				event.entityLiving.dropItem(FCF_Items.chickenBreast, 2);
-				event.entityLiving.dropItem(FCF_Items.chickenWing, 2);
-				event.entityLiving.dropItem(FCF_Items.chickenLeg, 2);
+				event.entityLiving.dropItem(FCF_Items.chickenBreast, bool);
+				event.entityLiving.dropItem(FCF_Items.chickenBreast, bool);
+				event.entityLiving.dropItem(FCF_Items.chickenWing, bool);
+				event.entityLiving.dropItem(FCF_Items.chickenWing, bool);
+				event.entityLiving.dropItem(FCF_Items.chickenLeg, bool);
+				event.entityLiving.dropItem(FCF_Items.chickenLeg, bool);
 			}
 			
 			if (event.entityLiving instanceof EntityCow) {
@@ -36,7 +41,9 @@ public class MobDrops {
 				event.entityLiving.dropItem(Items.leather, (Math.max(0, random - 3)) + 1);
 				event.entityLiving.dropItem(FCF_Items.beefBrisket, bool);
 				event.entityLiving.dropItem(FCF_Items.beefFlank, bool);
-				event.entityLiving.dropItem(FCF_Items.beefLeg, Math.max(0, random - 2));
+				event.entityLiving.dropItem(FCF_Items.beefLeg, bool);
+				event.entityLiving.dropItem(FCF_Items.beefLeg, bool);
+				event.entityLiving.dropItem(FCF_Items.beefLeg, bool);
 				event.entityLiving.dropItem(FCF_Items.beefRib, bool);
 				event.entityLiving.dropItem(FCF_Items.beefSirloin, bool);
 			}
@@ -46,17 +53,22 @@ public class MobDrops {
 				event.entityLiving.dropItem(FCF_Items.porkShoulder, bool);
 				event.entityLiving.dropItem(FCF_Items.porkRib, bool);
 				event.entityLiving.dropItem(FCF_Items.porkLoin, bool);
-				event.entityLiving.dropItem(FCF_Items.porkLeg,  Math.max(0, random - 2));
+				event.entityLiving.dropItem(FCF_Items.porkLeg,  bool);
+				event.entityLiving.dropItem(FCF_Items.porkLeg,  bool);
+				event.entityLiving.dropItem(FCF_Items.porkLeg,  bool);
 				event.entityLiving.dropItem(FCF_Items.porkBelly, bool);
 				event.entityLiving.dropItem(Items.porkchop, bool);
 			}
 			
 			if (event.entityLiving instanceof EntitySheep) {
 				//if (event.entityLiving.isChild()) {
-					event.entityLiving.dropItem(FCF_Items.lambBreast, Math.max(0, random - 3));
+					event.entityLiving.dropItem(FCF_Items.lambBreast, bool);
+					event.entityLiving.dropItem(FCF_Items.lambBreast, bool);
 					event.entityLiving.dropItem(FCF_Items.lambChop, bool);
 					event.entityLiving.dropItem(FCF_Items.lambFlank, bool);
-					event.entityLiving.dropItem(FCF_Items.lambLeg, Math.max(0, random - 3));
+					event.entityLiving.dropItem(FCF_Items.lambLeg, bool);
+					event.entityLiving.dropItem(FCF_Items.lambLeg, bool);
+					event.entityLiving.dropItem(FCF_Items.lambLeg, bool);
 					event.entityLiving.dropItem(FCF_Items.lambLoin, bool);
 					event.entityLiving.dropItem(FCF_Items.lambRack, bool);
 					event.entityLiving.dropItem(FCF_Items.lambShank, bool);
@@ -74,8 +86,10 @@ public class MobDrops {
 				event.entityLiving.dropItem(FCF_Items.horseRib, bool);
 				event.entityLiving.dropItem(FCF_Items.horseRump, bool);
 				event.entityLiving.dropItem(FCF_Items.horseShank, bool);
-				event.entityLiving.dropItem(FCF_Items.horseShoulder, Math.max(0, random - 3));
-				event.entityLiving.dropItem(FCF_Items.horseSirloin, Math.max(0, random - 3));
+				event.entityLiving.dropItem(FCF_Items.horseShoulder, bool);
+				event.entityLiving.dropItem(FCF_Items.horseShoulder, bool);
+				event.entityLiving.dropItem(FCF_Items.horseSirloin, bool);
+				event.entityLiving.dropItem(FCF_Items.horseSirloin, bool);
 			}
 		}
 	}
