@@ -259,7 +259,7 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
 		return feed;
 	}
 	
-	/*@Override //If the food is considered unsafe to eat raw, add a poison effect.
+	@Override //If the food is considered unsafe to eat raw, add a poison effect.
 	//Also give any bones back that were inside the food.
     public ItemStack onEaten(ItemStack item, World world, EntityPlayer player) {
 		if (item.stackTagCompound.getInteger("temperature") > 150000) {
@@ -298,7 +298,7 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
         int boneLarge = Character.getNumericValue(largeStr);
         int boneHuge = Character.getNumericValue(hugeStr);*/
         
-        /*player.inventory.addItemStackToInventory(new ItemStack(Items.bone, 1, 0));
+        player.inventory.addItemStackToInventory(new ItemStack(Items.bone, 1, 0));
         return item;
     }
 	
@@ -309,7 +309,7 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
         }
         getItemUseAction(item);
         return item;
-    }*/
+    }
 	
 	//****************************************************************
 	//****************************************************************
