@@ -10,6 +10,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import co.uk.silvania.cities.food.FlenixCities_Food;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 
 public class LargeFridgeBlock extends BlockContainer {
@@ -40,7 +42,10 @@ public class LargeFridgeBlock extends BlockContainer {
 	
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int i, float j, float k, float l) {
-    	//player.openGui(FlenixCities_Food.instance, 1, world, x, y, z);
+    	if (world.isRemote) {
+    		System.out.println("Fridge GUI currently disabled. Patience please :P");
+    		//player.openGui(FlenixCities_Food.instance, 1, world, x, y, z);
+    	}
         return true;
     }
 	

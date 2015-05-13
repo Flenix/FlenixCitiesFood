@@ -40,11 +40,14 @@ public class StoveBlock extends BlockContainer {
 	
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int i, float j, float k, float l) {
-        if (i == 1) {
-            player.openGui(FlenixCities_Food.instance, 4, world, x, y, z);
-        } else {
-        	player.openGui(FlenixCities_Food.instance, 3, world, x, y, z);
-        }
+    	if (world.isRemote) {
+    		if (i == 1) {
+    			player.openGui(FlenixCities_Food.instance, 4, world, x, y, z);
+        	} else {
+        		System.out.println("The oven and grill are not yet implemented. Please use the hob for all cooking (Top side)");
+        		//player.openGui(FlenixCities_Food.instance, 3, world, x, y, z);
+        	}
+    	}
         return true;
     }
 	
