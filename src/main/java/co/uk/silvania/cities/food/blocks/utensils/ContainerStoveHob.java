@@ -79,26 +79,22 @@ public class ContainerStoveHob extends Container {
 		if (screen instanceof GuiStoveHob) {
 			for (int c = 0; c < 3; c++) {
 				for (int r = 0; r < 9; r++) {
-					int slot = r + c * 9 + 9;
-					addSlotToContainer(new Slot(invPlayer, slot, 21 + r * 18, 140 + c * 18));
+					addSlotToContainer(new Slot(invPlayer, r + c * 9 + 9, 21 + r * 18, 140 + c * 18));
 				}
 			}
 		
 			for (int h = 0; h < 9; h++) {
-				int slot = h;
-				addSlotToContainer(new Slot(invPlayer, slot, 21 + h * 18, 198));
+				addSlotToContainer(new Slot(invPlayer, h, 21 + h * 18, 198));
 			}
 		} else {
 			for (int c = 0; c < 3; c++) {
 				for (int r = 0; r < 9; r++) {
-					int slot = r + c * 9 + 9;
-					addSlotToContainer(new Slot(invPlayer, slot, 20 + r * 18, 174 + c * 18));
+					addSlotToContainer(new Slot(invPlayer, r + c * 9 + 9, 20 + r * 18, 174 + c * 18));
 				}
 			}
 		
 			for (int h = 0; h < 9; h++) {
-				int slot = h;
-				addSlotToContainer(new Slot(invPlayer, slot, 20 + h * 18, 232));
+				addSlotToContainer(new Slot(invPlayer, h, 20 + h * 18, 232));
 			}
 		}
 	}
