@@ -25,6 +25,7 @@ public class MobDrops {
 		
 		if (event.entityLiving instanceof EntityChicken) {
 			event.drops.clear();
+			event.entityLiving.dropItem(Items.feather, (Math.max(0, random - 3)) + 1);
 			event.entityLiving.dropItem(FCF_Items.chickenBreast, (int) (Math.round(Math.random())));
 			event.entityLiving.dropItem(FCF_Items.chickenBreast, (int) (Math.round(Math.random())));
 			event.entityLiving.dropItem(FCF_Items.chickenWing, (int) (Math.round(Math.random())));
