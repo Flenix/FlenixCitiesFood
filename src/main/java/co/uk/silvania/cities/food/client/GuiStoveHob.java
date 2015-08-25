@@ -87,7 +87,7 @@ public class GuiStoveHob extends GuiContainer {
 		}
 	}
 	
-	public void sendPacket() {
+	/*public void sendPacket() {
 		ByteArrayOutputStream bt = new ByteArrayOutputStream();
 		DataOutputStream out = new DataOutputStream(bt);
 		try {
@@ -105,7 +105,7 @@ public class GuiStoveHob extends GuiContainer {
 		} catch (IOException ex) {
 			System.out.println("FCStovePacket Failed!");
 		}
-	}
+	}*/
 	
 	@Override
 	protected void drawGuiContainerForegroundLayer(int par1, int par2) {

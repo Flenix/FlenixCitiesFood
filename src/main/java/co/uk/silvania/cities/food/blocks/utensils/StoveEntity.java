@@ -32,7 +32,7 @@ public class StoveEntity extends TileEntity implements IInventory {
 	
 	
 	public StoveEntity() {
-		items = new ItemStack[58];
+		items = new ItemStack[29];
 	}
 	
 	@Override
@@ -134,13 +134,13 @@ public class StoveEntity extends TileEntity implements IInventory {
 	@Override
 	public void updateEntity() {
 		ItemStack fuel = getStackInSlot(0);
-		ItemStack hob1 = getStackInSlot(4);
-		ItemStack hob2 = getStackInSlot(5);
-		ItemStack hob3 = getStackInSlot(6);
-		ItemStack hob4 = getStackInSlot(7);
-		ItemStack grill1 = getStackInSlot(36);
-		ItemStack oven1 = getStackInSlot(43);
-		ItemStack oven2 = getStackInSlot(50);
+		ItemStack hob1 = getStackInSlot(1);
+		ItemStack hob2 = getStackInSlot(2);
+		ItemStack hob3 = getStackInSlot(3);
+		ItemStack hob4 = getStackInSlot(4);
+		//ItemStack grill1 = getStackInSlot(29);
+		//ItemStack oven1 = getStackInSlot(30);
+		//ItemStack oven2 = getStackInSlot(31);
 
 		if (!worldObj.isRemote) {
 			if (fuel != null) {
@@ -335,8 +335,7 @@ public class StoveEntity extends TileEntity implements IInventory {
 
 	@Override
 	public String getInventoryName() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Stove";
 	}
 
 	@Override
@@ -345,15 +344,6 @@ public class StoveEntity extends TileEntity implements IInventory {
 		return false;
 	}
 
-	@Override
-	public void openInventory() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void closeInventory() {
-		// TODO Auto-generated method stub
-		
-	}
+	@Override public void openInventory() {}
+	@Override public void closeInventory() {}
 }

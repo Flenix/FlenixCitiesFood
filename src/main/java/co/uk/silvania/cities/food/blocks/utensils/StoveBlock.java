@@ -1,7 +1,5 @@
 package co.uk.silvania.cities.food.blocks.utensils;
 
-import co.uk.silvania.cities.core.FlenixCities_Core;
-import co.uk.silvania.cities.food.FlenixCities_Food;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -9,8 +7,11 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import co.uk.silvania.cities.core.FlenixCities_Core;
+import co.uk.silvania.cities.food.FlenixCities_Food;
 
 public class StoveBlock extends BlockContainer {
 
@@ -44,7 +45,7 @@ public class StoveBlock extends BlockContainer {
     		if (i == 1) {
     			player.openGui(FlenixCities_Food.instance, 4, world, x, y, z);
         	} else {
-        		System.out.println("The oven and grill are not yet implemented. Please use the hob for all cooking (Top side)");
+        		player.addChatComponentMessage(new ChatComponentText("The oven and grill are not yet implemented. Please use the hob for all cooking (Top side)"));
         		//player.openGui(FlenixCities_Food.instance, 3, world, x, y, z);
         	}
     	}

@@ -1,133 +1,168 @@
 package co.uk.silvania.cities.food.blocks.utensils;
 
-import co.uk.silvania.cities.food.client.GuiStoveHob;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntityFurnace;
+import co.uk.silvania.cities.food.util.IFlenixFoods;
+import co.uk.silvania.cities.food.util.IHobUtensil;
+import co.uk.silvania.cities.food.util.IOvenUtensil;
 
 public class ContainerStoveHob extends Container {
 	
 	private IInventory stoveInventory;
-	private GuiScreen screen;
 
 	public ContainerStoveHob(InventoryPlayer invPlayer, StoveEntity tileEntity) {
-		screen = Minecraft.getMinecraft().currentScreen;
-		if (screen instanceof GuiStoveHob) {
-			addSlotToContainer(new SlotFuel(tileEntity, 0, 21, 117)); //Fuel
-			addSlotToContainer(new SlotUtensilHob(tileEntity, 4, 71, 41)); //Hob 1
-			addSlotToContainer(new SlotUtensilHob(tileEntity, 5, 115, 41)); //Hob 2
-			addSlotToContainer(new SlotUtensilHob(tileEntity, 6, 71, 85)); //Hob 3
-			addSlotToContainer(new SlotUtensilHob(tileEntity, 7, 115, 85)); //Hob 4
-			addSlotToContainer(new SlotFood(tileEntity, 8, 8, 32, 4)); //Hob 1 Slots 1-6
-			addSlotToContainer(new SlotFood(tileEntity, 9, 26, 32, 4));
-			addSlotToContainer(new SlotFood(tileEntity, 10, 44, 32, 4));
-			addSlotToContainer(new SlotFood(tileEntity, 11, 8, 50, 4));
-			addSlotToContainer(new SlotFood(tileEntity, 12, 26, 50, 4));
-			addSlotToContainer(new SlotFood(tileEntity, 13, 44, 50, 4));
-			addSlotToContainer(new SlotFood(tileEntity, 14, 142, 32, 5)); //Hob 2 Slots 1-6
-			addSlotToContainer(new SlotFood(tileEntity, 15, 160, 32, 5));
-			addSlotToContainer(new SlotFood(tileEntity, 16, 178, 32, 5));
-			addSlotToContainer(new SlotFood(tileEntity, 17, 142, 50, 5));
-			addSlotToContainer(new SlotFood(tileEntity, 18, 160, 50, 5));
-			addSlotToContainer(new SlotFood(tileEntity, 19, 178, 50, 5));
-			addSlotToContainer(new SlotFood(tileEntity, 20, 8, 76, 6)); //Hob 3 Slots 1-6
-			addSlotToContainer(new SlotFood(tileEntity, 21, 26, 76, 6));
-			addSlotToContainer(new SlotFood(tileEntity, 22, 44, 76, 6));
-			addSlotToContainer(new SlotFood(tileEntity, 23, 8, 94, 6));
-			addSlotToContainer(new SlotFood(tileEntity, 24, 26, 94, 6));
-			addSlotToContainer(new SlotFood(tileEntity, 25, 44, 94, 6));
-			addSlotToContainer(new SlotFood(tileEntity, 26, 142, 76, 7)); //Hob 4 Slots 1-6
-			addSlotToContainer(new SlotFood(tileEntity, 27, 160, 76, 7));
-			addSlotToContainer(new SlotFood(tileEntity, 28, 178, 76, 7));
-			addSlotToContainer(new SlotFood(tileEntity, 29, 142, 94, 7));
-			addSlotToContainer(new SlotFood(tileEntity, 30, 160, 94, 7));
-			addSlotToContainer(new SlotFood(tileEntity, 31, 178, 94, 7));
-		} else {
-			addSlotToContainer(new SlotFuel(tileEntity, 0, 8, 125)); //Fuel
-			addSlotToContainer(new SlotUtensilOven(tileEntity, 36, 86, 54)); //Grill
-			addSlotToContainer(new SlotFood(tileEntity, 37, 41, 36, 36)); //Grill Slot 1
-			addSlotToContainer(new SlotFood(tileEntity, 38, 59, 36, 36)); //Grill Slot 2
-			addSlotToContainer(new SlotFood(tileEntity, 39, 77, 36, 36)); //Grill Slot 3
-			addSlotToContainer(new SlotFood(tileEntity, 40, 95, 36, 36)); //Grill Slot 4
-			addSlotToContainer(new SlotFood(tileEntity, 41, 113, 36, 36)); //Grill Slot 5
-			addSlotToContainer(new SlotFood(tileEntity, 42, 131, 36, 36)); //Grill Slot 6
-			addSlotToContainer(new SlotUtensilOven(tileEntity, 43, 86, 102)); //Oven 1
-			addSlotToContainer(new SlotFood(tileEntity, 44, 41, 84, 43)); //Oven 1 Slot 1
-			addSlotToContainer(new SlotFood(tileEntity, 45, 59, 84, 43)); //Oven 1 Slot 2
-			addSlotToContainer(new SlotFood(tileEntity, 46, 77, 84, 43)); //Oven 1 Slot 3
-			addSlotToContainer(new SlotFood(tileEntity, 47, 95, 84, 43)); //Oven 1 Slot 4
-			addSlotToContainer(new SlotFood(tileEntity, 48, 113, 84, 43)); //Oven 1 Slot 5
-			addSlotToContainer(new SlotFood(tileEntity, 49, 131, 84, 43)); //Oven 1 Slot 6
-			addSlotToContainer(new SlotUtensilOven(tileEntity, 50, 86, 142)); //Oven 2
-			addSlotToContainer(new SlotFood(tileEntity, 51, 41, 124, 50)); //Oven 2 Slot 1
-			addSlotToContainer(new SlotFood(tileEntity, 52, 59, 124, 50)); //Oven 2 Slot 2
-			addSlotToContainer(new SlotFood(tileEntity, 53, 77, 124, 50)); //Oven 2 Slot 3
-			addSlotToContainer(new SlotFood(tileEntity, 54, 95, 124, 50)); //Oven 2 Slot 4
-			addSlotToContainer(new SlotFood(tileEntity, 55, 113, 124, 50)); //Oven 2 Slot 5
-			addSlotToContainer(new SlotFood(tileEntity, 56, 131, 124, 50)); //Oven 2 Slot 6
-		}
-		bindPlayerInventory(invPlayer, screen);
+		int hobOffset = 0;
+		int stoveOffset = 0;
 
-	}
-	
-	protected void bindPlayerInventory(InventoryPlayer invPlayer, GuiScreen screen) {
-		if (screen instanceof GuiStoveHob) {
-			for (int c = 0; c < 3; c++) {
-				for (int r = 0; r < 9; r++) {
-					addSlotToContainer(new Slot(invPlayer, r + c * 9 + 9, 21 + r * 18, 140 + c * 18));
-				}
-			}
+		addSlotToContainer(new SlotFuel(tileEntity, 0, 21, 117)); //Fuel
+		addSlotToContainer(new SlotUtensilHob(tileEntity, 1, 71, 41)); //Hob 1
+		addSlotToContainer(new SlotUtensilHob(tileEntity, 2, 115, 41)); //Hob 2
+		addSlotToContainer(new SlotUtensilHob(tileEntity, 3, 71, 85)); //Hob 3
+		addSlotToContainer(new SlotUtensilHob(tileEntity, 4, 115, 85)); //Hob 4
+		addSlotToContainer(new SlotFood(tileEntity, 5, 8, 32, 4)); //Hob 1 Slots 1-6
+		addSlotToContainer(new SlotFood(tileEntity, 6, 26, 32, 4));
+		addSlotToContainer(new SlotFood(tileEntity, 7, 44, 32, 4));
+		addSlotToContainer(new SlotFood(tileEntity, 8, 8, 300, 4));
+		addSlotToContainer(new SlotFood(tileEntity, 9, 26, 300, 4));
+		addSlotToContainer(new SlotFood(tileEntity, 10, 44, 300, 4));
+		addSlotToContainer(new SlotFood(tileEntity, 11, 142, 32, 5)); //Hob 2 Slots 1-6
+		addSlotToContainer(new SlotFood(tileEntity, 12, 160, 32, 5));
+		addSlotToContainer(new SlotFood(tileEntity, 13, 178, 32, 5));
+		addSlotToContainer(new SlotFood(tileEntity, 14, 142, 300, 5));
+		addSlotToContainer(new SlotFood(tileEntity, 15, 160, 300, 5));
+		addSlotToContainer(new SlotFood(tileEntity, 16, 178, 300, 5));
+		addSlotToContainer(new SlotFood(tileEntity, 17, 8, 76, 6)); //Hob 3 Slots 1-6
+		addSlotToContainer(new SlotFood(tileEntity, 18, 26, 76, 6));
+		addSlotToContainer(new SlotFood(tileEntity, 19, 44, 76, 6));
+		addSlotToContainer(new SlotFood(tileEntity, 20, 8, 94, 6));
+		addSlotToContainer(new SlotFood(tileEntity, 21, 26, 94, 6));
+		addSlotToContainer(new SlotFood(tileEntity, 22, 44, 94, 6));
+		addSlotToContainer(new SlotFood(tileEntity, 23, 142, 76, 7)); //Hob 4 Slots 1-6
+		addSlotToContainer(new SlotFood(tileEntity, 24, 160, 76, 7));
+		addSlotToContainer(new SlotFood(tileEntity, 25, 178, 76, 7));
+		addSlotToContainer(new SlotFood(tileEntity, 26, 142, 94, 7));
+		addSlotToContainer(new SlotFood(tileEntity, 27, 160, 94, 7));
+		addSlotToContainer(new SlotFood(tileEntity, 28, 178, 94, 7));
 		
-			for (int h = 0; h < 9; h++) {
-				addSlotToContainer(new Slot(invPlayer, h, 21 + h * 18, 198));
-			}
-		} else {
-			for (int c = 0; c < 3; c++) {
-				for (int r = 0; r < 9; r++) {
-					addSlotToContainer(new Slot(invPlayer, r + c * 9 + 9, 20 + r * 18, 174 + c * 18));
-				}
-			}
+		/*addSlotToContainer(new SlotUtensilOven(tileEntity, 29, 	0, 0)); //Grill
+		addSlotToContainer(new SlotUtensilOven(tileEntity, 30,	0, 0)); //Oven 1
+		addSlotToContainer(new SlotUtensilOven(tileEntity, 31, 	0, 0)); //Oven 2
+		addSlotToContainer(new SlotFood(tileEntity, 32, 41, 	0, 0)); //Grill Slot 1
+		addSlotToContainer(new SlotFood(tileEntity, 33, 59, 	0, 0)); //Grill Slot 2
+		addSlotToContainer(new SlotFood(tileEntity, 34, 77, 	0, 0)); //Grill Slot 3
+		addSlotToContainer(new SlotFood(tileEntity, 35, 95, 	0, 0)); //Grill Slot 4
+		addSlotToContainer(new SlotFood(tileEntity, 36, 113, 	0, 0)); //Grill Slot 5
+		addSlotToContainer(new SlotFood(tileEntity, 37, 131, 	0, 0)); //Grill Slot 6
+		addSlotToContainer(new SlotFood(tileEntity, 38, 41, 	0, 0)); //Oven 1 Slot 1
+		addSlotToContainer(new SlotFood(tileEntity, 39, 59, 	0, 0)); //Oven 1 Slot 2
+		addSlotToContainer(new SlotFood(tileEntity, 40, 77, 	0, 0)); //Oven 1 Slot 3
+		addSlotToContainer(new SlotFood(tileEntity, 41, 95, 	0, 0)); //Oven 1 Slot 4
+		addSlotToContainer(new SlotFood(tileEntity, 42, 113, 	0, 0)); //Oven 1 Slot 5
+		addSlotToContainer(new SlotFood(tileEntity, 43, 131, 	0, 0)); //Oven 1 Slot 6
+		addSlotToContainer(new SlotFood(tileEntity, 44, 41, 	0, 0)); //Oven 2 Slot 1
+		addSlotToContainer(new SlotFood(tileEntity, 45, 59, 	0, 0)); //Oven 2 Slot 2
+		addSlotToContainer(new SlotFood(tileEntity, 46, 77, 	0, 0)); //Oven 2 Slot 3
+		addSlotToContainer(new SlotFood(tileEntity, 47, 95, 	0, 0)); //Oven 2 Slot 4
+		addSlotToContainer(new SlotFood(tileEntity, 48, 113, 	0, 0)); //Oven 2 Slot 5
+		addSlotToContainer(new SlotFood(tileEntity, 49, 131, 	0, 0)); //Oven 2 Slot 6*/
 		
-			for (int h = 0; h < 9; h++) {
-				addSlotToContainer(new Slot(invPlayer, h, 20 + h * 18, 232));
+		//Player inventory
+		for (int i = 0; i < 3; ++i) {
+			for (int j = 0; j < 9; ++j) {
+				this.addSlotToContainer(new Slot(invPlayer, j + i * 9 + 9, 21 + j * 18, 138 + i * 18));
 			}
 		}
+
+		for (int i = 0; i < 9; ++i) {
+			this.addSlotToContainer(new Slot(invPlayer, i, 21 + i * 18, 198));
+		}
+		
 	}
+
 
 	@Override
 	public boolean canInteractWith(EntityPlayer entityplayer) {
 		return true;
 	}
 	
-	
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int slot) {
-		return null;
-	}
-	
-	/*@Override
-	public ItemStack transferStackInSlot(EntityPlayer player, int slot) {
+		System.out.println("### SLOT " + slot + " ###");
 		ItemStack item = null;
-		Slot slotObject = (Slot)this.inventorySlots.get(slot);
+		Slot slotObject = (Slot) this.inventorySlots.get(slot);
+		
+		Slot hob1 = (Slot) this.inventorySlots.get(1);
+		Slot hob2 = (Slot) this.inventorySlots.get(2);
+		Slot hob3 = (Slot) this.inventorySlots.get(3);
+		Slot hob4 = (Slot) this.inventorySlots.get(4);
+		
+		
+		int hobStart = 0;
+		int hobEnd = 28;
+		int invStart = 29;
 		
 		if (slotObject != null && slotObject.getHasStack()) {
 			ItemStack stackInSlot = slotObject.getStack();
 			item = stackInSlot.copy();
 			
-			if (((slot >= 4) && (slot <= 31)) || (slot >= 36) && (slot <= 56)) {
-				if (!this.mergeItemStack(stackInSlot, 57, 93, true)) {
+			//Moving items from stove to inventory.
+			if (slot < invStart) {
+				if (!this.mergeItemStack(stackInSlot, invStart, invStart + 36, true)) {
 					return null;
 				}
 				
 				slotObject.onSlotChange(stackInSlot, item);
-			}
-            //places it into the tileEntity is possible since its in the player inventory
-			else if (!this.mergeItemStack(stackInSlot, 0, 56, false)) {
+			} else {
+				//Slot is player inventory. Lets figure out where we should put it.
+				if (stackInSlot.getItem() instanceof IHobUtensil) {
+					if (!this.mergeItemStack(stackInSlot, 1, 4, false)) {
+						return null;
+					}
+				}
+				if (TileEntityFurnace.isItemFuel(stackInSlot)) {
+					if (!this.mergeItemStack(stackInSlot, 0, 0, false)) {
+						return null;
+					}
+				}
+				/*if (stackInSlot.getItem() instanceof IOvenUtensil) {
+					if (!this.mergeItemStack(stackInSlot, 29, 31, false)) {
+						return null;
+					}
+				}*/
+				if (hob1 != null && hob1.getStack().getItem() instanceof IHobUtensil) {
+					if (stackInSlot.getItem() instanceof IFlenixFoods) {
+						if (!this.mergeItemStack(stackInSlot, 5, 10, false)) {
+							return null;
+						}
+					}
+				}
+				if (hob2 != null && hob2.getStack().getItem() instanceof IHobUtensil) {
+					if (stackInSlot.getItem() instanceof IFlenixFoods) {
+						if (!this.mergeItemStack(stackInSlot, 11, 16, false)) {
+							return null;
+						}
+					}
+				}
+				if (hob3 != null && hob3.getStack().getItem() instanceof IHobUtensil) {
+					if (stackInSlot.getItem() instanceof IFlenixFoods) {
+						if (!this.mergeItemStack(stackInSlot, 17, 22, false)) {
+							return null;
+						}
+					}
+				}
+				if (hob4 != null && hob4.getStack().getItem() instanceof IHobUtensil) {
+					if (stackInSlot.getItem() instanceof IFlenixFoods) {
+						if (!this.mergeItemStack(stackInSlot, 23, 28, false)) {
+							return null;
+						}
+					}
+				}
+
 				return null;
 			}
 			
@@ -144,42 +179,6 @@ public class ContainerStoveHob extends Container {
 		}
 		return item;
 	}
-
-	
-	@Override
-	public ItemStack transferStackInSlot(EntityPlayer player, int slot) {
-		ItemStack stack = null;
-        Slot slotObject = (Slot) inventorySlots.get(slot);
-
-        //null checks and checks if the item can be stacked (maxStackSize > 1)
-        if (slotObject != null && slotObject.getHasStack()) {
-                ItemStack stackInSlot = slotObject.getStack();
-                stack = stackInSlot.copy();
-
-                //merges the item into player inventory since its in the tileEntity
-                if (slot < 9) {
-                        if (!this.mergeItemStack(stackInSlot, 0, 35, true)) { //0 and 35 need to be confirmed.
-                                return null;
-                        }
-                }
-                //places it into the tileEntity is possible since its in the player inventory
-                else if (!this.mergeItemStack(stackInSlot, 0, 4, false)) {
-                        return null;
-                }
-
-                if (stackInSlot.stackSize == 0) {
-                        slotObject.putStack(null);
-                } else {
-                        slotObject.onSlotChanged();
-                }
-
-                if (stackInSlot.stackSize == stack.stackSize) {
-                        return null;
-                }
-                slotObject.onPickupFromSlot(player, stackInSlot);
-        }
-        return stack;
-	}*/
 	
 	@Override
 	public void putStackInSlot(int slot, ItemStack item) {
