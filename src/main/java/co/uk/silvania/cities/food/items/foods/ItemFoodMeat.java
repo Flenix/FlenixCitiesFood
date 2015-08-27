@@ -143,7 +143,15 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
 					}
 					if (alter) {
 						if (roundTemp >= playerTemp) {
-							newTemp = temp - 10;
+							if (temp >= 200000) {
+								newTemp = temp - 200;
+							} else if (temp >= 100000) {
+								newTemp = temp - 150;
+							} else if (temp >= 60000) {
+								newTemp = temp - 100;
+							} else {
+								newTemp = temp - 10;
+							}
 						} else if (roundTemp <= playerTemp) {
 							newTemp = temp + 10;
 						}
@@ -182,9 +190,8 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
 		int cookedPref = item.stackTagCompound.getInteger("prefCookType");
 		float temp = (item.stackTagCompound.getInteger("temperature") / 1000);
 		float bonus = 0;
-		
-		float pcl = item.stackTagCompound.getFloat("perfectCookedLevel");
-		if (cookedValue >= (pcl - 0.1F) && cookedValue <= (pcl + 0.1F)) {
+
+		if (cookedValue == item.stackTagCompound.getFloat("perfectCookedLevel")) {
 			item.stackTagCompound.setBoolean("perfect", true);
 			bonus = bonus + 2;
 		}
@@ -263,7 +270,7 @@ public class ItemFoodMeat extends ItemFood implements IFlenixFoods {
 	//Also give any bones back that were inside the food.
     public ItemStack onEaten(ItemStack item, World world, EntityPlayer player) {
 		if (item.stackTagCompound.getInteger("temperature") > 150000) {
-			player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.RED + "You burned your mouth on the hot food!"));
+			player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.RED + "" + EnumChatFormatting.BOLD + "You burned your mouth on the hot food!"));
 			player.attackEntityFrom(DamageSource.onFire, 1.0F);
 		}
     	if (item.stackTagCompound.getFloat("cookedValue") > item.stackTagCompound.getFloat("underCookedLevel")) {

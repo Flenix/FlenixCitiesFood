@@ -55,11 +55,10 @@ public class MobDrops {
 			event.entityLiving.dropItem(FCF_Items.porkLeg,  (int) (Math.round(Math.random())));
 			event.entityLiving.dropItem(FCF_Items.porkLeg,  (int) (Math.round(Math.random())));
 			event.entityLiving.dropItem(FCF_Items.porkBelly, (int) (Math.round(Math.random())));
-			event.entityLiving.dropItem(Items.porkchop, (int) (Math.round(Math.random())));
 		}
 		
 		if (event.entityLiving instanceof EntitySheep) {
-			//if (event.entityLiving.isChild()) {
+			if (event.entityLiving.isChild()) {
 				event.entityLiving.dropItem(FCF_Items.lambBreast, (int) (Math.round(Math.random())));
 				event.entityLiving.dropItem(FCF_Items.lambBreast, (int) (Math.round(Math.random())));
 				event.entityLiving.dropItem(FCF_Items.lambChop, (int) (Math.round(Math.random())));
@@ -71,14 +70,19 @@ public class MobDrops {
 				event.entityLiving.dropItem(FCF_Items.lambRack, (int) (Math.round(Math.random())));
 				event.entityLiving.dropItem(FCF_Items.lambShank, (int) (Math.round(Math.random())));
 				event.entityLiving.dropItem(FCF_Items.lambShoulder, (int) (Math.round(Math.random())));
-			/*} else {
-				event.entityLiving.dropItem(FCF_Items.muttonBreast, Math.max(0, Math.random()om - 2)));
+			} else {
+				event.entityLiving.dropItem(FCF_Items.muttonBreast, (int) (Math.round(Math.random())));
+				event.entityLiving.dropItem(FCF_Items.muttonBreast, (int) (Math.round(Math.random())));
 				event.entityLiving.dropItem(FCF_Items.muttonFlank, (int) (Math.round(Math.random())));
-				event.entityLiving.dropItem(FCF_Items.muttonLeg, Math.max(0, Math.random()om - 2)));
+				event.entityLiving.dropItem(FCF_Items.muttonLeg, (int) (Math.round(Math.random())));
+				event.entityLiving.dropItem(FCF_Items.muttonLeg, (int) (Math.round(Math.random())));
+				event.entityLiving.dropItem(FCF_Items.muttonLeg, (int) (Math.round(Math.random())));
 				event.entityLiving.dropItem(FCF_Items.muttonLoin, (int) (Math.round(Math.random())));
 				event.entityLiving.dropItem(FCF_Items.muttonRack, (int) (Math.round(Math.random())));
-				event.entityLiving.dropItem(FCF_Items.muttonShoulder, (int) (Math.round(Math.random())));*/
+				event.entityLiving.dropItem(FCF_Items.muttonShoulder, (int) (Math.round(Math.random())));
+				event.entityLiving.dropItem(FCF_Items.muttonShoulder, (int) (Math.round(Math.random())));
 			}
+		}
 	
 		if (event.entityLiving instanceof EntityHorse) {
 			event.entityLiving.dropItem(FCF_Items.horseRib, (int) (Math.round(Math.random())));

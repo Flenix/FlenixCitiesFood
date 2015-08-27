@@ -13,23 +13,37 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import co.uk.silvania.cities.core.CityConfig;
 import co.uk.silvania.cities.econ.store.container.InvisibleButton;
+import co.uk.silvania.cities.food.FlenixCities_Food;
 import co.uk.silvania.cities.food.blocks.utensils.ContainerStoveHob;
 import co.uk.silvania.cities.food.blocks.utensils.StoveEntity;
+import co.uk.silvania.cities.food.network.StovePacket;
 
 public class GuiStoveHob extends GuiContainer {
 	
 	private static final ResourceLocation texture = new ResourceLocation("fc_food", "textures/gui/stovehobgui.png");
 	
-	public static int hob1Temp = 120;
-	public static int hob2Temp = 120;
-	public static int hob3Temp = 120;
-	public static int hob4Temp = 120;
+	public int hob1Temp = 120;
+	public int hob2Temp = 120;
+	public int hob3Temp = 120;
+	public int hob4Temp = 120;
+	
+	public int fuelLevel;
+	
+	private final StoveEntity stoveEntity;
 
 	public GuiStoveHob(InventoryPlayer invPlayer, StoveEntity te) {
 		super(new ContainerStoveHob(invPlayer, te));
+		stoveEntity = te;
 		
 		xSize = 202;
 		ySize = 222;
+		
+		hob1Temp = te.hob1Setting;
+		hob2Temp = te.hob2Setting;
+		hob3Temp = te.hob3Setting;
+		hob4Temp = te.hob4Setting;
+		
+		fuelLevel = te.fuelValue;
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -52,63 +66,69 @@ public class GuiStoveHob extends GuiContainer {
 			if (!(hob1Temp <= 120)) {
 				hob1Temp = hob1Temp - 10;
 			}
+			updateTileEntity();
 			break;
 		case 2:
 			if (!(hob1Temp >= 360)) {
 				hob1Temp = hob1Temp + 10;
 			}
+			updateTileEntity();
+			break;
 		case 3:
 			if (!(hob2Temp <= 120)) {
 				hob2Temp = hob2Temp - 10;
 			}
+			updateTileEntity();
 			break;
 		case 4:
 			if (!(hob2Temp >= 360)) {
 				hob2Temp = hob2Temp + 10;
 			}
+			updateTileEntity();
+			break;
 		case 5:
 			if (!(hob3Temp <= 120)) {
 				hob3Temp = hob3Temp - 10;
 			}
+			updateTileEntity();
 			break;
 		case 6:
 			if (!(hob3Temp >= 360)) {
 				hob3Temp = hob3Temp + 10;
 			}
+			updateTileEntity();
+			break;
 		case 7:
 			if (!(hob4Temp <= 120)) {
 				hob4Temp = hob4Temp - 10;
 			}
+			updateTileEntity();
 			break;
 		case 8:
 			if (!(hob4Temp >= 360)) {
 				hob4Temp = hob4Temp + 10;
 			}
+			updateTileEntity();
+			break;
 		}
 	}
 	
-	/*public void sendPacket() {
-		ByteArrayOutputStream bt = new ByteArrayOutputStream();
-		DataOutputStream out = new DataOutputStream(bt);
-		try {
-			if (CityConfig.debugMode) {
-				System.out.println("Sending Stove temperature values to server");
-			}
-			
-			out.writeInt(hob1Temp);
-			out.writeInt(hob2Temp);
-			out.writeInt(hob3Temp);
-			out.writeInt(hob4Temp);
-					
-			//TODO Packet250CustomPayload packet = new Packet250CustomPayload("FCStovePkt", bt.toByteArray());
-			//TODO PacketDispatcher.sendPacketToServer(packet);
-		} catch (IOException ex) {
-			System.out.println("FCStovePacket Failed!");
-		}
-	}*/
+	public void updateTileEntity() {
+		FlenixCities_Food.network.sendToServer(new StovePacket(hob1Temp, hob2Temp, hob3Temp, hob4Temp));
+	}
 	
 	@Override
 	protected void drawGuiContainerForegroundLayer(int par1, int par2) {
+		Minecraft.getMinecraft().renderEngine.bindTexture(texture);
+		GL11.glPushMatrix();
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		GL11.glDisable(GL11.GL_LIGHTING);
+		int val = Math.round(stoveEntity.getFuelValue() / 412);
+		if (val > 97) { val = 97; }
+		//drawTexturedModalRect(9, 117, 202, 0, 5, 97);
+		drawTexturedModalRect(9, 117 + 97 - val, 202, 97 - val, 5, val);
+		GL11.glPopMatrix();
+		
 		fontRendererObj.drawString("Stove", 5, 5, 4210752);
 		fontRendererObj.drawString("" + hob1Temp + "c", 66, 13, 4210752);
 		fontRendererObj.drawString("" + hob2Temp + "c", 114, 13, 4210752);

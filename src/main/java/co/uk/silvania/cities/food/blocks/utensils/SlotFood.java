@@ -10,23 +10,25 @@ public class SlotFood extends Slot {
 	int parent;
 	IInventory inv;
 
-	public SlotFood(IInventory te, int id, int x, int y, int parent) {
-		super(te, id, x, y);
-		this.parent = parent;
-		this.inv = te;
+	public SlotFood(IInventory inventory, int id, int x, int y, int prnt) {
+		super(inventory, id, x, y);
+		this.parent = prnt;
+		this.inv = inventory;
 	}
 	
 	@Override
 	public boolean isItemValid(ItemStack item) {
-		if (item.getItem() instanceof IFlenixFoods) {
-			if (inv.getStackInSlot(parent) != null) {
-				boolean burned = item.stackTagCompound.getBoolean("burned");
-				boolean mouldy = item.stackTagCompound.getBoolean("mouldy");
-				boolean cooked = item.stackTagCompound.getBoolean("hasBeenCooked");
-				if (burned || mouldy || cooked) {
-					return false;
+		if (item != null) {
+			if (item.getItem() instanceof IFlenixFoods) {
+				if (inv.getStackInSlot(parent) != null) {
+					boolean burned = item.stackTagCompound.getBoolean("burned");
+					boolean mouldy = item.stackTagCompound.getBoolean("mouldy");
+					boolean cooked = item.stackTagCompound.getBoolean("hasBeenCooked");
+					if (burned || mouldy || cooked) {
+						return false;
+					}
+					return true;
 				}
-				return true;
 			}
 		}
 		return false;

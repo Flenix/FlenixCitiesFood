@@ -4,10 +4,7 @@ import co.uk.silvania.cities.food.blocks.TileEntityFridge;
 import co.uk.silvania.cities.food.blocks.TileEntityFridgeLarge;
 import co.uk.silvania.cities.food.blocks.TileEntityVendingMachine;
 import co.uk.silvania.cities.food.blocks.utensils.StoveEntity;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.MinecraftForge;
+import co.uk.silvania.cities.food.network.StovePacket;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -17,9 +14,15 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 
-@Mod(modid=FlenixCities_Food.modid, dependencies="required-after:flenixcities"/*;required-after:FlenixTweaks"*/, name="FlenixCities Food", version="0.5")
+@Mod(modid=FlenixCities_Food.modid, dependencies="required-after:flenixcities"/*;required-after:FlenixTweaks"*/, name="FlenixCities Food", version="0.7.0")
 public class FlenixCities_Food { 
 	
 	public static final String modid = "fc_food";
@@ -27,6 +30,7 @@ public class FlenixCities_Food {
     @Instance(FlenixCities_Food.modid)
     public static FlenixCities_Food instance;
     public static GuiHandler foodGuiHandler = new GuiHandler();
+    public static SimpleNetworkWrapper network;
 
     @SidedProxy(clientSide="co.uk.silvania.cities.food.client.ClientProxy", serverSide="co.uk.silvania.cities.food.CommonProxy")
     public static CommonProxy proxy;
@@ -47,11 +51,12 @@ public class FlenixCities_Food {
     
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+    	network = NetworkRegistry.INSTANCE.newSimpleChannel("FlenixCitiesFood");
+    	network.registerMessage(StovePacket.Handler.class, StovePacket.class, 0, Side.SERVER);
+    	
     	configPath = event.getModConfigurationDirectory() + "/FlenixCities/";
     	FoodConfig.init(configPath);
     	
-        proxy.registerRenderThings();
-        proxy.registerRenderers();
     	NetworkRegistry.INSTANCE.registerGuiHandler(this, foodGuiHandler);
     	FCF_Blocks.init();
     	FCF_Items.init();
@@ -88,6 +93,9 @@ public class FlenixCities_Food {
         GameRegistry.registerTileEntity(TileEntityFridgeLarge.class, "tileEntityFridgeLarge");
         GameRegistry.registerTileEntity(TileEntityVendingMachine.class, "tileEntityVendingMachine");
         GameRegistry.registerTileEntity(StoveEntity.class, "tileEntityStove");
+        
+        proxy.registerRenderThings();
+        proxy.registerRenderers();
     }
 
 

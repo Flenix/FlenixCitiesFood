@@ -219,3 +219,5 @@ item.mugItem.name=Mug
 item.plasticCup.name=Plastic Cup
 item.glassCup.name=Glass Cup
 item.pieTin.name=Pie Tin
+
+itemGroup.tabCityFood=FlenixCities Food
